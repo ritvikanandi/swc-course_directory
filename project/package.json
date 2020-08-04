@@ -1,0 +1,25 @@
+{
+  "name": "project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sachit-Kalia/swc-course_directory.git"
+  },
+  "author": "sachit",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Sachit-Kalia/swc-course_directory/issues"
+  },
+  "homepage": "https://github.com/Sachit-Kalia/swc-course_directory#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "mongoose": "^5.9.27"
+  }
+}
