@@ -1,9 +1,12 @@
 var express = require("express"),
 	app = express(),
-	bodyParser = require("body-parser");
+	bodyParser = require("body-parser"),
+	User = require("./models/user"),
+	Course = require("./models/course");
 const mongoose = require('mongoose');
 
-
+//requiring routes
+var courseRoutes = require("./routes/courses");
 
 mongoose.connect('mongodb://localhost:27017/course_d', {
   useNewUrlParser: true,
@@ -22,9 +25,7 @@ app.get("/", function(req,res){
 	res.render("home");
 });
 
-app.get("/courses", function(req,res){
-	res.render("courses");
-});
+app.use("/courses", courseRoutes);
 
 
 app.listen(3000, function(){
