@@ -24,6 +24,44 @@ app.use(express.static(__dirname + '/public'));
 app.get("/", function(req,res){
 	res.render("home");
 });
+app.get("/login",function(req,res){
+	res.render("login");
+});
+/* app.post("/",function(req,res){
+	email = req.body.email1;
+	pass = req.body.password;
+	if(email==="rahul@iitg.ac.in" && pass==="rahul123"){
+		res.send("Login Successfully");
+	}
+	else{
+		res.render("login");
+	}
+}); */
+
+app.post("/",function(req,res){
+	name = req.body.firstname;
+	email = req.body.email1;
+	password = req.body.password;
+	confPassword = req.body.confirmPassword;
+	department = req.body.department;
+	if(name==="rahul" && email==="rahul@iitg.ac.in"){
+		if(password === confPassword){
+			res.send("You have been successfully registered. Go to login Page.");
+		}
+		else{
+			res.render("register");
+		}
+	}
+	else{
+		res.render("register");
+	}
+})
+
+//Registration Portal
+app.get("/register",function(req,res){
+	res.render("register");
+});
+
 
 app.use("/courses", courseRoutes);
 
