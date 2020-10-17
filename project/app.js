@@ -27,7 +27,11 @@ app.get("/", function(req,res){
 app.get("/login",function(req,res){
 	res.render("login");
 });
-/* app.post("/",function(req,res){
+//Registration Portal
+app.get("/register",function(req,res){
+	res.render("register");
+});
+app.post("/login",function(req,res){
 	email = req.body.email1;
 	pass = req.body.password;
 	if(email==="rahul@iitg.ac.in" && pass==="rahul123"){
@@ -36,9 +40,9 @@ app.get("/login",function(req,res){
 	else{
 		res.render("login");
 	}
-}); */
+});
 
-app.post("/",function(req,res){
+app.post("/register",function(req,res){
 	name = req.body.firstname;
 	email = req.body.email1;
 	password = req.body.password;
@@ -57,10 +61,7 @@ app.post("/",function(req,res){
 	}
 })
 
-//Registration Portal
-app.get("/register",function(req,res){
-	res.render("register");
-});
+
 
 
 app.use("/courses", courseRoutes);
