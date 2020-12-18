@@ -1,71 +1,42 @@
-var express = require("express"),
-	app = express(),
-	bodyParser = require("body-parser"),
-	User = require("./models/user"),
-	Course = require("./models/course");
+const express = require('express');
+const cookieSession = require('cookie-session');
+const passport = require('passport');
+const authRoutes = require('./routes/auth-routes');
+const profileRoutes = require('./routes/profile-routes');
+const passportSetup = require('./config/passport-setup');
 const mongoose = require('mongoose');
+const keys = require('./config/keys');
 
-//requiring routes
-var courseRoutes = require("./routes/courses");
+const app = express();
 
-mongoose.connect('mongodb://localhost:27017/course_d', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('Connected to DB!'))
-.catch(error => console.log(error.message));
-	
+// set view engine
+app.set('view engine', 'ejs');
+
+// set up session cookies
+app.use(cookieSession({
+    maxAge: 24 * 60 * 60 * 1000,
+    keys: [keys.session.cookieKey]
+}));
+
+// initialize passport
+app.use(passport.initialize());
+app.use(passport.session());
 
 
-app.use(bodyParser.urlencoded({extended:true}));
-app.set("view engine", "ejs");
-app.use(express.static(__dirname + '/public'));
-
-app.get("/", function(req,res){
-	res.render("home");
-});
-app.get("/login",function(req,res){
-	res.render("login");
-});
-/* app.post("/",function(req,res){
-	email = req.body.email1;
-	pass = req.body.password;
-	if(email==="rahul@iitg.ac.in" && pass==="rahul123"){
-		res.send("Login Successfully");
-	}
-	else{
-		res.render("login");
-	}
-}); */
-
-app.post("/",function(req,res){
-	name = req.body.firstname;
-	email = req.body.email1;
-	password = req.body.password;
-	confPassword = req.body.confirmPassword;
-	department = req.body.department;
-	if(name==="rahul" && email==="rahul@iitg.ac.in"){
-		if(password === confPassword){
-			res.send("You have been successfully registered. Go to login Page.");
-		}
-		else{
-			res.render("register");
-		}
-	}
-	else{
-		res.render("register");
-	}
-})
-
-//Registration Portal
-app.get("/register",function(req,res){
-	res.render("register");
+// connect to mongodb
+mongoose.connect('mongodb://localhost:27017/userdata',{useNewUrlParser: true}, () => {
+    console.log('connected to mongodb');
 });
 
+// set up routes
+app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
 
-app.use("/courses", courseRoutes);
+// create home route
+app.get('/', (req, res) => {
+    res.render('home', { user: req.user });
+});
 
-
-app.listen(3000, function(){
-	console.log("server is listening!");
-})
+app.listen(3000, () => {
+    console.log('app now listening for requests on port 3000');
+});
