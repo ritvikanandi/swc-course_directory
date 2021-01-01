@@ -49,6 +49,13 @@
                 <% } else { %>
                 <li><a href="/auth/login">Login</a></li>
                 <% } %>
+                <% if (user) { %>
+                <% if (user.admin) { %>
+                <li><a href="/">Admin Portal</a></li>
+                <% } else { %>
+                <% } %>
+                <% } else { %>
+                <% } %>
                 <li><a href="/">Homepage</a></li>
                 <li><a href="/profile">Profile</a></li>
             </ul>
