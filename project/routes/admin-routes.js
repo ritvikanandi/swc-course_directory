@@ -10,7 +10,7 @@ const authCheck = (req, res, next) => {
 
 router.get("/", authCheck, (req, res) => {
   if (req.user.admin) {
-    res.render("profile", { user: req.user });
+    res.render("courses", { user: req.user });
   } else {
     res.redirect("/");
   }
