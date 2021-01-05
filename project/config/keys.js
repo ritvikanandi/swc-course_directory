@@ -8,4 +8,8 @@ module.exports = {
   session: {
     cookieKey: "swccoursedirectory",
   },
+  mongodb: {
+    dburi:
+      "mongodb+srv://rahul:rahul@cluster0.g6vjp.mongodb.net/userdata?retryWrites=true&w=majority",
+  },
 };

@@ -78,8 +78,8 @@
                         <% if(file.metadata.course == courses_data[0].course_id && file.metadata.where == "assignment") {%>
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <% if (file.isPdf) { %>
-                                        <a href="/courses/<%= courses_data[0].course_id %>/assignment/pdf/<%= file.filename %>"><%= file.metadata.name %></a>
+                                    <% if (file) { %>
+                                        <a href="/courses/<%= courses_data[0].course_id %>/assignment/pdf/<%= file.filename %>" target="_blank"><%= file.metadata.name %></a>
                                     <%} else { %>
                                         <p><% file.filename %></p>
                                     <% } %>

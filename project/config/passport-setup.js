@@ -33,7 +33,7 @@ passport.use(
           new User({
             outlookID: profile.id,
             username: profile.displayName,
-            admin: true,
+            admin: false,
           })
             .save()
             .then((newUser) => {

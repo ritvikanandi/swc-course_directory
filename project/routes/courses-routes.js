@@ -6,11 +6,9 @@ const path = require("path");
 const mongoose = require("mongoose");
 const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
+const keys = require("../config/keys");
 
-
-
-const mongoURI = "mongodb://localhost:27017/userdata";
-mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true });
+const mongoURI = keys.mongodb.dburi;
 
 const conn = mongoose.connection;
 
