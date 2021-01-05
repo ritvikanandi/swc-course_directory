@@ -17,31 +17,34 @@ passport.use(
   new WindowsLiveStrategy(
     {
       // options for google strategy
-      clientID: keys.google.clientID,
-      clientSecret: keys.google.clientSecret,
+      clientID: keys.google.clientID2,
+      clientSecret: keys.google.clientSecret2,
       callbackURL: "/auth/outlook/redirect",
     },
     (accessToken, refreshToken, profile, done) => {
       // check if user already exists in our own db
-      User.findOne({ outlookID: profile.id }).then((currentUser) => {
-        if (currentUser) {
-          // already have this user
-          console.log("user is: ", currentUser);
-          done(null, currentUser);
-        } else {
-          // if not, create user in our db
-          new User({
-            outlookID: profile.id,
-            username: profile.displayName,
-            admin: false,
-          })
-            .save()
-            .then((newUser) => {
-              console.log("created new user: ", newUser);
-              done(null, newUser);
-            });
+      User.findOne({ outlookID: profile.emails[0].value }).then(
+        (currentUser) => {
+          if (currentUser) {
+            // already have this user
+            console.log("user is: ", currentUser);
+            done(null, currentUser);
+          } else {
+            // if not, create user in our db
+            console.log(profile);
+            new User({
+              outlookID: profile.emails[0].value,
+              username: profile.displayName,
+              admin: false,
+            })
+              .save()
+              .then((newUser) => {
+                console.log("created new user: ", newUser);
+                done(null, newUser);
+              });
+          }
         }
-      });
+      );
     }
   )
 );
