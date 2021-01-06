@@ -109,7 +109,7 @@ router.post("/del/:courseid", function (req, res) {
 });
 
 router.get("/:courseid", function (req, res) {
-  if (req.user.admin) {
+  if (req.user) {
     Course.find({ course_id: req.params.courseid }, function (err, courses) {
       if (err) {
         res.send("Sorry !!!");
@@ -121,7 +121,7 @@ router.get("/:courseid", function (req, res) {
 });
 
 router.get("/:courseid/syllabus", function (req, res) {
-  if (req.user.admin) {
+  if (req.user) {
     Course.find({ course_id: req.params.courseid }, function (err, courses) {
       if (err) {
         res.send("Sorry !!!");
@@ -133,7 +133,7 @@ router.get("/:courseid/syllabus", function (req, res) {
 });
 
 router.get("/:courseid/:where", (req, res) => {
-  if (req.user.admin) {
+  if (req.user) {
     if (!gfs) {
       console.log("some error occured, check connection to db");
       res.send("some error occured, check connection to db");
@@ -208,7 +208,7 @@ router.post("/:courseid/:where/upload", upload.single("file"), (req, res) => {
 
 router.get("/:courseid/:where/pdf/:filename", (req, res) => {
   // console.log('id', req.params.id)
-  if (req.user.admin) {
+  if (req.user) {
     const file = gfs
       .find({
         filename: req.params.filename,

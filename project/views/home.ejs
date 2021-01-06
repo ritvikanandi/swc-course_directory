@@ -59,6 +59,14 @@
         <header>
             Welcome to SWC Course Directory
         </header>
+        <% if(user){ %>
+        <h3>Find Course By:</h3>
+        <ul>
+        <li><a href="./find-course-by-course-id">Course ID</a></li>
+        <li><a href="./find-course-by-department">Department</a></li>
+        <li><a href="./find-course-by-topic">Topic</a></li>        
+        </ul>
+        <% } %>
         </main>
     </body>
 </html>

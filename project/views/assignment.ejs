@@ -84,11 +84,15 @@
                                         <p><% file.filename %></p>
                                     <% } %>
                                 </div>
+                                <% if(user) { %>
+                                <% if(user.admin) { %>
                                 <div class="card-footer">
                                     <form action="/courses/<%= courses_data[0].course_id %>/assignment/files/del/<%= file._id %>" method="post">
                                         <button type="submit" class="btn btn-danger">Remove</button>
                                     </form>
                                 </div>
+                                <% } %>
+                                <% } %>
                             </div>
                         <%}%>
                         <%}) %>
@@ -101,13 +105,17 @@
                         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-                    <form action="/courses/<%= courses_data[0].course_id %>/assignment/upload" method="post" enctype="multipart/form-data">
+                        <% if(user) { %>
+                        <% if(user.admin) { %>
+                        <form action="/courses/<%= courses_data[0].course_id %>/assignment/upload" method="post" enctype="multipart/form-data">
                     <div class="custom-file mb-3">
                         <input type="text" name="name" placeholder="name of file">
                         <input type="file" class="custom-file-input" name="file" id="file1">
                     </div>
                     <input type="submit" value="Submit" class="btn btn-primary btn-block">
                 </form>
+                <% } %>
+                <% } %>
                 </div>
             </div>
         </div>
