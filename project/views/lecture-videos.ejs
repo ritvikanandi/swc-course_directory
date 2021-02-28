@@ -69,54 +69,26 @@
                     </div>
                     <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/lecture-notes"> Lecture-Notes </a>
                     </div>
-                    <!-- <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/lecture-videos"> Lecture-Videos </a></div> -->
-                    <div class="element active"><a href="/courses/<%= courses_data[0].course_id %>/assignment"> Assignments </a>
+                    <div class="element active"><a href="/courses/<%= courses_data[0].course_id %>/lecture-videos"> Lecture-Videos </a></div>
+                    <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/assignment"> Assignments </a>
                     </div>
                 </div>
                 <div class="col-8">
-                    <% if(files) { %>
-                        <% files.forEach(function(file) {%>
-                        <% if(file.metadata.course == courses_data[0].course_id && file.metadata.where == "assignment") {%>
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <% if (file) { %>
-                                        <a href="/courses/<%= courses_data[0].course_id %>/assignment/pdf/<%= file.filename %>" target="_blank"><%= file.metadata.name %></a>
-                                    <%} else { %>
-                                        <p><% file.filename %></p>
-                                    <% } %>
-                                </div>
-                                <% if(user) { %>
-                                <% if(user.admin) { %>
-                                <div class="card-footer">
-                                    <form action="/courses/<%= courses_data[0].course_id %>/assignment/files/del/<%= file._id %>" method="post">
-                                        <button type="submit" class="btn btn-danger">Remove</button>
-                                    </form>
-                                </div>
-                                <% } %>
-                                <% } %>
-                            </div>
-                        <%}%>
-                        <%}) %>
-                        <% } else { %>
-                            <p>No files to show</p>
-                        <% } %>
+                    
 
-                        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-                      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-                        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+                    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 
-                        <% if(user) { %>
+                    <% if(user) { %>
                         <% if(user.admin) { %>
-                        <form action="/courses/<%= courses_data[0].course_id %>/assignment/upload" method="post" enctype="multipart/form-data">
-                    <div class="custom-file mb-3">
-                        <input type="text" name="name" placeholder="name of file">
-                        <input type="file" class="custom-file-input" name="file" id="file1">
-                    </div>
-                    <input type="submit" value="Submit" class="btn btn-primary btn-block">
-                </form>
-                <% } %>
-                <% } %>
+                            <form action="/courses/<%= courses_data[0].course_id %>/lecture-videos" method="POST">
+                                <input type="text" name="link" placeholder="Link of Video" id="link">
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                            </form>
+                        <% } %>
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -97,17 +97,6 @@ router.post("/add-course", function (req, res) {
   }
 });
 
-router.post("/del/:courseid", function (req, res) {
-  if (req.user.admin) {
-    Course.findOneAndRemove(
-      { course_id: req.params.courseid },
-      function (err, courses) {
-        res.redirect("/courses");
-      }
-    );
-  }
-});
-
 router.get("/:courseid", function (req, res) {
   if (req.user) {
     Course.find({ course_id: req.params.courseid }, function (err, courses) {
@@ -118,6 +107,54 @@ router.get("/:courseid", function (req, res) {
       }
     });
   }
+});
+
+router.delete("/:courseid",function(req,res) {
+  Course.findOneAndRemove({course_id: req.params.courseid}, function(err) {
+    if(err) {
+      console.log(err);
+    }
+    else{
+      res.redirect("/courses");
+    }
+  })
+});
+
+router.put("/:courseid", function(req,res) {
+  cou_id = req.body.course_id;
+  cou_name = req.body.course_name;
+  credits = req.body.credits;
+  cou_des = req.body.course_desc;
+  instructur = req.body.instructur;
+  level = req.body.level;
+
+  const data = {
+    course_id: cou_id,
+    name: cou_name,
+    credits: credits,
+    description: cou_des,
+    instructur: instructur,
+    level: level
+  };
+  Course.findOneAndUpdate({course_id: req.params.courseid}, data, {new: true}, function(err) {
+    if(err) {
+      console.log(err);
+    }
+    else{
+      res.redirect("/courses");
+    }
+  });
+});
+
+router.get("/edit/:courseid", function(req,res) {
+  Course.find( {course_id: req.params.courseid}, function(err, course) {
+    if(err) {
+      res.send("Sorry !!!");
+    }
+    else {
+      res.render('editcourse', { user: req.user, courses_data: course });
+    }
+  });
 });
 
 router.get("/:courseid/syllabus", function (req, res) {
@@ -131,6 +168,33 @@ router.get("/:courseid/syllabus", function (req, res) {
     });
   }
 });
+
+// router.get("/:courseid/lecture-videos", function (req, res) {
+//   if (req.user) {
+//     Course.find({ course_id: req.params.courseid }, function (err, courses) {
+//       if (err) {
+//         res.send("Sorry !!!");
+//       } else {
+//         res.render("lecture-videos", { user: req.user, courses_data: courses });
+//       }
+//     });
+//   }
+// });
+
+// router.post("/:courseid/lecture-videos", function (req,res) {
+//   if(req.user) {
+//     Course.updateOne({ course_id: req.params.courseid }, { $push: {lecture_videos: req.body.link}});
+
+//     Course.find({ course_id: req.params.courseid }, function (err, courses) {
+//       if (err) {
+//         res.send("Sorry !!!");
+//       } else {
+//         res.render("lecture-videos", { user: req.user, courses_data: courses });
+//         console.log(courses);
+//       }
+//     });
+//   }
+// });
 
 router.get("/:courseid/:where", (req, res) => {
   if (req.user) {

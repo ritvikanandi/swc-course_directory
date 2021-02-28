@@ -8,7 +8,7 @@ const courseSchema = new Schema ({
 	description: String,
 	instructur: String,
 	level: String,
-	lecture_notes: [ {name: String, filename: String}],
+	lecture_notes: [ {name:String, filename: String} ],
 });
 
 const Course = mongoose.model("Course", courseSchema);

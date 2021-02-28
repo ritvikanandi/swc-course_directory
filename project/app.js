@@ -6,6 +6,7 @@ const authRoutes = require("./routes/auth-routes");
 const profileRoutes = require("./routes/profile-routes");
 const adminroutes = require("./routes/admin-routes");
 const passportSetup = require("./config/passport-setup");
+const methodOverride = require("method-override");
 const mongoose = require("mongoose");
 const keys = require("./config/keys");
 const coursesRoutes = require("./routes/courses-routes");
@@ -25,7 +26,7 @@ app.use(
     keys: [keys.session.cookieKey],
   })
 );
-
+app.use(methodOverride('_method'));
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -38,7 +39,12 @@ app.use(passport.session());
     console.log("connected to mongodb");
   }
 ); */
-mongoose.connect(keys.mongodb.dburi, () => {
+mongoose.connect(keys.mongodb.dburi,{ 
+  useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useCreateIndex: true,
+  useFindAndModify: false,
+}, () => {
   console.log("connected to mongodb");
 });
 
