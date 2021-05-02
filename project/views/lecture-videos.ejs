@@ -72,6 +72,8 @@
                     <div class="element active"><a href="/courses/<%= courses_data[0].course_id %>/lecture-videos"> Lecture-Videos </a></div>
                     <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/assignment"> Assignments </a>
                     </div>
+                    <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/faq"> Faq </a>
+                    </div>
                 </div>
                 <div class="col-8">
                     
@@ -80,10 +82,17 @@
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
                     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+                    <% courses_data[0].lecture_videos.forEach(function(link) { %>
+
+                        <a href="<%= link.link %>" target="blank"> <%= link.name %> </a><form method="POST" action="/courses/<%= courses_data[0].course_id %>/lecture-videos?_method=DELETE"><input type="hidden" name="id" value="<%= link._id %>"><button type="submit">Delete</button></form>
+
+                    <% }) %>
+
 
                     <% if(user) { %>
                         <% if(user.admin) { %>
                             <form action="/courses/<%= courses_data[0].course_id %>/lecture-videos" method="POST">
+                                <input type="text" name="name" placeholder="name of Video" id="name">
                                 <input type="text" name="link" placeholder="Link of Video" id="link">
                                 <button type="submit" class="btn btn-primary btn-block">Submit</button>
                             </form>

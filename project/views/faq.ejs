@@ -65,21 +65,31 @@
                 <div class="col-4">
                     <div class="element"><a href="/courses/<%= courses_data[0].course_id %>"> Course-home</a>
                     </div>
-                    <div class="element active"><a href="/courses/<%= courses_data[0].course_id %>/syllabus"> Syllabus </a>
+                    <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/syllabus"> Syllabus </a>
                     </div>
                     <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/lecture-notes"> Lecture-Notes </a>
                     </div>
-                    <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/lecture-videos"> Lecture-Videos </a></div>
+                    <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/lecture-videos"> Lecture-Videos </a>
+                    </div>
                     <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/assignment"> Assignments </a>
                     </div>
-                    <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/faq"> Faq </a>
+                    <div class="element active"><a href="/courses/<%= courses_data[0].course_id %>/faq"> Faq </a>
                     </div>
                 </div>
                 <div class="col-8">
-                    Course Id: <%= courses_data[0].name %> <br>
-                    Course Description: <%= courses_data[0].description %> <br>
-                    Course Instructor: <%= courses_data[0].instructur %> <br>
-                    Course level: <%= courses_data[0].level %><br>
+                    <% courses_data[0].questions.forEach(function(question) { %>
+
+                        Ques: <%= question.ques %> Ans: <%= question.ans %> <form method="POST" action="/courses/<%= courses_data[0].course_id %>/faq?_method=DELETE"><input type="hidden" name="id" value="<%= question._id %>"><button type="submit">Delete</button></form>
+                        
+
+                    <% }) %>
+
+
+                    <form method="POST" action="/courses/<%= courses_data[0].course_id %>/faq">
+                        <input type="text" name="ques" placeholder="Type Ques">
+                        <input type="text" name="ans" placeholder="Type ans">
+                        <button type="submit">POST</button>
+                    </form>
                 </div>
             </div>
         </div>

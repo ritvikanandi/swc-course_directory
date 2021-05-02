@@ -32,21 +32,22 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // connect to mongodb
-/* mongoose.connect(
+ mongoose.connect(
   "mongodb://localhost:27017/userdata",
   { useNewUrlParser: true },
   () => {
     console.log("connected to mongodb");
   }
-); */
-mongoose.connect(keys.mongodb.dburi,{ 
-  useUnifiedTopology: true,
-  useNewUrlParser: true,
-  useCreateIndex: true,
-  useFindAndModify: false,
-}, () => {
-  console.log("connected to mongodb");
-});
+); 
+ 
+// mongoose.connect(keys.mongodb.dburi,{ 
+//   useUnifiedTopology: true,
+//   useNewUrlParser: true,
+//   useCreateIndex: true,
+//   useFindAndModify: false,
+// }, () => {
+//   console.log("connected to mongodb");
+// });
 
 // set up routes
 app.use("/auth", authRoutes);

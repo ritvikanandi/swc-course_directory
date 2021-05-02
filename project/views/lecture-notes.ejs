@@ -69,37 +69,33 @@
                     </div>
                     <div class="element active"><a href="/courses/<%= courses_data[0].course_id %>/lecture-notes"> Lecture-Notes </a>
                     </div>
-                    <!-- <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/lecture-videos"> Lecture-Videos </a></div> -->
+                    <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/lecture-videos"> Lecture-Videos </a></div>
                     <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/assignment"> Assignments </a>
+                    </div>
+                    <div class="element"><a href="/courses/<%= courses_data[0].course_id %>/faq"> Faq </a>
                     </div>
                 </div>
                 <div class="col-8">
-                    <% if(files) { %>
-                        <% files.forEach(function(file) {%>
-                        <% if(file.metadata.course == courses_data[0].course_id && file.metadata.where == "lecture-notes") {%>
+                    <% if(courses_data[0].lecture_notes.length != 0) { %>
+                        <% courses_data[0].lecture_notes.forEach(function(file) {%>
                             <div class="card mb-3">
                                 <div class="card-body">
-                                    <% if (file) { %>
-                                        <a href="/courses/<%= courses_data[0].course_id %>/lecture-notes/pdf/<%= file.filename %>" target="_blank"><%= file.metadata.name %></a>
-                                    <%} else { %>
-                                        <p><% file.filename %></p>
-                                    <% } %>
+                                    <a href="/courses/<%= courses_data[0].course_id %>/lecture-notes/pdf/<%= file.filename %>" target="_blank"><%= file.name %></a>
                                 </div>
                                 <% if(user) { %>
                                     <% if(user.admin) { %>
-                                <div class="card-footer">
-                                    <form action="/courses/<%= courses_data[0].course_id %>/lecture-notes/files/del/<%= file._id %>" method="post">
-                                        <button type="submit" class="btn btn-danger">Remove</button>
-                                    </form>
-                                </div>
-                                <% } %>
+                                        <div class="card-footer">
+                                            <form action="/courses/<%= courses_data[0].course_id %>/lecture-notes/files/del/<%= file._id %>" method="post">
+                                                <button type="submit" class="btn btn-danger">Remove</button>
+                                            </form>
+                                        </div>
+                                    <% } %>
                                 <% } %>
                             </div>
-                        <%}%>
                         <%}) %>
-                        <% } else { %>
-                            <p>No files to show</p>
-                        <% } %>
+                    <% } else { %>
+                        <p>No files to show</p>
+                    <% } %>
 
                         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
                       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

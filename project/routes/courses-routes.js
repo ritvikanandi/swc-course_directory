@@ -8,8 +8,8 @@ const multer = require("multer");
 const GridFsStorage = require("multer-gridfs-storage");
 const keys = require("../config/keys");
 
-const mongoURI = keys.mongodb.dburi;
-
+//const mongoURI = keys.mongodb.dburi;
+const mongoURI = "mongodb://localhost:27017/userdata";
 const conn = mongoose.connection;
 
 conn.once("open", function () {
@@ -46,14 +46,34 @@ const storage = new GridFsStorage({
           bucketName: "uploads",
         };
         resolve(fileInfo);
+        get_filename=filename;
       });
     });
-  },
+  }
 });
 
 const upload = multer({
   storage,
 });
+
+const qandaschema = {
+  ques: String,
+  ans: String
+};
+
+const videoschema = {
+  name: String,
+  link: String
+};
+
+const assignschema = {
+  name: String,
+  filename: String
+}
+
+const Assignment = mongoose.model("Assignment", assignschema);
+const Question = mongoose.model("Question", qandaschema);
+const Video = mongoose.model("Video", videoschema);
 
 router.get("/", function (req, res) {
   if (req.user.admin) {
@@ -93,6 +113,7 @@ router.post("/add-course", function (req, res) {
       level: level,
     });
     course.save();
+    console.log(course);
     res.redirect("/courses");
   }
 });
@@ -110,6 +131,18 @@ router.get("/:courseid", function (req, res) {
 });
 
 router.delete("/:courseid",function(req,res) {
+  Course.find({ course_id: req.params.courseid}, function (err, courses) {
+    courses[0].lecture_notes.forEach( function(file) {
+      gfs.delete(new mongoose.Types.ObjectId(file._id), (err, data) => {
+        if (err) return res.status(404).json({ err: err.message });
+      });
+    });
+    courses[0].assignments.forEach( function(file) {
+      gfs.delete(new mongoose.Types.ObjectId(file._id), (err, data) => {
+        if (err) return res.status(404).json({ err: err.message });
+      });
+    });
+  });
   Course.findOneAndRemove({course_id: req.params.courseid}, function(err) {
     if(err) {
       console.log(err);
@@ -117,7 +150,7 @@ router.delete("/:courseid",function(req,res) {
     else{
       res.redirect("/courses");
     }
-  })
+  });
 });
 
 router.put("/:courseid", function(req,res) {
@@ -169,103 +202,120 @@ router.get("/:courseid/syllabus", function (req, res) {
   }
 });
 
-// router.get("/:courseid/lecture-videos", function (req, res) {
-//   if (req.user) {
-//     Course.find({ course_id: req.params.courseid }, function (err, courses) {
-//       if (err) {
-//         res.send("Sorry !!!");
-//       } else {
-//         res.render("lecture-videos", { user: req.user, courses_data: courses });
-//       }
-//     });
-//   }
-// });
+router.get("/:courseid/faq", function(req, res) {
 
-// router.post("/:courseid/lecture-videos", function (req,res) {
-//   if(req.user) {
-//     Course.updateOne({ course_id: req.params.courseid }, { $push: {lecture_videos: req.body.link}});
-
-//     Course.find({ course_id: req.params.courseid }, function (err, courses) {
-//       if (err) {
-//         res.send("Sorry !!!");
-//       } else {
-//         res.render("lecture-videos", { user: req.user, courses_data: courses });
-//         console.log(courses);
-//       }
-//     });
-//   }
-// });
-
-router.get("/:courseid/:where", (req, res) => {
-  if (req.user) {
-    if (!gfs) {
-      console.log("some error occured, check connection to db");
-      res.send("some error occured, check connection to db");
-      process.exit(0);
+  Course.find({ course_id: req.params.courseid}, function(err, courses) {
+    if(!err) {
+      if(!courses) {
+        const newcourse = new Course({
+          course_id: req.params.courseid
+        });
+        newcourse.save();
+        res.redirect("/course/" + req.params.courseid +"/faq");
+      }
+      else {
+        res.render("faq", {user: req.user, courses_data: courses});
+      }
     }
-    gfs.find().toArray((err, files) => {
-      // check if files
-      if (!files || files.length === 0) {
-        Course.find(
-          { course_id: req.params.courseid },
-          function (err, courses) {
-            if (req.params.where == "lecture-notes")
-              return res.render("lecture-notes", {
-                user: req.user,
-                files: false,
-                courses_data: courses,
-              });
-            else if (req.params.where == "assignment")
-              return res.render("assignment", {
-                user: req.user,
-                files: false,
-                courses_data: courses,
-              });
-            else return res.send("Page not found");
-          }
-        );
+  })
+});
+
+router.post("/:courseid/faq", function (req,res) {
+    const newqanda = new Question({
+      ques: req.body.ques,
+      ans: req.body.ans
+    });
+
+    Course.findOne({course_id: req.params.courseid}, function (err, course) {
+      course.questions.push(newqanda);
+      course.save();
+      console.log(course);
+      res.redirect("/courses/" + req.params.courseid +"/faq");
+    });
+});
+
+router.delete("/:courseid/faq", function (req,res) {
+  Course.findOneAndUpdate({course_id: req.params.courseid}, {$pull: {questions: {_id: req.body.id}}}, function(err, course){
+      if (!err){
+        res.redirect("/courses/" + req.params.courseid +"/faq");
+      }
+    });
+});
+
+router.get("/:courseid/lecture-videos", function (req, res) {
+  if (req.user) {
+    Course.find({ course_id: req.params.courseid }, function (err, courses) {
+      if (err) {
+        res.send("Sorry !!!");
       } else {
-        const f = files
-          .map((file) => {
-            if (file.contentType === "application/pdf") {
-              file.isPdf = true;
-              file.coursename = req.params.courseid;
-            } else {
-              file.isPdf = false;
-            }
-            return file;
-          })
-          .sort((a, b) => {
-            return (
-              new Date(b["uploadDate"]).getTime() -
-              new Date(a["uploadDate"]).getTime()
-            );
-          });
-        Course.find(
-          { course_id: req.params.courseid },
-          function (err, courses) {
-            if (req.params.where == "lecture-notes")
-              return res.render("lecture-notes", {
-                user: req.user,
-                files: f,
-                courses_data: courses,
-              });
-            else if (req.params.where == "assignment")
-              return res.render("assignment", {
-                user: req.user,
-                files: f,
-                courses_data: courses,
-              });
-            else return res.send("Page not found");
-          }
-        );
+        res.render("lecture-videos", { user: req.user, courses_data: courses });
       }
     });
   }
 });
 
+router.post("/:courseid/lecture-videos", function (req,res) {
+  if(req.user) {
+    const newvideo = new Video({
+      name: req.body.name,
+      link: req.body.link
+    });
+
+    Course.findOne({ course_id: req.params.courseid }, function (err, course) {
+      course.lecture_videos.push(newvideo);
+      course.save();
+      res.redirect("/courses/" + req.params.courseid +"/lecture-videos");
+    });
+  }
+});
+
+router.delete("/:courseid/lecture-videos", function (req,res) {
+  Course.findOneAndUpdate({course_id: req.params.courseid}, {$pull: {lecture_videos: {_id: req.body.id}}}, function(err, course){
+      if (!err){
+        res.redirect("/courses/" + req.params.courseid +"/lecture-videos");
+      }
+    });
+});
+
+router.get("/:courseid/:where", (req, res) => {
+  if (req.user) {
+    Course.find({ course_id: req.params.courseid }, function (err, courses) {
+        if (req.params.where == "lecture-notes")
+          return res.render("lecture-notes", { user: req.user, courses_data: courses });
+        else if (req.params.where == "assignment")
+          return res.render("assignment", { user: req.user, courses_data: courses});
+        else return res.send("Page not found");
+      }
+    );
+  }
+});
+
 router.post("/:courseid/:where/upload", upload.single("file"), (req, res) => {
   if (req.user.admin) {
+    gfs.find({filename: get_filename}).toArray((err, files) => {
+      const f = files.map((file) => {
+        return file;
+      });
+      console.log(f[0]._id);
+      const newpdf = new Assignment({
+          _id : f[0]._id,
+          name: req.body.name,
+          filename: get_filename
+      });
+
+      if(req.params.where == "lecture-notes") {
+        Course.findOne({ course_id: req.params.courseid }, function (err, course) {
+          course.lecture_notes.push(newpdf);
+          course.save();
+        });
+      }
+      else {
+        Course.findOne({ course_id: req.params.courseid }, function (err, course) {
+          course.assignments.push(newpdf);
+          course.save();
+        });
+      }
+    });
     res.redirect("/courses/" + req.params.courseid + "/" + req.params.where);
   }
 });
@@ -273,11 +323,7 @@ router.post("/:courseid/:where/upload", upload.single("file"), (req, res) => {
 router.get("/:courseid/:where/pdf/:filename", (req, res) => {
   // console.log('id', req.params.id)
   if (req.user) {
-    const file = gfs
-      .find({
-        filename: req.params.filename,
-      })
-      .toArray((err, files) => {
+    const file = gfs.find({filename: req.params.filename}).toArray((err, files) => {
         if (!files || files.length === 0) {
           return res.status(404).json({
             err: "no files exist",
@@ -292,8 +338,21 @@ router.post("/:courseid/:where/files/del/:id", (req, res) => {
   if (req.user.admin) {
     gfs.delete(new mongoose.Types.ObjectId(req.params.id), (err, data) => {
       if (err) return res.status(404).json({ err: err.message });
-      res.redirect("/courses/" + req.params.courseid + "/" + req.params.where);
     });
+    if(req.params.where == "lecture-notes") {
+      Course.findOneAndUpdate({course_id: req.params.courseid}, {$pull: {lecture_notes: {_id: req.params.id}}}, function(err, course){
+        if (!err){
+          res.redirect("/courses/" + req.params.courseid +"/lecture-notes");
+        }
+      });
+    }
+    else if(req.params.where == "assignment") {
+      Course.findOneAndUpdate({course_id: req.params.courseid}, {$pull: {assignments: {_id: req.params.id}}}, function(err, course){
+        if (!err){
+          res.redirect("/courses/" + req.params.courseid +"/assignment");
+        }
+      });
+    }
   }
 });
 
