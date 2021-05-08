@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>SWC Course Directory</title>
+        <link rel="icon" href="../images/swc_icon.ico"/>
+        <style>
+            body{
+                font-family: arial;
+                margin: 0;
+            }
+            nav{
+                background: skyblue;
+                padding: 20px 10px;
+            }
+            nav ul{
+                max-width: 960px;
+                margin: 0 auto;
+                padding: 0;
+            }
+            nav li{
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 10px 0 0;
+            }
+            nav a{
+                color: black;
+                font-size: 18px;
+                background: rgba(255,255,255,0.2);
+                text-decoration: none;
+                padding: 10px;
+                display: block;
+            }
+            main, header{
+                max-width: 960px;
+                margin: 30px auto;
+                padding: 0 10px;
+                color: #333;
+                font-size: large;
+                font-weight: bolder;
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <ul>
+              <% if (user) { %>
+              <li><a href="/auth/logout">Log out</a></li>
+              <% } else { %>
+              <li><a href="/auth/login">Login</a></li>
+              <% } %> <% if (user) { %> <% if (user.admin) { %>
+              <li><a href="/courses">Admin Portal</a></li>
+              <% } else { %> <% } %> <% } else { %> <% } %>
+              <li><a href="/">Homepage</a></li>
+              <li><a href="/profile">Profile</a></li>
+            </ul>
+          </nav>
+        <main>
+        <header>
+        <div>
+            <table>
+                <tr>
+                    <th> Course Id </th>
+                    <th> Course Name </th>
+                    <th> Credits </th>
+                </tr>
+            <% for(var i=0; i< courses_data.length; i++) {%>
+                <tr>
+                    <td> <a href="/courses/<%= courses_data[i].course_id %>"> <%= courses_data[i].course_id %> </a> </td>
+                    <td> <a href="/courses/<%= courses_data[i].course_id %>"> <%= courses_data[i].name %> </a> </td>
+                    <td> <a href="/courses/<%= courses_data[i].course_id %>"> <%= courses_data[i].credits %> </a> </td>
+                    <td> <form action="/courses/<%= courses_data[i].course_id %>?_method=DELETE" method="POST"><button class="btn btn-danger">Delete</button> </form></td>
+                    <td> <a href="/courses/edit/<%= courses_data[i].course_id %>">Edit</a></td>
+                </tr>
+            <% } %>
+            </table>
+            </div>
+        <a href="/courses/add-course">add a course</a>
+        </header>
+        </main>
+    </body>
+</html>
+
+
