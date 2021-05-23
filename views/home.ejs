@@ -1,201 +1,36 @@
-<%- include("./partials/header.ejs") %>
-    
-    <div class="pt-24">
+
+    <%- include("./partials/header.ejs") %>
+    <div class="pt-24 w-screen h-screen">
+      
       <div class="container px-3 mx-auto flex flex-wrap flex-col md:flex-row items-center">
         <!--Left Col-->
-        <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left">
+        <div class="flex flex-col w-full md:w-2/5 justify-center items-start text-center">
             <% if(user){ %>
-                <h1 class="my-4 text-5xl font-bold leading-tight">
+                <h1 class=" mx-8 my-4 text-5xl font-bold leading-tight">
                 Welcome <br><%= user.username %>
-              </h1><% }else{ %>
+              </h1>
+              <button  class="mx-auto lg:mx-40 hover:underline bg-white text-gray-800 font-bold rounded-full my-4 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                Start Learning
+              </button><% }else{ %>
                 <h1 class="my-4 text-5xl font-bold leading-tight">
                     Welcome to<br> SWC Course Directory.
                   </h1>
               <p class="leading-normal text-2xl mb-8">
-                The learning platform of IIT Guwahati.
+                Your one-stop platform to all academic courses of IIT Guwahati including 
+videos, study material, assignments as well as solving queries.  
               </p>
+              <button onclick="openModal()" class="mx-auto lg:mx-40 hover:underline bg-white text-gray-800 font-bold rounded-full my-4 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+                Sign Up for free
+              </button>
               <% } %>
-          <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            Explore
-          </button>
+          
         </div>
         <!--Right Col-->
-        <div class="w-full md:w-3/5 py-6 text-center">
+        <div class=" md:w-3/5 py-6 text-center">
           <img class="w-full md:w-4/5 z-50" src="https://github.com/tailwindtoolbox/Landing-Page/blob/master/hero.png?raw=true" />
         </div>
       </div>
+      
     </div>
-    <div class="relative -mt-12 lg:-mt-24">
-      <svg viewBox="0 0 1428 174" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-          <g transform="translate(-2.000000, 44.000000)" fill="#FFFFFF" fill-rule="nonzero">
-            <path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
-            <path
-              d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
-              opacity="0.100000001"
-            ></path>
-            <path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" id="Path-4" opacity="0.200000003"></path>
-          </g>
-          <g transform="translate(-4.000000, 76.000000)" fill="#FFFFFF" fill-rule="nonzero">
-            <path
-              d="M0.457,34.035 C57.086,53.198 98.208,65.809 123.822,71.865 C181.454,85.495 234.295,90.29 272.033,93.459 C311.355,96.759 396.635,95.801 461.025,91.663 C486.76,90.01 518.727,86.372 556.926,80.752 C595.747,74.596 622.372,70.008 636.799,66.991 C663.913,61.324 712.501,49.503 727.605,46.128 C780.47,34.317 818.839,22.532 856.324,15.904 C922.689,4.169 955.676,2.522 1011.185,0.432 C1060.705,1.477 1097.39,3.129 1121.236,5.387 C1161.703,9.219 1208.621,17.821 1235.4,22.304 C1285.855,30.748 1354.351,47.432 1440.886,72.354 L1441.191,104.352 L1.121,104.031 L0.457,34.035 Z"
-            ></path>
-          </g>
-        </g>
-      </svg>
-    </div>
-    <section class="bg-white border-b py-8">
-      <div class="container max-w-5xl mx-auto m-8">
-        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-          Contents
-        </h1>
-        <div class="w-full mb-4">
-          <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-        </div>
-        <div class="flex flex-wrap">
-          <div class="w-5/6 sm:w-1/2 p-6">
-            <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-              Lectures and Videos of all the courses.
-            </h3>
-            <p class="text-gray-600 mb-8">
-              No need to travel anywhere Learn from home.
-              <br />
-              <br />
-            </p>
-          </div>
-          <div class="w-full sm:w-1/2 p-6">
-            <img class="w-5/6 sm:h-64 mx-auto" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSM6WEcmD_yO7vmtLZit1Nn2YLPK7sJ9boOaQ&usqp=CAU">
-          </div>
-        </div>
-        <div class="flex flex-wrap flex-col-reverse sm:flex-row">
-          <div class="w-full sm:w-1/2 p-6 mt-6">
-            <img class="w-5/6 sm:h-64 mx-auto" src="data:image/jpeg;base64,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">
-          </div>
-          <div class="w-full sm:w-1/2 p-6 mt-6">
-            <div class="align-middle">
-              <h3 class="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Assignments and Tutorials
-              </h3>
-              <p class="text-gray-600 mb-8">
-                Solve Assignments and Tutorials to learn more.
-                <br />
-                <br />
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- <section class="bg-white border-b py-8">
-      <div class="container mx-auto flex flex-wrap pt-4 pb-12">
-        <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-gray-800">
-          Title
-        </h1>
-        <div class="w-full mb-4">
-          <div class="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
-        </div>
-        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
-              <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-                xGETTING STARTED
-              </p>
-              <div class="w-full font-bold text-xl text-gray-800 px-6">
-                Lorem ipsum dolor sit amet.
-              </div>
-              <p class="text-gray-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div class="flex items-center justify-start">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Action
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
-              <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-                xGETTING STARTED
-              </p>
-              <div class="w-full font-bold text-xl text-gray-800 px-6">
-                Lorem ipsum dolor sit amet.
-              </div>
-              <p class="text-gray-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div class="flex items-center justify-center">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Action
-              </button>
-            </div>
-          </div>
-        </div>
-        <div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-          <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-            <a href="#" class="flex flex-wrap no-underline hover:no-underline">
-              <p class="w-full text-gray-600 text-xs md:text-sm px-6">
-                xGETTING STARTED
-              </p>
-              <div class="w-full font-bold text-xl text-gray-800 px-6">
-                Lorem ipsum dolor sit amet.
-              </div>
-              <p class="text-gray-800 text-base px-6 mb-5">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula.
-              </p>
-            </a>
-          </div>
-          <div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-            <div class="flex items-center justify-end">
-              <button class="mx-auto lg:mx-0 hover:underline gradient text-white font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-                Action
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section> -->
-    <!-- Change the colour #f8fafc to match the previous section colour -->
-    <svg class="wave-top" viewBox="0 0 1439 147" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-      <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g transform="translate(-1.000000, -14.000000)" fill-rule="nonzero">
-          <g class="wave" fill="#f8fafc">
-            <path
-              d="M1440,84 C1383.555,64.3 1342.555,51.3 1317,45 C1259.5,30.824 1206.707,25.526 1169,22 C1129.711,18.326 1044.426,18.475 980,22 C954.25,23.409 922.25,26.742 884,32 C845.122,37.787 818.455,42.121 804,45 C776.833,50.41 728.136,61.77 713,65 C660.023,76.309 621.544,87.729 584,94 C517.525,105.104 484.525,106.438 429,108 C379.49,106.484 342.823,104.484 319,102 C278.571,97.783 231.737,88.736 205,84 C154.629,75.076 86.296,57.743 0,32 L0,0 L1440,0 L1440,84 Z"
-            ></path>
-          </g>
-          <g transform="translate(1.000000, 15.000000)" fill="#FFFFFF">
-            <g transform="translate(719.500000, 68.500000) rotate(-180.000000) translate(-719.500000, -68.500000) ">
-              <path d="M0,0 C90.7283404,0.927527913 147.912752,27.187927 291.910178,59.9119003 C387.908462,81.7278826 543.605069,89.334785 759,82.7326078 C469.336065,156.254352 216.336065,153.6679 0,74.9732496" opacity="0.100000001"></path>
-              <path
-                d="M100,104.708498 C277.413333,72.2345949 426.147877,52.5246657 546.203633,45.5787101 C666.259389,38.6327546 810.524845,41.7979068 979,55.0741668 C931.069965,56.122511 810.303266,74.8455141 616.699903,111.243176 C423.096539,147.640838 250.863238,145.462612 100,104.708498 Z"
-                opacity="0.100000001"
-              ></path>
-              <path d="M1046,51.6521276 C1130.83045,29.328812 1279.08318,17.607883 1439,40.1656806 L1439,120 C1271.17211,77.9435312 1140.17211,55.1609071 1046,51.6521276 Z" opacity="0.200000003"></path>
-            </g>
-          </g>
-        </g>
-      </g>
-    </svg>
-    <section class="container mx-auto text-center py-6 mb-12">
-      <h1 class="w-full my-2 text-5xl font-bold leading-tight text-center text-white">
-        Have a Great Learning
-      </h1>
-      <div class="w-full mb-4">
-        <div class="h-1 mx-auto bg-white w-1/6 opacity-25 my-0 py-0 rounded-t"></div>
-      </div>
-      <h3 class="my-4 text-3xl leading-tight">
-        Thanks for Visiting to this website!
-      </h3>
-      <!-- <button class="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-        Button 
-      </button> -->
-    </section>
-<%- include("./partials/footer.ejs") %>
+    <%- include("./partials/footer.ejs") %>
+    
