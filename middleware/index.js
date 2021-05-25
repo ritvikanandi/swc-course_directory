@@ -3,7 +3,7 @@ exports.isLoggedIn = function (req, res, next) {
     return next();
   }
   console.log("You need to login first");
-  return res.redirect("/coursedirectory/auth/login");
+  return res.redirect("/coursedirectory");
 };
 
 exports.isAdmin = function (req, res, next) {

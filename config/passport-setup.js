@@ -3,6 +3,13 @@ const WindowsLiveStrategy = require("passport-outlook").Strategy;
 const keys = require("./keys");
 const User = require("../models/user");
 
+let port = process.env.PORT;
+let auth =
+  "https://swccoursedirectory.herokuapp.com/coursedirectory/auth/outlook/redirect";
+if (port == null || port == "") {
+  auth = "http://localhost:3000/coursedirectory/auth/outlook/redirect";
+}
+
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
@@ -16,11 +23,10 @@ passport.deserializeUser((id, done) => {
 passport.use(
   new WindowsLiveStrategy(
     {
-      // options for google strategy
+      // options for outlook strategy
       clientID: keys.outlook.clientID,
       clientSecret: keys.outlook.clientSecret,
-      callbackURL:
-        "http://localhost:3000/coursedirectory/auth/outlook/redirect",
+      callbackURL: auth,
     },
     (accessToken, refreshToken, profile, done) => {
       // check if user already exists in our own db
@@ -28,7 +34,7 @@ passport.use(
         (currentUser) => {
           if (currentUser) {
             // already have this user
-            console.log("user is: ", currentUser);
+            console.log("Existing User");
             done(null, currentUser);
           } else {
             // if not, create user in our db
@@ -39,7 +45,7 @@ passport.use(
             })
               .save()
               .then((newUser) => {
-                console.log("created new user: ", newUser);
+                console.log("created new User");
                 done(null, newUser);
               });
           }

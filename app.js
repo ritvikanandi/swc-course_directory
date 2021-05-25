@@ -35,7 +35,7 @@ mongoose.connect(
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.use("/public", express.static("public"));
 
 // set up session cookies
 app.use(
@@ -63,10 +63,19 @@ app.get("/", (req, res) => {
   res.redirect("/coursedirectory");
 });
 
-app.get("/admin", middleware.isAdmin, (req, res) => {
+app.get("/car", (req, res) => {
+  res.render("carousel", { user: req.user });
+});
+
+app.get("/admin", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
   res.render("admin", { user: req.user });
 });
 // Server Connection
-app.listen(3000, () => {
-  console.log("App now listening on port 3000");
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
+
+app.listen(port, function () {
+  console.log("Server started Successfully");
 });
