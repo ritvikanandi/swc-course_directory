@@ -1,5 +1,5 @@
     <!--Footer-->
-     <footer class="text-white body-font bg-transparent w-screen border-2">
+     <footer class="text-white body-font w-screen border-2" style="background-color: #142661;">
         <div class="container px-5 pt-8 pb-3 sm:py-10 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-white"
                 href="https://www.facebook.com/swciitg">
@@ -66,10 +66,7 @@
 
         if (scrollpos > 10) {
           header.classList.add("bg-white");
-          navaction.classList.remove("bg-white");
-          navaction.classList.add("gradient");
-          navaction.classList.remove("text-gray-800");
-          navaction.classList.add("text-white");
+
           //Use to switch toggleColour colours
           for (var i = 0; i < toToggle.length; i++) {
             toToggle[i].classList.add("text-gray-800");
@@ -80,10 +77,7 @@
           navcontent.classList.add("bg-white");
         } else {
           header.classList.remove("bg-white");
-          navaction.classList.remove("gradient");
-          navaction.classList.add("bg-white");
-          navaction.classList.remove("text-white");
-          navaction.classList.add("text-gray-800");
+         
           //Use to switch toggleColour colours
           for (var i = 0; i < toToggle.length; i++) {
             toToggle[i].classList.add("text-white");
@@ -119,9 +113,6 @@ document.getElementById("formbutton").style.display="block";
 }
 </script>
     <script>
-      /*Toggle dropdown list*/
-      /*https://gist.github.com/slavapas/593e8e50cf4cc16ac972afcbad4f70c8*/
-
       var navMenuDiv = document.getElementById("nav-content");
       var navMenu = document.getElementById("nav-toggle");
 
@@ -201,12 +192,8 @@ document.getElementById("formbutton").style.display="block";
       function opencategory(){
         if(categories.classList.contains("hidden")){
       categories.classList.remove("hidden");
-      categoriesbutton.classList.remove("text-gray-800");
-      categoriesbutton.classList.add("text-white");
         }else{
           categories.classList.add("hidden");
-          categoriesbutton.classList.add("text-gray-800");
-          categoriesbutton.classList.remove("text-white");
         }
         if(branches.classList.contains("hidden")){
         }else{
