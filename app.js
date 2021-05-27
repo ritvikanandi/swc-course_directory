@@ -52,7 +52,6 @@ app.use(passport.session());
 
 // set up routes
 app.use("/coursedirectory/auth", authRoutes);
-app.use("/coursedirectory/admin", adminRoutes);
 app.use("/coursedirectory/courses", courseRoutes);
 
 //home page
@@ -61,10 +60,6 @@ app.get("/coursedirectory", (req, res) => {
 });
 app.get("/", (req, res) => {
   res.redirect("/coursedirectory");
-});
-
-app.get("/car", (req, res) => {
-  res.render("carousel", { user: req.user });
 });
 
 app.get("/admin", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {

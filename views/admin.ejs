@@ -63,58 +63,6 @@
             <i class="fas fa-users-cog mr-3"></i>
             Admin
         </a>
-        <a href=""
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-info-circle mr-3"></i>
-            Home Description
-        </a>
-        <a href="/hab/admin/announcement"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-bullhorn mr-3"></i>
-            Announcements
-        </a>
-        <a href="/hab/admin/form"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fab fa-wpforms mr-3"></i>
-            Forms
-        </a>
-        <a href="/hab/admin/functionary"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-users mr-3"></i>
-            Functionaries
-        </a>
-        <a href="/hab/admin/hostels"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-hotel mr-3"></i>
-            Hostels
-        </a>
-        <a href="/hab/admin/links"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-link mr-3"></i>
-            Links
-        </a>
-        <a href="/hab/admin/notice"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-sticky-note mr-3"></i>
-            Notices
-        </a>
-        <a href="/hab/admin/ordinance"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-sticky-note mr-3"></i>
-            Ordinance
-        </a>
-        <a href="/hab/admin/uploads"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-upload mr-3"></i>
-            Uploads
-        </a>
-
-        <a href="/hab/admin/users"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-4 pl-6 nav-item">
-            <i class="fas fa-users mr-3"></i>
-            Users
-        </a>
-
         </nav>
     </aside>
 
@@ -127,9 +75,7 @@
                     <button class="block px-4 py-2">Hi, <%= user.username %> 
                     </button>
                     <a href="/coursedirectory/auth/logout" class="block px-4 py-2 account-link hover:text-white">Sign Out</a>
-                        <% }else{ %>
-                            <a href="/coursedirectory/auth/outlook" class="block px-4 py-2 account-link hover:text-white">Login</a>
-                                <% } %>
+                        <% }%>
             </div>
         </header>
 
@@ -151,64 +97,12 @@
 <!-- Dropdown Nav -->
 <nav :class="isOpen ? 'flex': 'hidden'" class="flex flex-col pt-4">
     
-        <a href="/hab/admin"
+        <a href=""
             class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
             <i class="fas fa-users-cog mr-3"></i>
             Admin
         </a>
-        <a href="/hab/admin/about"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-info-circle mr-3"></i>
-            Home Description
-        </a>
-        <a href="/hab/admin/announcement"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-bullhorn mr-3"></i>
-            Announcements
-        </a>
-        <a href="/hab/admin/form"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fab fa-wpforms mr-3"></i>
-            Forms
-        </a>
-        <a href="/admin/functionary"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-users mr-3"></i>
-            Functionaries
-        </a>
-        <a href="/hab/admin/hostels"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-hotel mr-3"></i>
-            Hostels
-        </a>
-        <a href="/hab/admin/links"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-link mr-3"></i>
-            Links
-        </a>
-        <a href="/hab/admin/notice"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-sticky-note mr-3"></i>
-            Notices
-        </a>
-        <a href="/hab/admin/ordinance"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-link mr-3"></i>
-            Ordinance
-        </a>
-        <a href="/hab/admin/uploads"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-upload mr-3"></i>
-            Uploads
-        </a>
-
-        <a href="/hab/admin/users"
-            class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
-            <i class="fas fa-users mr-3"></i>
-            Users
-        </a>
-
-        <a href="/hab/admin/logout"
+        <a href="/coursedirectory/auth/logout"
             class="flex items-center text-white opacity-75 hover:opacity-100 py-2 pl-4 nav-item">
             <i class="fas fa-sign-out-alt mr-3"></i>
             Sign Out
@@ -239,14 +133,6 @@
       }
     }
   
-  
-      // $(document).ready(function() {
-      //   $("nav [href]").each(function() {
-      //       if ( window.location.href.includes(this.href)) {
-      //           $(this).addClass("active-nav-link");
-      //       }
-      //   });
-      // });
   </script>
   
   </main>
@@ -260,11 +146,6 @@
   
   <!-- AlpineJS -->
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
-  <!-- Font Awesome -->
-  <script src="/hab/js/all.min.js"></script>
-  <!-- Alert JS -->
-  <script src="/hab/js/alert.js"></script>
-  
   </body>
   
   </html>
