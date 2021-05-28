@@ -1,4 +1,3 @@
-
 //jshint esversion:6
 
 const express = require("express");
@@ -46,13 +45,11 @@ app.use(
   })
 );
 
-
 app.use(methodOverride("_method"));
 
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
-
 
 // set up routes
 app.use("/coursedirectory/auth", authRoutes);
@@ -77,3 +74,4 @@ if (port == null || port == "") {
 
 app.listen(port, function () {
   console.log("Server started Successfully");
+});
