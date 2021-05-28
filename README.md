@@ -1,6 +1,14 @@
-# swc-course_directory
-
-<h2>This is the backend old code for the course directory<br>New code is in the Branch: "rahul" </h2><br>
+# SWCCourseDirectory
 
 # This website is temporary hosted at <a href="https://swccoursedirectory.herokuapp.com/coursedirectory"> https://swccoursedirectory.herokuapp.com/coursedirectory
+  
+## Landing Page without User Logged In
+![withoutlogin](/images/landing-page.png)
+
+## Landing Page with User Logged In
+![withlogin](/images/landing-page-loggedin.png)
+
+
+
+
 

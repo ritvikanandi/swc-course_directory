@@ -1,23 +1,42 @@
+
+//jshint esversion:6
+
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
-const authRoutes = require("./routes/auth-routes");
-const profileRoutes = require("./routes/profile-routes");
-const adminroutes = require("./routes/admin-routes");
-const passportSetup = require("./config/passport-setup");
 const methodOverride = require("method-override");
-const mongoose = require("mongoose");
+
 const keys = require("./config/keys");
-const coursesRoutes = require("./routes/courses-routes");
-var Course = require("./models/courses-model");
+const urlcloud = keys.mongodb.dburi;
+const urllocal = "mongodb://localhost:27017/swccoursedirectory";
+
+const passportSetup = require("./config/passport-setup");
+const middleware = require("./middleware/index");
+const authRoutes = require("./routes/auth.routes");
+const adminRoutes = require("./routes/auth.routes");
+const courseRoutes = require("./routes/course.routes");
+
+//Database Connection
+mongoose.connect(
+  urlcloud,
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+  },
+  (err) => {
+    if (err) console.log(err.message);
+    else console.log("Successfully connected to DB!");
+  }
+);
 
 const app = express();
-
-// set view engine
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static("public"));
 app.set("view engine", "ejs");
+app.use("/public", express.static("public"));
 
 // set up session cookies
 app.use(
@@ -26,87 +45,35 @@ app.use(
     keys: [keys.session.cookieKey],
   })
 );
-app.use(methodOverride('_method'));
+
+
+app.use(methodOverride("_method"));
+
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
 
-// connect to mongodb
- mongoose.connect(
-  "mongodb://localhost:27017/userdata",
-  { useNewUrlParser: true },
-  () => {
-    console.log("connected to mongodb");
-  }
-); 
- 
-// mongoose.connect(keys.mongodb.dburi,{ 
-//   useUnifiedTopology: true,
-//   useNewUrlParser: true,
-//   useCreateIndex: true,
-//   useFindAndModify: false,
-// }, () => {
-//   console.log("connected to mongodb");
-// });
 
 // set up routes
-app.use("/auth", authRoutes);
-app.use("/profile", profileRoutes);
-app.use("/admin", adminroutes);
-app.use("/courses", coursesRoutes);
+app.use("/coursedirectory/auth", authRoutes);
+app.use("/coursedirectory/courses", courseRoutes);
 
-// create home route
-app.get("/home", function (req, res) {
-  res.redirect("/");
+//home page
+app.get("/coursedirectory", (req, res) => {
+  res.render("user/home", { user: req.user });
 });
-
 app.get("/", (req, res) => {
-  res.render("home", { user: req.user });
+  res.redirect("/coursedirectory");
 });
 
-app.get("/find-course-by-topic", function (req, res) {
-  Course.find(function (err, courses) {
-    if (!courses) {
-      res.send("Sorry !!!");
-    } else {
-      res.render("find-course-by-topic", {
-        user: req.user,
-        courses_data: courses,
-      });
-    }
-  });
+app.get("/admin", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
+  res.render("admin/home", { user: req.user });
 });
+// Server Connection
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
-app.post("/find-course-by-topic", function (req, res) {
-  console.log(req.body.dropdown);
-  res.redirect("/find-course-by-topic");
-});
-
-app.get("/find-course-by-course-id", function (req, res) {
-  Course.find(function (err, courses) {
-    if (!courses) {
-      res.send("Sorry !!!");
-    } else {
-      res.render("find-course-by-course-id", {
-        user: req.user,
-        courses_data: courses,
-      });
-    }
-  });
-});
-
-app.get("/find-course-by-department", function (req, res) {
-  Course.find(function (err, courses) {
-    if (!courses) {
-      res.send("Sorry !!!");
-    } else {
-      res.render("find-course-by-department", {
-        user: req.user,
-        courses_data: courses,
-      });
-    }
-  });
-});
-app.listen(3000, () => {
-  console.log("app now listening for requests on port 3000");
-});
+app.listen(port, function () {
+  console.log("Server started Successfully");

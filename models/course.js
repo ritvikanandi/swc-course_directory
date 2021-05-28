@@ -1,29 +1,35 @@
-var mongoose = require("mongoose");
 
-var courseSchema = new mongoose.Schema({
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+
+const qandaSchema = {
+  ques: String,
+  ans: String,
+};
+
+const videoSchema = {
   name: String,
-  title: String,
-  credits: String, //(L-T-P-C)
-  contents: [
-    {
-      type: String,
-    },
-  ],
+  link: String,
+};
+
+const assignSchema = {
+  name: String,
+  filename: String,
+};
+
+const courseSchema = new Schema({
+  course_id: String,
+  name: String,
+  credits: String,
   description: String,
-  instructor: [
-    {
-      id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-      },
-      username: String,
-    },
-  ],
-  references: [
-    {
-      type: String,
-    },
-  ],
+  instructur: String,
+  level: String,
+  lecture_notes: [assignSchema],
+  assignments: [assignSchema],
+  lecture_videos: [videoSchema],
+  questions: [qandaSchema],
 });
 
-module.exports = mongoose.model("Course", courseSchema);
+const Course = mongoose.model("Course", courseSchema);
+
+module.exports = Course;
