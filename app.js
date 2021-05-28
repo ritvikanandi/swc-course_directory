@@ -56,14 +56,14 @@ app.use("/coursedirectory/courses", courseRoutes);
 
 //home page
 app.get("/coursedirectory", (req, res) => {
-  res.render("home", { user: req.user });
+  res.render("user/home", { user: req.user });
 });
 app.get("/", (req, res) => {
   res.redirect("/coursedirectory");
 });
 
 app.get("/admin", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
-  res.render("admin", { user: req.user });
+  res.render("admin/home", { user: req.user });
 });
 // Server Connection
 let port = process.env.PORT;
