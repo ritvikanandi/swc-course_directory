@@ -16,6 +16,7 @@ const middleware = require("./middleware/index");
 const authRoutes = require("./routes/auth.routes");
 const adminRoutes = require("./routes/admin.routes");
 const courseRoutes = require("./routes/course.routes");
+const lectureRoutes = require("./routes/lecture.routes");
 
 //Database Connection
 mongoose.connect(
@@ -55,6 +56,7 @@ app.use(passport.session());
 app.use("/coursedirectory/auth", authRoutes);
 app.use("/coursedirectory/admin", adminRoutes);
 app.use("/coursedirectory/courses", courseRoutes);
+app.use("/coursedirectory/admin/:courseid/lectures", lectureRoutes);
 
 //home page
 app.get("/coursedirectory", (req, res) => {
