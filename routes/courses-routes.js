@@ -9,7 +9,7 @@ const GridFsStorage = require("multer-gridfs-storage");
 const keys = require("../config/keys");
 
 //const mongoURI = keys.mongodb.dburi;
-const mongoURI = "mongodb://localhost:27017/userdata";
+const mongoURI = "mongodb://localhost:27017/swccoursedirectory";
 const conn = mongoose.connection;
 
 conn.once("open", function () {

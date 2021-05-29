@@ -14,7 +14,7 @@ const urllocal = "mongodb://localhost:27017/swccoursedirectory";
 const passportSetup = require("./config/passport-setup");
 const middleware = require("./middleware/index");
 const authRoutes = require("./routes/auth.routes");
-const adminRoutes = require("./routes/auth.routes");
+const adminRoutes = require("./routes/admin.routes");
 const courseRoutes = require("./routes/course.routes");
 
 //Database Connection
@@ -53,19 +53,18 @@ app.use(passport.session());
 
 // set up routes
 app.use("/coursedirectory/auth", authRoutes);
+app.use("/coursedirectory/admin", adminRoutes);
 app.use("/coursedirectory/courses", courseRoutes);
 
 //home page
 app.get("/coursedirectory", (req, res) => {
   res.render("user/home", { user: req.user });
 });
+
 app.get("/", (req, res) => {
   res.redirect("/coursedirectory");
 });
 
-app.get("/admin", middleware.isLoggedIn, middleware.isAdmin, (req, res) => {
-  res.render("admin/home", { user: req.user });
-});
 // Server Connection
 let port = process.env.PORT;
 if (port == null || port == "") {
