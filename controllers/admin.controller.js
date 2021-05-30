@@ -17,7 +17,7 @@ exports.postAddCourse = async (req, res) => {
   cou_name = req.body.course_name;
   credits = req.body.credits;
   cou_des = req.body.course_desc;
-  instructur = req.body.instructur;
+  instructor = req.body.instructor;
   level = req.body.level;
   const courses = await Course.find({ course_id: cou_id });
   if (courses.length != 0) {
@@ -29,7 +29,7 @@ exports.postAddCourse = async (req, res) => {
       name: cou_name,
       credits: credits,
       description: cou_des,
-      instructur: instructur,
+      instructor: instructor,
       level: level,
     }).save();
     return res.redirect("/coursedirectory/admin");
@@ -67,18 +67,6 @@ exports.editCourse = async (req, res) => {
 };
 
 exports.deleteCourse = async (req, res) => {
-  // await Course.find({ course_id: req.params.courseid}, function (err, courses) {
-  //     courses[0].lecture_notes.forEach( function(file) {
-  //       gfs.delete(new mongoose.Types.ObjectId(file._id), (err, data) => {
-  //         if (err) return res.status(404).json({ err: err.message });
-  //       });
-  //     });
-  //     courses[0].assignments.forEach( function(file) {
-  //       gfs.delete(new mongoose.Types.ObjectId(file._id), (err, data) => {
-  //         if (err) return res.status(404).json({ err: err.message });
-  //       });
-  //     });
-  //  });
   await Course.findOneAndRemove({ course_id: req.params.courseid });
   return res.redirect("/coursedirectory/admin");
 };
