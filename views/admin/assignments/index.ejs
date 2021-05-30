@@ -5,30 +5,33 @@
 
 <h1 class="text-3xl text-black pb-6"><%= courses_data[0].course_id %> - <%= courses_data[0].name %></h1>
 <div class="mt-6">
-    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/coursedirectory/admin/add">Add Lectures</a>
+    <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/coursedirectory/admin/<%= courses_data[0].course_id %>/assignments/add">Add Assignments</a>
 </div>
 <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">
         <table class="min-w-full bg-white">
             <thead class="bg-gray-800 text-white">
                 <tr>
-                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Lecture No.</th>
-                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Lecture Name</th>
+                    <th class="text-left py-3 px-4 uppercase font-semibold text-sm">Assignment No.</th>
+                    <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Assignment Name</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">View</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Edit</th>
                     <th class="w-1/3 text-left py-3 px-4 uppercase font-semibold text-sm">Delete</th>
                 </tr>
             </thead>
             <tbody class="text-gray-700" id="myMenu">
-                    
-                <tr>
-                    <td class="text-left py-3 px-4"><%=  courses_data[0].course_id %></td>
-                    <td class="w-1/3 text-left py-3 px-4"><%= courses_data[0].name %></td>
-                    <td class="w-1/3 text-left py-3 px-4"><a href="/coursedirectory/admin/<%= courses_data[0].course_id %>/home">View</a></td>
-                    <td class="w-1/3 text-left py-3 px-4"><a href="/coursedirectory/admin/<%= courses_data[0].course_id %>/edit">Edit</a></td>
-                    <td class="w-1/3 text-left py-3 px-4"><form action="/coursedirectory/admin/<%= courses_data[0].course_id %>/edit?_method=DELETE" method="POST"> <button type="submit">DELETE</button> </form></td>
+                <%assignments.forEach((assignment,i)=>{ if(i%2){%>
+                    <tr class="bg-gray-200">
+                <%}else{%>
+                    <tr>
+                <%}%>
+                <td class="text-left py-3 px-4"><%= i+1 %></td>
+                <td class="w-1/3 text-left py-3 px-4"><%= assignment.name %></td>
+                <td class="w-1/3 text-left py-3 px-4"><a href="/coursedirectory/admin/<%= courses_data[0].course_id %>/assignments/pdf/<%=assignment.id %>" target="_blank">View</a></td>
+                <td class="w-1/3 text-left py-3 px-4"><a href="/coursedirectory/admin/<%= courses_data[0].course_id %>/assignments/<%=assignment._id %>">Edit</a></td>
+                <td class="w-1/3 text-left py-3 px-4"><form action="/coursedirectory/admin/<%= courses_data[0].course_id %>/assignments/<%=assignment._id %>?_method=DELETE" method="POST"> <button type="submit">DELETE</button> </form></td>
                 </tr>
-                        
+            <% })%>       
             </tbody>
         </table>
     </div>

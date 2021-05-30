@@ -17,6 +17,7 @@ const authRoutes = require("./routes/auth.routes");
 const adminRoutes = require("./routes/admin.routes");
 const courseRoutes = require("./routes/course.routes");
 const lectureRoutes = require("./routes/lecture.routes");
+const assignmentRoutes = require("./routes/assignment.routes");
 
 //Database Connection
 mongoose.connect(
@@ -57,6 +58,7 @@ app.use("/coursedirectory/auth", authRoutes);
 app.use("/coursedirectory/admin", adminRoutes);
 app.use("/coursedirectory/courses", courseRoutes);
 app.use("/coursedirectory/admin/:courseid/lectures", lectureRoutes);
+app.use("/coursedirectory/admin/:courseid/assignments", assignmentRoutes);
 
 //home page
 app.get("/coursedirectory", (req, res) => {

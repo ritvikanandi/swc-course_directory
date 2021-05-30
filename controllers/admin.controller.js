@@ -78,35 +78,3 @@ exports.getOneCourseDetails = async (req, res) => {
     courses_data: courses,
   });
 };
-
-exports.getLectures = async (req, res) => {
-  const courses = await Course.find({ course_id: req.params.courseid });
-  return res.render("admin/lectures/index", {
-    user: req.user,
-    courses_data: courses,
-  });
-};
-
-exports.getAssignments = async (req, res) => {
-  const courses = await Course.find({ course_id: req.params.courseid });
-  return res.render("admin/assignments/index", {
-    user: req.user,
-    courses_data: courses,
-  });
-};
-
-exports.getVideos = async (req, res) => {
-  const courses = await Course.find({ course_id: req.params.courseid });
-  return res.render("admin/videos/index", {
-    user: req.user,
-    courses_data: courses,
-  });
-};
-
-exports.getFaq = async (req, res) => {
-  const courses = await Course.find({ course_id: req.params.courseid });
-  return res.render("admin/faq/index", {
-    user: req.user,
-    courses_data: courses,
-  });
-};
