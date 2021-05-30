@@ -4,9 +4,9 @@ const Schema = mongoose.Schema;
 const courseSchema = new Schema({
   course_id: String,
   name: String,
-  credits: String,
+  credits: Number,
   description: String,
-  instructur: String,
+  instructor: String,
   level: String,
 });
 

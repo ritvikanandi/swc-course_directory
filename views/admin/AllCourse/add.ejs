@@ -140,12 +140,17 @@
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="level">Level</label>
-                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="level" type="text" name="level"
-                            required placeholder="Level">
+                            <select class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="level" name="level">
+                                <option value="B.Tech.">B.Tech.</option>
+                                <option value="B.Des">B.Des.</option>
+                                <option value="M.Tech.">M.Tech.</option>
+                                <option value="M.Des.">M.Des.</option>
+                                <option value="Ph.D.">Ph.D.</option>
+                            </select>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="credits">Credits</label>
-                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="credits" type="text"
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="credits" type="number"
                             name="credits" placeholder="Credits">
                     </div>
                     <div class="mt-2">
@@ -157,7 +162,6 @@
                         <label class="block text-sm text-gray-600" for="instructor">Instructor</label>
                         <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="instructor" type="text" name="instructor" placeholder="Instructor"></input>
                     </div>
-                    <% console.log("") %>
                     <div class="mt-6">
                         <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded"
                             type="submit">Submit</button>
