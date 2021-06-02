@@ -7,8 +7,9 @@ const storage = multer.diskStorage({
     cb(null, "./uploads/lectures");
   },
   filename: (req, file, cb) => {
-    const fileName = file.originalname.replace(/\s/g, "");
-    cb(null, Date.now().toString() + fileName);
+    const fileName1 = req.params.courseid + req.body.name + ".pdf";
+    const fileName = fileName1.replace(/\s/g, "");
+    cb(null, fileName);
   },
 });
 const lectureController = require("../controllers/lecture.controller");
