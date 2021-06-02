@@ -28,7 +28,11 @@ router.post(
 
 router.get("/:lectureid", lectureController.getEditForm);
 
-router.put("/:lectureid", lectureController.postEditForm);
+router.put(
+  "/:lectureid",
+  upload.single("lecture"),
+  lectureController.postEditForm
+);
 
 router.delete("/:lectureid", lectureController.deleteLecture);
 

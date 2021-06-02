@@ -60,7 +60,7 @@ exports.postLecture = async (req, res) => {
 exports.getEditForm = async (req, res) => {
   try {
     const lecture = await Lecture.findById(req.params.lectureid);
-    const courses_data = await Course.find({course_id: req.params.courseid});
+    const courses_data = await Course.find({ course_id: req.params.courseid });
     console.log(courses_data);
     return res.render("admin/lectures/edit", {
       user: req.user,
@@ -72,30 +72,22 @@ exports.getEditForm = async (req, res) => {
   }
 };
 
-exports.postEditForm = async (req,res) => {
+exports.postEditForm = async (req, res) => {
   try {
     var course_id = req.params.courseid;
+    var lecture_id = req.params.lectureid;
     var { name } = req.body;
-    // var newLecture;
-    // if (!req.file) {
-    //    newLecture = {
-    //     course_id,
-    //     name
-    //   };
-    // }
-    // else {
-    //    newLecture = {
-    //     course_id,
-    //     name,
-    //     filepath: req.file.filename,
-    //   };
-    // }
-    // const added = await Lecture.findByIdAndUpdate(req.params.lectureid, newLecture);
-    // if (!added) {
-    //   console.log("Lecture Not added");
-    // }
-    // console.log("Successfully added new lecture");
-    console.log(req.body);
+    const path = req.file ? req.file.filename : filepath;
+    if (!path) {
+      console.log("path not added");
+      return res.redirect("/coursedirectory/admin/" + course_id + "/lectures");
+    } else {
+      data = { course_id, name, filepath: path };
+    }
+    const updatedLecture = await Lecture.findByIdAndUpdate(lecture_id, data);
+    if (!updatedLecture) {
+      console.log("unable to update Lecture");
+    }
     const url = "/coursedirectory/admin/" + course_id + "/lectures";
     return res.redirect(url);
   } catch (error) {
@@ -109,8 +101,6 @@ exports.deleteLecture = async (req, res) => {
     const id = req.params.lectureid;
     const lecture = await Lecture.findById(id);
     fs.unlinkSync(`uploads/lectures/${lecture.filepath}`);
-    console.log("successfully deleted!");
-    await Lecture.findByIdAndRemove(id);
     console.log("successfully deleted!");
     await Lecture.findByIdAndRemove(id);
     const url = "/coursedirectory/admin/" + course_id + "/lectures";

@@ -28,7 +28,11 @@ router.post(
 
 router.get("/:assignmentid", assignmentController.getEditForm);
 
-router.put("/:assignmentid", assignmentController.postEditForm);
+router.put(
+  "/:assignmentid",
+  upload.single("assignment"),
+  assignmentController.postEditForm
+);
 
 router.delete("/:assignmentid", assignmentController.deleteAssignment);
 
