@@ -6,9 +6,11 @@ const mongoose = require("mongoose");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const methodOverride = require("method-override");
+require("dotenv").config();
+const { MONGO_URL, COOKIE_KEY } = process.env;
 
-const keys = require("./config/keys");
-const urlcloud = keys.mongodb.dburi;
+
+const urlcloud = MONGO_URL;
 const urllocal = "mongodb://localhost:27017/swccoursedirectory";
 
 const passportSetup = require("./config/passport-setup");
@@ -45,7 +47,7 @@ app.use("/public", express.static("public"));
 app.use(
   cookieSession({
     maxAge: 24 * 60 * 60 * 1000,
-    keys: [keys.session.cookieKey],
+    keys: [COOKIE_KEY],
   })
 );
 
