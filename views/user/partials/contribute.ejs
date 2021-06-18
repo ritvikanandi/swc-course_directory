@@ -1,4 +1,4 @@
-<%- include("./partials/header.ejs") %>
+<section id="contribute">
 <div class="flex flex-wrap pt-24 justify-center space-x-64">
     <div class="flex ">
     <div class="text-2xl font-bold" style="color: #142661; width:740px">Contribute to Course Directory
@@ -24,14 +24,14 @@
             </div>
     </div>
     <div class="font-bold text-2xl text-black ml-32 mb-8">Fill to Contribute!</div>
-    <form class="mb-16" method="post" action="">
+    <form class="mb-16" method="post" action="/coursedirectory/contribute">
     <div class="flex flex-wrap ml-32">
     <div class="flex items-center mb-8">
     <label class="text-2xl text-black mr-7" for="name">Your Name</label>
     <p class="border-2 border-black text-black px-2 py-2" style="width:401px; height:60px"><%= user.username %></p></div>
     <div class="flex items-center mb-8 ml-20">
-    <label class="text-2xl text-black mr-7" for="coursecode">Course Name/Code</label>
-    <input class="border-2 border-black text-black px-2 py-2" style="width:401px; height:60px"  type="text" placeholder="Course Name" name="coursecode"></div>
+    <label class="text-2xl text-black mr-7" for="course_name">Course Name/Code</label>
+    <input class="border-2 border-black text-black px-2 py-2" style="width:401px; height:60px"  type="text" placeholder="Course Name" name="course_name"></div>
     </div><div class="flex flex-wrap ml-32">
     <div class="flex items-center mb-8 ">
     <label class="text-2xl text-black mr-7" for="email">Your e-mail</label>
@@ -49,4 +49,4 @@
     <label class="text-2xl text-black mr-7" for="description">Description</label>
     <textarea style="width: 1100px; height: 180px;" class="border-2 border-black text-black px-2 py-2" type="text" placeholder="description" name="description"></textarea></div>
     </div><div class="flex justify-end mx-36"><button class="bg-blue-600 px-16 py-4 text-xl rounded-md text-white mt-4" type="submit">Send</button></div></form>
-<%- include("./partials/footer.ejs") %>
+</section>

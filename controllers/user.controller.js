@@ -1,6 +1,6 @@
 const Citation = require("../models/citation");
 const Query = require("../models/query");
-
+const Contribute = require("../models/contribute");
 exports.postcitereq = async (req, res) => {
   try {
     const name = req.user.username;
@@ -18,10 +18,10 @@ exports.postcitereq = async (req, res) => {
     } else {
       console.log("Successfully requested");
     }
-    return res.redirect("/coursedirectory/citation");
+    return res.redirect("/");
   } catch (error) {
     console.log(error);
-    return res.redirect("/coursedirectory/citation");
+    return res.redirect("/");
   }
 };
 
@@ -42,9 +42,34 @@ exports.postQuery = async (req, res) => {
     } else {
       console.log("Query Successfully Submitted");
     }
-    res.redirect("/coursedirectory/ask");
+    res.redirect("/");
   } catch (error) {
     console.log(error);
-    res.redirect("/coursedirectory/ask");
+    res.redirect("/");
+  }
+};
+
+exports.postContribute = async (req, res) => {
+  try {
+    const name = req.user.username;
+    const email = req.user.outlookID;
+    const { course_name, topic, link, description } = req.body;
+    const newContribute = await new Contribute({
+      name,
+      email,
+      topic,
+      course_name,
+      link,
+      description,
+    }).save();
+    if (!newContribute) {
+      console.log("not saved");
+    } else {
+      console.log("Contribution Successfully Submitted");
+    }
+    res.redirect("/");
+  } catch (error) {
+    console.log(error);
+    res.redirect("/");
   }
 };
