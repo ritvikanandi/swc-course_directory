@@ -9,11 +9,10 @@ const methodOverride = require("method-override");
 require("dotenv").config();
 const { MONGO_URL, COOKIE_KEY } = process.env;
 
-
 const urlcloud = MONGO_URL;
 const urllocal = "mongodb://localhost:27017/swccoursedirectory";
 
-const passportSetup = require("./config/passport-setup");
+const passportSetup = require("./config/user.passportsetup");
 const middleware = require("./middleware/index");
 const authRoutes = require("./routes/auth.routes");
 const adminRoutes = require("./routes/admin.routes");
@@ -22,6 +21,7 @@ const lectureRoutes = require("./routes/lecture.routes");
 const assignmentRoutes = require("./routes/assignment.routes");
 const videoRoutes = require("./routes/video.routes");
 const faqRoutes = require("./routes/faq.routes");
+const userRoutes = require("./routes/user.routes");
 
 //Database Connection
 mongoose.connect(
@@ -65,15 +65,8 @@ app.use("/coursedirectory/admin/:courseid/lectures", lectureRoutes);
 app.use("/coursedirectory/admin/:courseid/assignments", assignmentRoutes);
 app.use("/coursedirectory/admin/:courseid/videos", videoRoutes);
 app.use("/coursedirectory/admin/:courseid/faqs", faqRoutes);
+app.use("/coursedirectory", userRoutes);
 
-//home page
-app.get("/coursedirectory", (req, res) => {
-  res.render("user/home", { user: req.user });
-});
-
-app.get("/", (req, res) => {
-  res.redirect("/coursedirectory");
-});
 
 // Server Connection
 let port = process.env.PORT;

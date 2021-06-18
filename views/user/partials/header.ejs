@@ -127,10 +127,10 @@
 
   <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
     <!--Nav-->
-    <nav id="header" class="fixed w-full z-30 top-0 text-white">
+    <nav id="header" class="fixed w-full z-30 top-0 text-white ">
       <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div class="pl-4 flex items-center">
-          <a class="toggleColour text-blue-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="#">
+          <a class="toggleColour text-blue-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="/coursedirectory">
         
             <svg class="inline fill-current" width="49" height="35" viewBox="0 0 49 35" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect fill="black" x="16.539" y="425.626" width="479.767" height="50.502" transform="matrix(1,0,0,1,0,0)" />
@@ -177,7 +177,7 @@
               </button></a>
             </li><% }else{%>
               <li class="mr-3">
-                <a class="inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
+                <a href="/coursedirectory/mylearning" class="inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
                   class="mx-auto lg:mx-0 hover:underline text-gray-800 font-bold  mt-4 lg:mt-0    focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                 >
@@ -185,7 +185,7 @@
                 </button></a>
               </li>
               <li class="mr-3">
-                <a class="inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
+                <a href="/coursedirectory/citation" class="inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
                   class="mx-auto lg:mx-0 hover:underline text-gray-800 font-bold  mt-4 lg:mt-0  focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                 >
@@ -193,7 +193,7 @@
                 </button></a>
               </li>
               <li class="mr-3">
-                <a class="inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
+                <a href="/coursedirectory/ask" class="inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
                   class="mx-auto lg:mx-0 hover:underline text-gray-800 font-bold  mt-4 lg:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                 >
@@ -201,7 +201,7 @@
                 </button></a>
               </li>
               <li class="mr-3">
-                <a class="inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
+                <a href="/coursedirectory/contribute" class="inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
                   class="mx-auto lg:mx-0 hover:underline text-gray-800 font-bold  mt-4 lg:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                 >
@@ -297,8 +297,8 @@
         </div>
       </div>
     </div>
-    <button class="open-button rounded-full" onclick="openForm()" id="formbutton">Ask Here</button>
-        <div class="chat-popup" style="position: fixed; bottom: 0px; right:0px; display: none;" id="myForm">
+    <button class="open-button rounded-full hidden" onclick="openForm()" id="formbutton">Ask Here</button>
+        <div class="chat-popup hidden" style="position: fixed; bottom: 0px; right:0px; display: none;" id="myForm">
             
             <form action="" class="form-container">
           
