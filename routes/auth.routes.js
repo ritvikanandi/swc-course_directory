@@ -30,7 +30,7 @@ router.get(
 // hand control to passport to use code to grab profile info
 router.get(
   "/outlook/redirect",
-  passport.authenticate("windowslive"),
+  passport.authenticate("windowslive", { failureRedirect: "/" }),
   (req, res) => {
     // res.send(req.user);
     res.redirect("/");
