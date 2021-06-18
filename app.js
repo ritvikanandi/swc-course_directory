@@ -22,6 +22,7 @@ const assignmentRoutes = require("./routes/assignment.routes");
 const videoRoutes = require("./routes/video.routes");
 const faqRoutes = require("./routes/faq.routes");
 const userRoutes = require("./routes/user.routes");
+const professorRoutes = require("./routes/professor.routes");
 
 //Database Connection
 mongoose.connect(
@@ -66,6 +67,7 @@ app.use("/coursedirectory/admin/:courseid/assignments", assignmentRoutes);
 app.use("/coursedirectory/admin/:courseid/videos", videoRoutes);
 app.use("/coursedirectory/admin/:courseid/faqs", faqRoutes);
 app.use("/coursedirectory", userRoutes);
+app.use("/coursedirectory/admin/professor", professorRoutes);
 
 app.get("/", (req, res) => {
   res.redirect("/coursedirectory");
