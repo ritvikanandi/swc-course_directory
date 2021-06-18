@@ -67,6 +67,9 @@ app.use("/coursedirectory/admin/:courseid/videos", videoRoutes);
 app.use("/coursedirectory/admin/:courseid/faqs", faqRoutes);
 app.use("/coursedirectory", userRoutes);
 
+app.get("/", (req, res) => {
+  res.redirect("/coursedirectory");
+});
 
 // Server Connection
 let port = process.env.PORT;
