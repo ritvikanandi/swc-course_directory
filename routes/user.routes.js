@@ -16,14 +16,17 @@ router.post("/citation", isLoggedIn, usercontroller.postcitereq);
 router.get("/ask", (req, res) => {
   res.render("user/askQuery", { user: req.user });
 });
-router.post("/ask",isLoggedIn,  usercontroller.postQuery);
-router.post("/contribute",isLoggedIn,  usercontroller.postContribute);
-router.get("/contribute",isLoggedIn,  (req, res) => {
+router.post("/ask", isLoggedIn, usercontroller.postQuery);
+router.post("/contribute", isLoggedIn, usercontroller.postContribute);
+router.get("/contribute", isLoggedIn, (req, res) => {
   res.render("user/contribute", { user: req.user });
 });
 
-router.get("/mylearning",isLoggedIn,  (req, res) => {
+router.get("/mylearning", isLoggedIn, (req, res) => {
   res.render("user/mylearning", { user: req.user });
+});
+router.get("/course", isLoggedIn, (req, res) => {
+  res.render("user/coursepage", { user: req.user });
 });
 
 module.exports = router;
