@@ -51,6 +51,24 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+  <script>
+    if(window.location.href.indexOf("mylearning")!=-1){
+      document.getElementById("mylearning").classList.add("text-blue-600");
+      document.getElementById("mylearning").classList.remove("text-gray-800");
+    }
+    if(window.location.href.indexOf("ask")!=-1){
+      document.getElementById("ask").classList.add("text-blue-600");
+      document.getElementById("ask").classList.remove("text-gray-800");
+    }
+    if(window.location.href.indexOf("contribute")!=-1){
+      document.getElementById("contribute").classList.add("text-blue-600");
+      document.getElementById("contribute").classList.remove("text-gray-800");
+    }
+    if(window.location.href.indexOf("citation")!=-1){
+      document.getElementById("citation").classList.add("text-blue-600");
+      document.getElementById("citation").classList.remove("text-gray-800");
+    }
+  </script>
 
   
     <script>
