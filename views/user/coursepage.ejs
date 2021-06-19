@@ -1,12 +1,15 @@
 <%- include("./partials/header.ejs") %>
-<div class="flex items-center mx-36 justify-between pt-24 mb-20"><div class="font-bold text-2xl" style="color: #142661">Course Name </div>
+<div class="flex items-center mx-36 justify-between pt-24 mb-20"><div class="font-bold text-2xl" style="color: #142661">
+	<%= courses_data[0].name %>
+</div>
+
 <div class=""><button class="font-bold text-lg py-5 px-10 border-2 border-blue-900 rounded-md" style="color: #142661">Cite this course</button></div></div>
 <div class="font-bold text-2xl ml-36 mb-2" style="color: #142661">Videos</div>
-<%- include("./partials/carousel.ejs") %>
+<%- include("./partials/videoCarousel.ejs") %>
 <div class="font-bold text-2xl ml-36 mb-2" style="color: #142661">Lectures</div>
-<%- include("./partials/carousel.ejs") %>
+<%- include("./partials/lectureCarousel.ejs") %>
 <div class="font-bold text-2xl ml-36 mb-2" style="color: #142661">Assignments</div>
-<%- include("./partials/carousel.ejs") %>
+<%- include("./partials/assignmnetCarousel.ejs") %>
 <div class="font-bold text-2xl ml-36 mb-2" style="color: #142661">Uploaded Study Material</div>
 <%- include("./partials/carousel.ejs") %>
 <%- include("./partials/footer.ejs") %>

@@ -4,32 +4,23 @@ const { isAdmin, isLoggedIn } = require("../middleware");
 
 const usercontroller = require("../controllers/user.controller");
 
-router.get("/", (req, res) => {
-  res.render("user/index", { user: req.user });
-});
-
-router.get("/citation", isLoggedIn, (req, res) => {
-  res.render("user/citation", { user: req.user });
-});
+router.get("/", usercontroller.getHomePage);
+router.get("/citation", isLoggedIn, usercontroller.getCitationPage);
 
 router.post("/citation", isLoggedIn, usercontroller.postcitereq);
-router.get("/ask", (req, res) => {
-  res.render("user/askQuery", { user: req.user });
-});
+
+router.get("/ask", usercontroller.getAskQueryPage);
+
 router.post("/ask", isLoggedIn, usercontroller.postQuery);
 router.post("/contribute", isLoggedIn, usercontroller.postContribute);
-router.get("/contribute", isLoggedIn, (req, res) => {
-  res.render("user/contribute", { user: req.user });
-});
+router.get("/contribute", isLoggedIn, usercontroller.getContributePage);
 
-router.get("/mylearning", isLoggedIn, (req, res) => {
-  res.render("user/mylearning", { user: req.user });
-});
-router.get("/course", isLoggedIn, (req, res) => {
-  res.render("user/coursepage", { user: req.user });
-});
 router.get("/professor", isLoggedIn, (req, res) => {
   res.render("user/profpage", { user: req.user });
 });
+router.get("/mylearning", isLoggedIn, usercontroller.getMyLearningPage);
+router.get("/course", isLoggedIn, usercontroller.getCoursePage);
+router.get("/:courseid", isLoggedIn, usercontroller.getOneCoursePage);
+
 
 module.exports = router;
