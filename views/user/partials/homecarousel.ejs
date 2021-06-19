@@ -1,0 +1,49 @@
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<style>
+    .splide__slide img {
+	width : 100%;
+	height: auto;
+}
+</style>
+<div id="image-slider" class="splide">
+    <div class="splide__arrows hidden">
+		<button class="splide__arrow splide__arrow--prev">
+		</button>
+		<button class="splide__arrow splide__arrow--next">
+		</button>
+	</div>
+	<div class="splide__track">
+		<ul class="splide__list">
+			<li class="splide__slide">
+				<img src="/public/homecarousel/1.png">
+			</li>
+			<li class="splide__slide">
+				<img src="/public/homecarousel/2.png">
+			</li>
+			<li class="splide__slide">
+				<img src="/public/homecarousel/3.png">
+			</li>
+            <li class="splide__slide">
+				<img src="/public/homecarousel/4.png">
+			</li>
+		</ul>
+	</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+
+<script>
+document.addEventListener( 'DOMContentLoaded', function () {
+	new Splide( '#image-slider',{
+        type    : 'loop',
+        autoplay: true,
+        pauseOnHover : false, // must be false
+    pauseOnFocus : false, // must be false
+    resetProgress: false,
+    arrows: false,
+    } ).mount();
+} );
+</script>
+}
+
