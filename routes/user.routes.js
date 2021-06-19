@@ -28,5 +28,8 @@ router.get("/mylearning", isLoggedIn, (req, res) => {
 router.get("/course", isLoggedIn, (req, res) => {
   res.render("user/coursepage", { user: req.user });
 });
+router.get("/professor", isLoggedIn, (req, res) => {
+  res.render("user/profpage", { user: req.user });
+});
 
 module.exports = router;
