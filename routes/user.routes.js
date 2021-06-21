@@ -5,6 +5,7 @@ const { isAdmin, isLoggedIn } = require("../middleware");
 const usercontroller = require("../controllers/user.controller");
 
 router.get("/", usercontroller.getHomePage);
+router.post("/", usercontroller.showSearch);
 router.get("/citation", isLoggedIn, usercontroller.getCitationPage);
 
 router.post("/citation", isLoggedIn, usercontroller.postcitereq);

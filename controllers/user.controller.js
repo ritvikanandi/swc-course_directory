@@ -8,9 +8,25 @@ const Assignment = require("../models/assignment");
 
 exports.getHomePage = async (req, res) => {
   try {
-    return res.render("user/index", { user: req.user });
+    courses = await Course.find();
+    return res.render("user/index", { courses, user: req.user });
   } catch (error) {
     console.log(error);
+  }
+};
+
+exports.showSearch = async (req, res) => {
+  const searchValue = req.body.category;
+  const result = await Course.findOne({ course_id: searchValue });
+  const result1 = await Course.findOne({ name: searchValue });
+  console.log(result);
+  console.log(result1);
+  if (result) {
+    res.redirect("/coursedirectory/course/" + result.course_id);
+  } else if (result1) {
+    res.redirect("/coursedirectory/course/" + result1.course_id);
+  } else {
+    res.send("Course does not exist in directory.");
   }
 };
 
