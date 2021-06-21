@@ -166,7 +166,7 @@
             </form>
           </div>
         </div>
-        <div class="block lg:hidden pr-4">
+        <div class="block xl:hidden pr-4">
           <button id="nav-toggle" class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <title>Menu</title>
@@ -174,15 +174,15 @@
             </svg>
           </button>
         </div>
-        <div class="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden mt-2 lg:mt-0 bg-white lg:bg-transparent text-black p-4 lg:p-0 z-20" id="nav-content">
-          <ul class="list-reset lg:flex justify-end flex-1 items-center">
+        <div class="w-full flex-grow xl:flex xl:items-center xl:w-auto hidden mt-2 xl:mt-0 bg-white xl:bg-transparent text-black p-4 xl:p-0 z-20" id="nav-content">
+          <ul class="list-reset xl:flex justify-end flex-1 items-center">
             
               
               <% if(!user){ %>
             <li class="mr-3">
               <a class="inline-block text-white font-white no-underline hover:text-underline py-2 "><button
                 id="navAction" onclick="openModal()"
-                class="bg-blue-600 mx-auto lg:mx-0 hover:underline font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-full mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
               >
                 Login
               </button></a>
@@ -190,7 +190,7 @@
               <!-- <li class="mr-3">
                 <a href="/coursedirectory/citation" class="citation inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
-                  id="citation" class="mx-auto lg:mx-0 hover:underline text-gray-800 font-bold  mt-4 lg:mt-0  focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                  id="citation" class="mx-auto xl:mx-0 hover:underline text-gray-800 font-bold  mt-4 xl:mt-0  focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                 >
                   Course Citation
                 </button></a>
@@ -198,7 +198,7 @@
               <li class="mr-3">
                 <a href="/coursedirectory/ask" class=" ask inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
-                  id="ask" class="mx-auto lg:mx-0 hover:underline text-gray-800 font-bold  mt-4 lg:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                  id="ask" class="mx-auto xl:mx-0 hover:underline text-gray-800 font-bold  mt-4 xl:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                 >
                   Ask a query
                 </button></a>
@@ -206,7 +206,7 @@
               <li class="mr-3">
                 <a href="/coursedirectory/contribute" class="contribute inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
-                  id="contribute" class="mx-auto lg:mx-0 hover:underline text-gray-800 font-bold  mt-4 lg:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                  id="contribute" class="mx-auto xl:mx-0 hover:underline text-gray-800 font-bold  mt-4 xl:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
                 >
                   Contribute
                 </button></a>
@@ -214,7 +214,7 @@
             <li class="mr-3">
               <a class="inline-block text-white font-white no-underline  hover:text-underline py-2 px-4" href="/coursedirectory/auth/logout"><button
                 id="navAction"
-                class="bg-blue-600 mx-auto lg:mx-0 hover:underline font-bold rounded-full mt-4 lg:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-full mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
               >
                 Logout
               </button></a>
@@ -227,7 +227,7 @@
     </nav>
     <div id="categories" class="flex fixed z-30 left-80 top-20 bg-white text-black border-black border-solid border-2 hidden">
       <div class="bg-gray-100 w-52">
-        <button class="mt-8 font-sans font-bold text-lg text-blue-600 px-10">Degree</button><br />
+        <button class="mt-8 font-sans font-bold text-xl text-blue-600 px-10">Degree</button><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">B.Tech</button><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">B.Des</button><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">HSS</button><br />
@@ -301,7 +301,7 @@
         </div>
       </div>
     </div>
-    <button class="open-button rounded-full hidden" onclick="openForm()" id="formbutton">Ask Here</button>
+    <!-- <button class="open-button rounded-full hidden" onclick="openForm()" id="formbutton">Ask Here</button>
         <div class="chat-popup hidden" style="position: fixed; bottom: 0px; right:0px; display: none;" id="myForm">
             
             <form action="" class="form-container">
@@ -312,4 +312,4 @@
               <button type="submit" class="btn">Send</button>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             </form>
-          </div>
+          </div> -->
