@@ -38,6 +38,7 @@ exports.postAssignment = async (req, res) => {
   try {
     var course_id = req.params.courseid;
     var { name } = req.body;
+    name = name.toUpperCase();
     const path = req.file ? req.file.filename : filepath;
     if (!path) {
       console.log("path not added");
@@ -81,6 +82,7 @@ exports.postEditForm = async (req, res) => {
     var course_id = req.params.courseid;
     var assignment_id = req.params.assignmentid;
     var { name } = req.body;
+    name = name.toUpperCase();
     const path = req.file ? req.file.filename : filepath;
     if (!path) {
       console.log("path not added");

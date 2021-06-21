@@ -159,7 +159,7 @@
                         <% }) %>
                         
             </datalist>
-              <button  class=" text-white font-bold px-2 " type="submit" name="submit"><svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <button  class=" text-white font-bold px-2 focus:outline-none" type="submit" name="submit"><svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.2403 16.7071L19.7643 20.222M18.9771 9.98856C18.9771 14.9528 14.9528 18.9771 9.98856 18.9771C5.02431 18.9771 1 14.9528 1 9.98856C1 5.02431 5.02431 1 9.98856 1C14.9528 1 18.9771 5.02431 18.9771 9.98856Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 </button>
@@ -175,7 +175,7 @@
           </button>
         </div>
         <div class="w-full flex-grow xl:flex xl:items-center xl:w-auto hidden mt-2 xl:mt-0 bg-white xl:bg-transparent text-black p-4 xl:p-0 z-20" id="nav-content">
-          <ul class="list-reset xl:flex justify-end flex-1 items-center">
+          <ul class="list-reset xl:flex xl:justify-end flex-1 items-center">
             
               
               <% if(!user){ %>
@@ -195,6 +195,24 @@
                   Course Citation
                 </button></a>
               </li> -->
+              <li class=" md:hidden">
+                <div class="pl-2  items-center border-solid border-2 bg-white rounded-md border-black ml-4 py-2">
+                <form action="/coursedirectory" method="POST">
+                  <input class=" w-5/6 text-black  rounded-lg focus:outline-none text-lg "  list="categories"
+                  id="category" type="text" name="category" placeholder="Search By Course Code or Name" required >
+                  <datalist id="categories">
+                    <% courses.forEach((course, i)=>{ %>
+                        <option value="<%=course.course_id%>">
+                          <option value="<%=course.name%>">
+                            <% }) %>
+                            
+                </datalist>
+                  <button  class=" text-white font-bold px-2 focus:outline-none" type="submit" name="submit"><svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.2403 16.7071L19.7643 20.222M18.9771 9.98856C18.9771 14.9528 14.9528 18.9771 9.98856 18.9771C5.02431 18.9771 1 14.9528 1 9.98856C1 5.02431 5.02431 1 9.98856 1C14.9528 1 18.9771 5.02431 18.9771 9.98856Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    </button>
+                </form></div>
+              </li>
               <li class="mr-3">
                 <a href="/coursedirectory/ask" class=" ask inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
@@ -214,7 +232,7 @@
             <li class="mr-3">
               <a class="inline-block text-white font-white no-underline  hover:text-underline py-2 px-4" href="/coursedirectory/auth/logout"><button
                 id="navAction"
-                class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-full mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-md mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
               >
                 Logout
               </button></a>

@@ -1,6 +1,6 @@
 <%- include("./partials/header.ejs") %>
     <div class=" lg:mx-20 md:flex  pt-24 items-center justify-center">
-        <div class="flex w-full items-center">
+        <div class="flex w-full items-center mb-8">
         <div class="text-2xl font-bold" style="color: #142661; width:740px">Contribute to Course Directory
         <p class="text-lg" style="color:#676792">You can contribute to course Directory Community by uploading material, videos, papers etc. 
             related to any course available on Course Directory website. To contribute you can fill the below
@@ -24,24 +24,24 @@
         <div class="font-bold text-2xl text-black ml-2 md:ml-32 mb-8">Fill to Contribute!</div>
     <form class="mb-16" method="post" action="/coursedirectory/contribute">
         <div class="md:flex md:flex-wrap ml-2 md:ml-32 ">
-            <div class="flex items-center mb-8 w-full md:w-1/2 ">
+            <div class="md:flex items-center mb-8 w-full md:w-1/2 ">
             <label class="text-2xl text-black w-1/3" for="name">Your Name</label>
-            <p class="border-2 border-black text-black px-2 py-2 w-2/4" style="height:60px"><%= user.username %></p></div>
-            <div class="flex items-center mb-8 w-full md:w-1/2 ">
+            <p class="border-2 border-black text-black px-2 py-2 w-full md:w-1/2 " style="height:60px"><%= user.username %></p></div>
+            <div class="md:flex items-center mb-8 w-full md:w-1/2 ">
                 <label class="text-2xl text-black w-1/3" for="askto">Course Name</label>
-                <input class="border-2 border-black text-black px-2 py-2 w-2/4" style="height:60px"  type="text" placeholder="Course Name" name="course_name"></div>
-            <div class="flex items-center mb-8 w-full md:w-1/2 ">
+                <input class="border-2 border-black text-black px-2 py-2 w-full md:w-1/2 " style="height:60px"  type="text" placeholder="Course Name" name="course_name"></div>
+            <div class="md:flex items-center mb-8 w-full md:w-1/2 ">
             <label class="text-2xl text-black w-1/3" for="email">Your e-mail</label>
-            <p class="border-2 border-black text-black px-2 py-2 w-2/4" style=" height:60px"><%= user.outlookID %></p></div>
-            <div class="flex items-center mb-8 w-full md:w-1/2 ">
+            <p class="border-2 border-black text-black px-2 py-2 w-full md:w-1/2 " style=" height:60px"><%= user.outlookID %></p></div>
+            <div class="md:flex items-center mb-8 w-full md:w-1/2 ">
                 <label class="text-2xl text-black w-1/3" for="topic">Topic</label>
-                <input class="border-2 border-black text-black px-2 py-2 w-2/4" style="height:60px"  type="text" placeholder="Topic" name="topic"></div>
-            <div class="flex w-full mb-8">
+                <input class="border-2 border-black text-black px-2 py-2 w-full md:w-1/2 " style="height:60px"  type="text" placeholder="Topic" name="topic"></div>
+            <div class="md:flex w-full mb-8">
             <label class="text-2xl text-black w-1/6" for="query">Link</label>
-            <input style=" height:60px" class="border-2 border-black text-black px-2 py-2 w-4/6" type="text" placeholder="Link" name="link"></div>
-            <div class="flex w-full">
+            <input style=" height:60px" class="border-2 border-black text-black px-2 py-2 w-full md:w-4/6 " type="text" placeholder="Link" name="link"></div>
+            <div class="md:flex w-full">
                 <label class="text-2xl text-black w-1/6" for="query">Description</label>
-                <textarea style=" height: 180px;" class="border-2 border-black text-black px-2 py-2 w-4/6" type="text" placeholder="description" name="description"></textarea></div>
+                <textarea style=" height: 180px;" class="border-2 border-black text-black px-2 py-2 w-full md:w-4/6 " type="text" placeholder="description" name="description"></textarea></div>
             </div>
     <div class="flex justify-center "><button class="bg-blue-600 px-16 py-4 text-xl rounded-md text-white mt-4" type="submit">Send</button></div></form>
     <%- include("./partials/footer.ejs") %>
