@@ -15,12 +15,13 @@ router.post("/ask", isLoggedIn, usercontroller.postQuery);
 router.post("/contribute", isLoggedIn, usercontroller.postContribute);
 router.get("/contribute", isLoggedIn, usercontroller.getContributePage);
 
-router.get("/professor", isLoggedIn, (req, res) => {
-  res.render("user/profpage", { user: req.user });
-});
 router.get("/mylearning", isLoggedIn, usercontroller.getMyLearningPage);
 router.get("/course", isLoggedIn, usercontroller.getCoursePage);
-router.get("/:courseid", isLoggedIn, usercontroller.getOneCoursePage);
-
+router.get("/course/:courseid", isLoggedIn, usercontroller.getOneCoursePage);
+router.get(
+  "/course/:courseid/professor",
+  isLoggedIn,
+  usercontroller.professorPage
+);
 
 module.exports = router;
