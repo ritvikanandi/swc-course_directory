@@ -9,7 +9,7 @@ const Assignment = require("../models/assignment");
 exports.getHomePage = async (req, res) => {
   try {
     return res.render("user/index", { user: req.user });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 };
@@ -90,7 +90,7 @@ exports.postContribute = async (req, res) => {
 exports.getMyLearningPage = async (req, res) => {
   try {
     return res.render("user/mylearning", { user: req.user });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 };
@@ -98,53 +98,87 @@ exports.getMyLearningPage = async (req, res) => {
 exports.getCitationPage = async (req, res) => {
   try {
     return res.render("user/citation", { user: req.user });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
-}
+};
 
 exports.getAskQueryPage = async (req, res) => {
   try {
     return res.render("user/askQuery", { user: req.user });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
-}
+};
 
 exports.getContributePage = async (req, res) => {
-  try{
+  try {
     return res.render("user/contribute", { user: req.user });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
-}
+};
 
 exports.getCoursePage = async (req, res) => {
   try {
     return res.render("user/coursepage", { user: req.user });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
   }
 };
 
 exports.getOneCoursePage = async (req, res) => {
   try {
-    const course = await Course.find({course_id : req.params.courseid});
-    if(course.length == 0) {
+    const course = await Course.find({ course_id: req.params.courseid });
+    if (course.length == 0) {
       return res.send("Not any course");
-    }
-    else {
-      const videos = await Video.find({course_id: req.params.courseid});
-      const lectures = await Lecture.find({course_id: req.params.courseid});
-      const assignments = await Assignment.find({course_id: req.params.courseid});
+    } else {
+      const videos = await Video.find({ course_id: req.params.courseid });
+      const lectures = await Lecture.find({ course_id: req.params.courseid });
+      const assignments = await Assignment.find({
+        course_id: req.params.courseid,
+      });
       return res.render("user/coursepage", {
         user: req.user,
         courses_data: course,
         videos: videos,
         lectures: lectures,
-        assignments: assignments});
+        assignments: assignments,
+        courseid: req.params.courseid,
+        professor: null,
+      });
     }
-  } catch(error) {
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.professorPage = async (req, res) => {
+  try {
+    const course = await Course.find({ course_id: req.params.courseid });
+    console.log(course);
+    if (course.length == 0) {
+      return res.send(" any course");
+    } else {
+      const videos = await Video.find({ course_id: req.params.courseid });
+      const lectures = await Lecture.find({ course_id: req.params.courseid });
+      const profdata = {
+        name: "Anupam Saikia",
+      };
+      const assignments = await Assignment.find({
+        course_id: req.params.courseid,
+      });
+      return res.render("user/coursepage", {
+        user: req.user,
+        courses_data: course,
+        videos: videos,
+        lectures: lectures,
+        assignments: assignments,
+        courseid: req.params.courseid,
+        professor: profdata,
+      });
+    }
+  } catch (error) {
     console.log(error);
   }
 };
