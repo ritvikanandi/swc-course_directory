@@ -1,48 +1,33 @@
 <%- include("./partials/header.ejs") %>
 
 <% if(user){ %>
-    <div class="pt-24 w-auto h-screen mb-24 md:mb-0">
+    <div class="pt-24 w-screen h-screen ">
       <% }else{ %>
-        <div class="pt-24 w-auto h-screen mb-24 md:mb-0">
+        <div class="pt-24 w-screen h-screen ">
         <% } %>
-      <div class="container flex  flex-col md:flex-row items-center md:justify-center md:space-x-36">
+      <div class="container flex flex-col md:flex-row items-center justify-between md:space-x-2">
         <!--Left Col-->
-        <div class="flex flex-col w-full md:w-2/5 items-start text-center">
+        <div class="flex flex-col w-full md:w-1/2 items-center text-center ">
             <% if(user){ %>
               <div>
-                <h1 class="text-5xl font-bold leading-tight" style="color: #142661;">
+                <h1 class=" text-3xl md:text-5xl font-bold leading-tight" style="color: #142661;">
                 Welcome <br><%= user.username %>
               </h1>
-              <button  class="mx-auto lg:mx-40 hover:underline bg-white  font-bold rounded-md border-2 border-blue-800 my-4 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" style="color: #142661;">
+              <button  class=" hover:underline bg-white  font-bold rounded-md border-2 border-blue-800 my-4 py-4 px-4 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" style="color: #142661;">
                 Start Learning
-              </button></div><% }else{ %><div>
+              </button></div><% }else{ %><div class="flex  flex-wrap justify-center">
                 <h1 class="my-4 text-5xl font-bold leading-tight" style="color: #142661;">
                     Welcome to<br> SWC Course Directory.
                   </h1>
               <p class="leading-tight text-2xl mb-8" style="color: #142661;">
                 Your one-stop platform to all academic courses of IIT Guwahati including videos, study material, assignments as well as solving queries.  
               </p>
-              <button onclick="openModal()" class="mx-auto lg:mx-40 hover:underline bg-white  font-bold rounded-md border-2 border-blue-800 my-4 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" style="color: #142661;">
+              <button onclick="openModal()" class=" hover:underline bg-white  font-bold rounded-md border-2 border-blue-800 my-4 py-4 px-4 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out" style="color: #142661;">
                 Sign Up for free
               </button></div>
               <% } %> 
         </div>
-        <div class="py-6 text-center h-4/6 w-full md:w-4/6">
-          <!-- <div class="sliderAx h-4/6 w-full md:w-4/6">
-            <div id="slider-1" class="container">
-              <img class=" z-50" src="/public/homecarousel/1.jpg" />
-            <br>
-            </div>
-      
-            <div id="slider-2" class="container">
-              <img class="z-50" src="/public/homecarousel/2.jpg" />
-            <br>
-            </div>
-            <div id="slider-3" class="container">
-              <img class="z-50" src="/public/homecarousel/3.jpg" />
-            <br>
-            </div>
-          </div> -->
+        <div class=" text-center h-4/6 w-full md:w-1/2">
           <svg  viewBox="0 0 682 414" fill="none" xmlns="http://www.w3.org/2000/svg">
             <g opacity="0.8">
             <path opacity="0.8" d="M679.636 212.802C692.553 144.456 651.419 59.4971 583.47 42.4001C582.272 42.0987 581.064 41.8043 579.845 41.5169C482.096 18.7525 451.174 141.176 359.284 138.82C267.395 136.465 212.565 53.5247 97.0772 79.9377C-6.63806 103.785 -76.4481 331.124 203.551 391.962C427.608 440.625 641.133 416.693 679.636 212.802Z" fill="#C5D0F6"/>

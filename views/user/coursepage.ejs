@@ -1,29 +1,29 @@
 <%- include("./partials/header.ejs") %>
 <% if(professor){ %>
-<div class="flex space-x-28 ml-36 items-center pt-24">
-    <div class="">
-      <img style="width:325px; height:325px" src="https://www.iitg.ac.in/pplab/dpatd/img/3.jpg" />
+<div class="md:flex md:space-x-28 md:ml-36 items-center pt-24">
+    <div class="flex justify-center rounded-md box-border pointer-events-none border-8 border-white w-auto h-64 bg-white">
+      <img class="h-full  object-contain rounded-sm" src="https://www.iitg.ac.in/pplab/dpatd/img/3.jpg" />
     </div>
     <div>
-      <div class="font-bold text-2xl" style="color: #142661"><%= professor.name %></div>
-      <div class="text-lg" style="color: #142661">Assistant Professor, Department of Design</div>
-      <div class="text-lg" style="color: #142661">Interest Area - Film & Video,Story telling & Visual Scripting, Animation and Graphic Design.</div>
-      <div class="mt-12 font-bold text-2xl" style="color: #142661">Courses</div>
+      <div class="font-bold text-2xl text-center md:text-left" style="color: #142661"><%= professor.name %></div>
+      <div class="text-lg text-center md:text-left" style="color: #142661">Assistant Professor, Department of Design</div>
+      <div class="text-lg text-center md:text-left" style="color: #142661">Interest Area - Film & Video,Story telling & Visual Scripting, Animation and Graphic Design.</div>
+      <div class="mt-12 font-bold text-2xl flex justify-center md:justify-between" style="color: #142661">Courses</div>
     </div>
   </div><% } %>
-<div class="flex items-center mx-36 justify-between pt-24 mb-20"><div class="font-bold text-2xl" style="color: #142661">
+<div class="md:flex  items-center md:mx-36 justify-between pt-24 mb-20"><div class="font-bold text-3xl md:text-2xl flex justify-center mb-8 md:mb-0 concat" style="color: #142661">
 	<%= courseid %> - <%= courses_data[0].name %>
 </div>
 <% if(!professor){ %>
 	
-<div class=""><a href="/coursedirectory/course/<%= courseid %>/professor">
+<div class="flex justify-center"><a href="/coursedirectory/course/<%= courseid %>/professor">
 	<button class="font-bold text-lg py-5 px-10 border-2 border-blue-900 rounded-md" style="color: #142661">Instructor - Dr. Anupam Saikia</button></a></div><% } %></div>
-<div class="font-bold text-2xl ml-36 mb-2" style="color: #142661">Videos</div>
+<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Videos</div>
 <%- include("./partials/videoCarousel.ejs") %>
-<div class="font-bold text-2xl ml-36 mb-2" style="color: #142661">Lectures</div>
+<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Lectures</div>
 <%- include("./partials/lectureCarousel.ejs") %>
-<div class="font-bold text-2xl ml-36 mb-2" style="color: #142661">Assignments</div>
+<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Assignments</div>
 <%- include("./partials/assignmnetCarousel.ejs") %>
-<div class="font-bold text-2xl ml-36 mb-2" style="color: #142661">Uploaded Study Material</div>
+<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Uploaded Study Material</div>
 <%- include("./partials/carousel.ejs") %>
 <%- include("./partials/footer.ejs") %>

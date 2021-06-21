@@ -1,9 +1,9 @@
 <%- include("./partials/header.ejs") %>
-<div class="flex flex-wrap pt-24 justify-center space-x-64 ">
-    <div class="flex ">
+<div class=" lg:mx-20 md:flex  pt-24 items-center justify-center">
+    <div class="flex w-full items-center mb-8">
     <div class="text-2xl font-bold" style="color: #142661; width:740px">Ask Your Doubts and We Will Resolve It.
     <p class="text-lg" style="color:#676792">You can ask any major doubt from courses mentioned in Course Directory to Professors, Alumini or Course Directory members. To get a doubt solved you can fill the below mentioned fields and type or attach your query. The Course Directory team will review it and if found relevant will mail you the solution.</p></div></div>
-    <div>
+    <div class="flex justify-center">
         <svg width="301" height="255" viewBox="0 0 301 255" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="52.998" y="6.99951" width="248" height="248" rx="124" fill="#F8F8FF"/>
             <path d="M226.284 4.91612C231.475 8.76202 232.207 16.6008 227.703 21.0611C223.199 25.5214 214.305 25.6383 209.773 21.1943C206.555 18.0139 205.904 13.6984 206.522 9.3218C207.281 7.67735 208.46 6.216 209.964 5.0555C211.468 3.89501 213.254 3.06783 215.179 2.64061C217.105 2.21338 219.115 2.19807 221.048 2.59589C222.981 2.99371 224.783 3.79355 226.308 4.93096L226.284 4.91612Z" fill="#FE7979"/>
@@ -18,25 +18,23 @@
             </svg>
             </div>
     </div>
-    <div class="font-bold text-2xl text-black ml-32 mb-8">Ask a query and we will mail you.</div>
+    <div class="font-bold text-2xl text-black ml-2 md:ml-32 mb-8">Ask a query and we will mail you.</div>
     <form class="mb-16" method="post" action="/coursedirectory/ask">
-    <div class="flex flex-wrap ml-32">
-    <div class="flex items-center mb-8">
-    <label class="text-2xl text-black mr-7" for="name">Your Name</label>
-    <p class="border-2 border-black text-black px-2 py-2" style="width:401px; height:60px"><%= user.username %></p></div>
-    <div class="flex items-center mb-8 ml-20">
-    <label class="text-2xl text-black mr-7" for="topic">Topic of the Query</label>
-    <input class="border-2 border-black text-black px-2 py-2" style="width:401px; height:60px"  type="text" placeholder="Topic" name="topic"></div>
-    </div><div class="flex flex-wrap ml-32">
-    <div class="flex items-center mb-8 ">
-    <label class="text-2xl text-black mr-7" for="email">Your e-mail</label>
-    <p class="border-2 border-black text-black px-2 py-2" style="width:401px; height:60px"><%= user.outlookID %></p></div>
-    <div class="flex items-center mb-8 ml-10">
-    <label class="text-2xl text-black mr-7 ml-40" for="askto">Ask to</label>
-    <input class="border-2 border-black text-black px-2 py-2" style="width:401px; height:60px"  type="text" placeholder="Professor/alumni or coursedirectory crew" name="askto"></div>
-    </div><div class="flex flex-wrap ml-32">
-    <div class="flex ">
-    <label class="text-2xl text-black mr-7" for="query">Query</label>
-    <textarea style="width: 1139px; height: 180px;" class="border-2 border-black text-black px-2 py-2" type="text" placeholder="Query" name="query"></textarea></div>
-    </div><div class="flex justify-end mx-36"><button class="bg-blue-600 px-16 py-4 text-xl rounded-md text-white mt-4" type="submit">Send</button></div></form>
+    <div class="md:flex md:flex-wrap ml-2 md:ml-32 ">
+    <div class="md:flex items-center mb-8 w-full md:w-1/2 ">
+    <label class="text-2xl text-black w-1/3" for="name">Your Name</label>
+    <p class="border-2 border-black text-black px-2 py-2 w-5/6 md:w-2/4" style="height:60px"><%= user.username %></p></div>
+    <div class="md:flex items-center mb-8 w-full md:w-1/2 ">
+    <label class="text-2xl text-black w-1/3" for="topic">Topic of the Query</label>
+    <input class="border-2 border-black text-black px-2 py-2 w-5/6 md:w-2/4" style="height:60px"  type="text" placeholder="Topic" name="topic"></div>
+    <div class="md:flex items-center mb-8 w-full md:w-1/2 ">
+    <label class="text-2xl text-black w-1/3" for="email">Your e-mail</label>
+    <p class="border-2 border-black text-black px-2 py-2 w-5/6 md:w-2/4" style=" height:60px"><%= user.outlookID %></p></div>
+    <div class="md:flex items-center mb-8 w-full md:w-1/2 ">
+    <label class="text-2xl text-black w-1/3" for="askto">Ask to</label>
+    <input class="border-2 border-black text-black px-2 py-2 w-5/6 md:w-2/4" style="height:60px"  type="text" placeholder="Professor/alumni or coursedirectory crew" name="askto"></div>
+    <div class="md:flex w-full">
+    <label class="text-2xl text-black w-full md:w-1/6" for="query">Query</label>
+    <textarea style=" height: 180px;" class="border-2 border-black text-black px-2 py-2 w-5/6 md:w-4/6" type="text" placeholder="Query" name="query"></textarea></div>
+    </div><div class="flex justify-center mx-36"><button class="bg-blue-600 px-16 py-4 text-xl rounded-md text-white mt-4" type="submit">Send</button></div></form>
     <%- include("./partials/footer.ejs") %>

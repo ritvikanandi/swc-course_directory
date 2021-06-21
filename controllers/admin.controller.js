@@ -13,8 +13,8 @@ exports.getAddCourse = async (req, res) => {
 };
 
 exports.postAddCourse = async (req, res) => {
-  cou_id = req.body.course_id;
-  cou_name = req.body.course_name;
+  cou_id = req.body.course_id.toUpperCase();
+  cou_name = req.body.course_name.toUpperCase();
   credits = req.body.credits;
   cou_des = req.body.course_desc;
   instructor = req.body.instructor;
@@ -45,8 +45,8 @@ exports.getEditCourse = async (req, res) => {
 };
 
 exports.editCourse = async (req, res) => {
-  cou_id = req.body.course_id;
-  cou_name = req.body.course_name;
+  cou_id = req.body.course_id.toUpperCase();
+  cou_name = req.body.course_name.toUpperCase();
   credits = req.body.credits;
   cou_des = req.body.course_desc;
   instructur = req.body.instructur;

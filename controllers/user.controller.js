@@ -16,7 +16,8 @@ exports.getHomePage = async (req, res) => {
 };
 
 exports.showSearch = async (req, res) => {
-  const searchValue = req.body.category;
+  const searchValue = req.body.category.toUpperCase();
+  console.log(searchValue);
   const result = await Course.findOne({ course_id: searchValue });
   const result1 = await Course.findOne({ name: searchValue });
   console.log(result);
@@ -113,7 +114,8 @@ exports.getMyLearningPage = async (req, res) => {
 
 exports.getCitationPage = async (req, res) => {
   try {
-    return res.render("user/citation", { user: req.user });
+    courses = await Course.find();
+    return res.render("user/citation", { user: req.user, courses });
   } catch (error) {
     console.log(error);
   }
@@ -121,7 +123,8 @@ exports.getCitationPage = async (req, res) => {
 
 exports.getAskQueryPage = async (req, res) => {
   try {
-    return res.render("user/askQuery", { user: req.user });
+    courses = await Course.find();
+    return res.render("user/askQuery", { user: req.user, courses });
   } catch (error) {
     console.log(error);
   }
@@ -129,7 +132,8 @@ exports.getAskQueryPage = async (req, res) => {
 
 exports.getContributePage = async (req, res) => {
   try {
-    return res.render("user/contribute", { user: req.user });
+    courses = await Course.find();
+    return res.render("user/contribute", { user: req.user, courses });
   } catch (error) {
     console.log(error);
   }
@@ -137,7 +141,8 @@ exports.getContributePage = async (req, res) => {
 
 exports.getCoursePage = async (req, res) => {
   try {
-    return res.render("user/coursepage", { user: req.user });
+    courses = await Course.find();
+    return res.render("user/coursepage", { user: req.user, courses });
   } catch (error) {
     console.log(error);
   }
@@ -154,6 +159,7 @@ exports.getOneCoursePage = async (req, res) => {
       const assignments = await Assignment.find({
         course_id: req.params.courseid,
       });
+      courses = await Course.find();
       return res.render("user/coursepage", {
         user: req.user,
         courses_data: course,
@@ -162,6 +168,7 @@ exports.getOneCoursePage = async (req, res) => {
         assignments: assignments,
         courseid: req.params.courseid,
         professor: null,
+        courses,
       });
     }
   } catch (error) {
@@ -179,11 +186,12 @@ exports.professorPage = async (req, res) => {
       const videos = await Video.find({ course_id: req.params.courseid });
       const lectures = await Lecture.find({ course_id: req.params.courseid });
       const profdata = {
-        name: "Anupam Saikia",
+        name: "Rahul Aggarwal",
       };
       const assignments = await Assignment.find({
         course_id: req.params.courseid,
       });
+      courses = await Course.find();
       return res.render("user/coursepage", {
         user: req.user,
         courses_data: course,
@@ -192,6 +200,7 @@ exports.professorPage = async (req, res) => {
         assignments: assignments,
         courseid: req.params.courseid,
         professor: profdata,
+        courses,
       });
     }
   } catch (error) {
