@@ -27,7 +27,7 @@
         background-color: white;
       }
     </style>
-    <style>
+    <!-- <style>
 
       /* Button used to open the chat form - fixed at the bottom of the page */
       .open-button {
@@ -130,7 +130,7 @@
                   color: #2b6cb0;  /*Set to match the Tailwind colour you want the active one to be */
                 }
 
-              </style></head>
+              </style></head> -->
 
   <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
     <!--Nav-->
@@ -148,10 +148,18 @@
           </button></a></div>
           
           
-          <div class=" pl-2 flex items-center hidden md:block border-solid border-2 bg-white rounded-md border-black ml-4">
-            <form action="">
-              <input class=" w-64 text-black  border-gray-400 rounded-lg"  type="text" name="search" placeholder="Department, Course name, Course Code, Professor" >
-              <button  class=" text-white font-bold py-2 px-2  " type="submit" name="submit"><svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <div class="pl-2 flex items-center hidden md:block border-solid border-2 bg-white rounded-md border-black ml-4 py-2">
+            <form action="/coursedirectory" method="POST">
+              <input class=" w-64 text-black  rounded-lg focus:outline-none text-lg"  list="categories"
+              id="category" type="text" name="category" placeholder="Search By Course Code or Name" required >
+              <datalist id="categories">
+                <% courses.forEach((course, i)=>{ %>
+                    <option value="<%=course.course_id%>">
+                      <option value="<%=course.name%>">
+                        <% }) %>
+                        
+            </datalist>
+              <button  class=" text-white font-bold px-2 " type="submit" name="submit"><svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16.2403 16.7071L19.7643 20.222M18.9771 9.98856C18.9771 14.9528 14.9528 18.9771 9.98856 18.9771C5.02431 18.9771 1 14.9528 1 9.98856C1 5.02431 5.02431 1 9.98856 1C14.9528 1 18.9771 5.02431 18.9771 9.98856Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
                 </button>
