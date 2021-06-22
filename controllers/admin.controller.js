@@ -17,7 +17,8 @@ exports.postAddCourse = async (req, res) => {
   cou_name = req.body.course_name.toUpperCase();
   credits = req.body.credits;
   cou_des = req.body.course_desc;
-  instructor = req.body.instructor;
+  professor = req.body.professor;
+  branch = req.body.branch;
   level = req.body.level;
   const courses = await Course.find({ course_id: cou_id });
   if (courses.length != 0) {
@@ -29,7 +30,8 @@ exports.postAddCourse = async (req, res) => {
       name: cou_name,
       credits: credits,
       description: cou_des,
-      instructor: instructor,
+      professor,
+      branch,
       level: level,
     }).save();
     return res.redirect("/coursedirectory/admin");
@@ -49,16 +51,18 @@ exports.editCourse = async (req, res) => {
   cou_name = req.body.course_name.toUpperCase();
   credits = req.body.credits;
   cou_des = req.body.course_desc;
-  instructur = req.body.instructur;
   level = req.body.level;
+  branch = req.body;
+  professor = req.body;
 
   const data = {
     course_id: cou_id,
     name: cou_name,
     credits: credits,
     description: cou_des,
-    instructur: instructur,
     level: level,
+    branch,
+    professor,
   };
   await Course.findOneAndUpdate({ course_id: req.params.courseid }, data, {
     new: true,
