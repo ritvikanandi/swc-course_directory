@@ -17,7 +17,7 @@
 <% if(!professor){ %>
 	
 <div class="flex justify-center"><a href="/coursedirectory/course/<%= courseid %>/professor">
-	<button class="font-bold text-lg py-5 px-10 border-2 border-blue-900 rounded-md" style="color: #142661">Instructor - Dr. Anupam Saikia</button></a></div><% } %></div>
+	<button class="font-bold text-lg py-5 px-10 border-2 border-blue-900 rounded-md" style="color: #142661">Instructor - <%=courses_data[0].professor %></button></a></div><% } %></div>
 <div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Videos</div>
 <%- include("./partials/videoCarousel.ejs") %>
 <div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Lectures</div>
