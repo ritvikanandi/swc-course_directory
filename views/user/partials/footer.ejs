@@ -234,5 +234,19 @@ document.getElementById("formbutton").style.display="block";
       
       
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
+
+    <script>
+      var elms = document.getElementsByClassName( 'splide' );
+      for ( var i = 0, len = elms.length; i < len; i++ ) {
+          const config = {
+              perPage: 4,
+            perMove: 1,
+              autoWidth: true,
+          pagination : false,
+          }
+        new Splide( elms[ i ],config ).mount();
+      }
+    </script>
   </body>
 </html>

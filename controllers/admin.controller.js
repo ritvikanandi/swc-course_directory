@@ -1,7 +1,7 @@
 const Course = require("../models/course");
 
 exports.getCourses = async (req, res) => {
-  const courses = await Course.find();
+  const courses = await Course.find({ professor: req.user.username });
   return res.render("admin/AllCourse/index", {
     user: req.user,
     courses_data: courses,
@@ -17,8 +17,8 @@ exports.postAddCourse = async (req, res) => {
   cou_name = req.body.course_name.toUpperCase();
   credits = req.body.credits;
   cou_des = req.body.course_desc;
-  professor = req.body.professor;
-  branch = req.body.branch;
+  professor = req.user.username;
+  branch = req.user.department;
   level = req.body.level;
   const courses = await Course.find({ course_id: cou_id });
   if (courses.length != 0) {
@@ -51,9 +51,9 @@ exports.editCourse = async (req, res) => {
   cou_name = req.body.course_name.toUpperCase();
   credits = req.body.credits;
   cou_des = req.body.course_desc;
+  professor = req.user.username;
+  branch = req.user.department;
   level = req.body.level;
-  branch = req.body;
-  professor = req.body;
 
   const data = {
     course_id: cou_id,

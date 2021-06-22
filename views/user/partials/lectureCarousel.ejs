@@ -1,15 +1,5 @@
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-<style>
-	.card{
-		background-color: #F8F8FF;
-		height: 376px;
-		width: 305px;
-	}
-	.card:hover{
-		background-color: #dfdfe5;
-	}
-</style>
+
 <% if(lectures.length>0){ %>
 <div class="splide md:mx-36">
 	<% if(lectures.length<=4){ %>
@@ -56,18 +46,6 @@
 	<div class="text-black md:mx-40">No Lectures Available</div>
 	<% } %>
 
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 
-<script>
-	var elms = document.getElementsByClassName( 'splide' );
-	for ( var i = 0, len = elms.length; i < len; i++ ) {
-	    const config = {
-	        perPage: 4,
-		    perMove: 1,
-	        autoWidth: true,
-	    }
-		new Splide( elms[ i ],config ).mount();
-	}
-</script>
-}
+
 
