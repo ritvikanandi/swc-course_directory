@@ -1,15 +1,5 @@
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-<style>
-	.card{
-		background-color: #F8F8FF;
-		height: 376px;
-		width: 305px;
-	}
-	.card:hover{
-		background-color: #dfdfe5;
-	}
-</style>
+
 <% if(lectures.length>0){ %>
 <div class="splide md:mx-36">
 	<% if(lectures.length<=4){ %>
@@ -25,8 +15,9 @@
 				<li class="splide__slide">
 					<a href="/coursedirectory/course/<%= courses_data[0].course_id %>/lecture/<%= lecture._id %>">
 						<div  class="card rounded-md mx-4" >
-						    <div>
-						      <img style="width: 305px; height: 205px;" src="https://www.iitg.ac.in/pplab/dpatd/img/3.jpg" alt="Course Card">
+						    <div class=" text-center"style="width: 305px; height: 205px; background-image: url('/public/images/lecturecard.jpg');">
+								<div class="text-5xl font-bold  h-1/2"><%= courseid %></div>
+								<div class="text-4xl font-bold  h-1/2">Lecture - <%=lecture.number %></div>
 						    </div>
 						    <div class="mx-4">
 						      <div class="flex-column justify-between">
@@ -34,9 +25,10 @@
                       <div class="flex justify-between items-center" style="margin-top: 20px;">
 						          <div class=" text-lg font-bold" style="color: #676792;"><%= lecture.name %></div>
                       <div class="">
-						            <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-						              <path fill-rule="evenodd" clip-rule="evenodd" d="M6.51705 0.333252H13.4836C17.0565 0.333252 19.3337 2.00745 19.3337 5.30051V21.7193C19.3337 22.2358 19.1335 22.7311 18.7774 23.0963C18.4212 23.4615 17.9381 23.6667 17.4213 23.6666C17.1129 23.6616 16.8099 23.5839 16.5177 23.4299L9.96999 19.774L3.44881 23.4375C2.6634 23.8561 1.71168 23.663 1.11535 22.9637L1.00098 22.8171L0.891722 22.6369C0.749144 22.3578 0.672222 22.0484 0.666992 21.7193V5.50665C0.666992 2.08242 2.89433 0.333252 6.51705 0.333252ZM13.4836 2.02229H6.51703C3.72276 2.02229 2.31436 3.12834 2.31436 5.50665L2.31424 21.7053C2.31457 21.7251 2.31663 21.7448 2.31826 21.7604C2.32088 21.7854 2.3224 21.7999 2.31398 21.7879L2.35769 21.8605C2.43298 21.9657 2.57429 22 2.67319 21.9475L9.1916 18.2862C9.67745 18.0171 10.2628 18.0171 10.7511 18.2875L17.2876 21.9368C17.3371 21.9628 17.3917 21.9769 17.4343 21.9777C17.5011 21.9777 17.5652 21.9504 17.6124 21.902C17.6597 21.8536 17.6862 21.7879 17.6862 21.7193V5.30052C17.6862 3.08412 16.242 2.02229 13.4836 2.02229Z" fill="#3D9BFF" />
-						            </svg>
+						<svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M6.51705 0.333252H13.4836C17.0565 0.333252 19.3337 2.00745 19.3337 5.30051V21.7193C19.3337 22.2358 19.1335 22.7311 18.7774 23.0963C18.4212 23.4615 17.9381 23.6667 17.4213 23.6666C17.1129 23.6616 16.8099 23.5839 16.5177 23.4299L9.96999 19.774L3.44881 23.4375C2.6634 23.8561 1.71168 23.663 1.11535 22.9637L1.00098 22.8171L0.891722 22.6369C0.749144 22.3578 0.672222 22.0484 0.666992 21.7193V5.50665C0.666992 2.08242 2.89433 0.333252 6.51705 0.333252ZM13.4836 2.02229H6.51703C3.72276 2.02229 2.31436 3.12834 2.31436 5.50665L2.31424 21.7053C2.31457 21.7251 2.31663 21.7448 2.31826 21.7604C2.32088 21.7854 2.3224 21.7999 2.31398 21.7879L2.35769 21.8605C2.43298 21.9657 2.57429 22 2.67319 21.9475L9.1916 18.2862C9.67745 18.0171 10.2628 18.0171 10.7511 18.2875L17.2876 21.9368C17.3371 21.9628 17.3917 21.9769 17.4343 21.9777C17.5011 21.9777 17.5652 21.9504 17.6124 21.902C17.6597 21.8536 17.6862 21.7879 17.6862 21.7193V5.30052C17.6862 3.08412 16.242 2.02229 13.4836 2.02229Z" fill="#676792"/>
+							</svg>
+							
 						          </div></div>
 						          <div class=" text-lg font-bold " style="color: #676792; margin-top: 10px;"><%= courses_data[0].name %></div>
                       <div class="flex justify-between" style="margin-top: 10px;">
@@ -52,22 +44,8 @@
 		<% }) %>	
 		</ul>
 	</div>
-</div><% }else{ %>
-	<div class="text-black md:mx-40">No Lectures Available</div>
-	<% } %>
+</div><% } %>
 
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 
-<script>
-	var elms = document.getElementsByClassName( 'splide' );
-	for ( var i = 0, len = elms.length; i < len; i++ ) {
-	    const config = {
-	        perPage: 4,
-		    perMove: 1,
-	        autoWidth: true,
-	    }
-		new Splide( elms[ i ],config ).mount();
-	}
-</script>
-}
+
 

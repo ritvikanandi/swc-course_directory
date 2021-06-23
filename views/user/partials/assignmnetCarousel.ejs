@@ -1,4 +1,5 @@
 
+
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
 <style>
 	.card{
@@ -11,6 +12,7 @@
 	}
 </style>
 <% if(assignments.length>0){ %>
+
 <div class="splide md:mx-36">
 	<% if(assignments.length<=4){ %>
 		<div class="splide__arrows hidden">
@@ -56,18 +58,5 @@
 	<div class="text-black md:mx-40">No Assignments Available</div>
 	<% } %>
 
-<script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/js/splide.min.js"></script>
 
-<script>
-	var elms = document.getElementsByClassName( 'splide' );
-	for ( var i = 0, len = elms.length; i < len; i++ ) {
-	    const config = {
-	        perPage: 4,
-		    perMove: 1,
-	        autoWidth: true,
-	    }
-		new Splide( elms[ i ],config ).mount();
-	}
-</script>
-}
 

@@ -14,123 +14,27 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-<link rel="stylesheet" href="path-to-the-file/splide.min.css">
-
-<!-- or the one installed in node_modules directory, -->
-<link rel="stylesheet" href="node_modules/@splidejs/splide/dist/css/splide.min.css">
 
 <!-- or the reference on CDN -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
+<style>
+	.card{
+		background-color: #F8F8FF;
+		height: 376px;
+		width: 305px;
+	}
+	.card:hover{
+		background-color: #dfdfe5;
+	}
+</style>
+
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <style>
       .gradient {
         background-color: white;
       }
     </style>
-    <!-- <style>
-
-      /* Button used to open the chat form - fixed at the bottom of the page */
-      .open-button {
-        background-color: gray;
-        color: white;
-        padding: 16px 20px;
-        border: none;
-        cursor: pointer;
-        opacity: 0.8;
-        position: fixed;
-        bottom: 10px;
-        right: 10px;
-        width: 200px;
-      }
-      
-      /* The popup chat - hidden by default */
-      .form-popup {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        right: 15px;
-        border: 3px solid #f1f1f1;
-        z-index: 9;
-      }
-      
-      /* Add styles to the form container */
-      .form-container {
-        max-width: 300px;
-        padding: 10px;
-        background-color: white;
-      }
-      
-      /* Full-width textarea */
-      .form-container textarea {
-        width: 100%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        border: none;
-        background: #f1f1f1;
-        resize: none;
-        min-height: 200px;
-      }
-      
-      /* When the textarea gets focus, do something */
-      .form-container textarea:focus {
-        background-color: #ddd;
-        outline: none;
-      }
-      
-      /* Set a style for the submit/login button */
-      .form-container .btn {
-        background-color: #04AA6D;
-        color: white;
-        padding: 16px 20px;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        margin-bottom:10px;
-        opacity: 1;
-      }
-      
-      /* Add a red background color to the cancel button */
-      .form-container .cancel {
-        background-color: red;
-      }
-      
-      /* Add some hover effects to buttons */
-      .form-container .btn:hover, .open-button:hover {
-        opacity: 1;
-      }
-              </style>
-              <style>
-                .carousel-open:checked + .carousel-item {
-                  position: static;
-                  opacity: 100;
-                }
-                .carousel-item {
-                  -webkit-transition: opacity 0.6s ease-out;
-                  transition: opacity 0.6s ease-out;
-                }
-                #carousel-1:checked ~ .control-1,
-                #carousel-2:checked ~ .control-2,
-                #carousel-3:checked ~ .control-3 {
-                  display: block;
-                }
-                .carousel-indicators {
-                  list-style: none;
-                  margin: 0;
-                  padding: 0;
-                  position: absolute;
-                  bottom: 2%;
-                  left: 0;
-                  right: 0;
-                  text-align: center;
-                  z-index: 10;
-                }
-                #carousel-1:checked ~ .control-1 ~ .carousel-indicators li:nth-child(1) .carousel-bullet,
-                #carousel-2:checked ~ .control-2 ~ .carousel-indicators li:nth-child(2) .carousel-bullet,
-                #carousel-3:checked ~ .control-3 ~ .carousel-indicators li:nth-child(3) .carousel-bullet {
-                  color: #2b6cb0;  /*Set to match the Tailwind colour you want the active one to be */
-                }
-
-              </style></head> -->
+    </head>
 
   <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
     <!--Nav-->
@@ -167,7 +71,7 @@
           </div>
         </div>
         <div class="block xl:hidden pr-4">
-          <button id="nav-toggle" class="flex items-center p-1 text-pink-800 hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
+          <button id="nav-toggle" class="flex items-center p-1 text-black hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
               <title>Menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />

@@ -5,7 +5,7 @@
       <img class="h-full  object-contain rounded-sm" src="https://www.iitg.ac.in/pplab/dpatd/img/3.jpg" />
     </div>
     <div>
-      <div class="font-bold text-2xl text-center md:text-left" style="color: #142661"><%= professor.name %></div>
+      <div class="font-bold text-2xl text-center md:text-left" style="color: #142661"><%=courses_data[0].professor %></div>
       <div class="text-lg text-center md:text-left" style="color: #142661">Assistant Professor, Department of Design</div>
       <div class="text-lg text-center md:text-left" style="color: #142661">Interest Area - Film & Video,Story telling & Visual Scripting, Animation and Graphic Design.</div>
       <div class="mt-12 font-bold text-2xl flex justify-center md:justify-between" style="color: #142661">Courses</div>
@@ -18,12 +18,16 @@
 	
 <div class="flex justify-center"><a href="/coursedirectory/course/<%= courseid %>/professor">
 	<button class="font-bold text-lg py-5 px-10 border-2 border-blue-900 rounded-md" style="color: #142661">Instructor - <%=courses_data[0].professor %></button></a></div><% } %></div>
-<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Videos</div>
-<%- include("./partials/videoCarousel.ejs") %>
-<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Lectures</div>
-<%- include("./partials/lectureCarousel.ejs") %>
-<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Assignments</div>
-<%- include("./partials/assignmnetCarousel.ejs") %>
-<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left" style="color: #142661">Uploaded Study Material</div>
-<%- include("./partials/carousel.ejs") %>
+  <% if(videos.length>0){ %>
+<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left md:mt-16" style="color: #142661">Videos</div>
+<%- include("./partials/videoCarousel.ejs") %><% } %>
+<% if(lectures.length>0){ %>
+<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left md:mt-16" style="color: #142661">Lectures</div>
+<%- include("./partials/lectureCarousel.ejs") %><% } %>
+<% if(assignments.length>0){ %>
+<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left md:mt-16" style="color: #142661">Assignments</div>
+<%- include("./partials/assignmnetCarousel.ejs") %><% } %>
+<% if(lectures.length>0){ %>
+<div class="font-bold text-2xl md:ml-36 mb-2 text-center md:text-left md:mt-16" style="color: #142661">Uploaded Study Material</div>
+<%- include("./partials/carousel.ejs") %><% } %>
 <%- include("./partials/footer.ejs") %>

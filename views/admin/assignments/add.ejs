@@ -17,6 +17,11 @@
                 <form class="p-10 bg-white rounded shadow-xl" action="/coursedirectory/admin/<%= courses_data[0].course_id %>/assignments" method="POST"
                     enctype="multipart/form-data">
                     <div class="mt-2">
+                        <label class="block text-sm text-gray-600" for="number">Number</label>
+                        <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="number" type="number"
+                            name="number" placeholder="Number">
+                    </div>
+                    <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="name">Name</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="name" type="text"
                             name="name" placeholder="Name">
