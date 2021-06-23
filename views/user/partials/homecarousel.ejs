@@ -1,5 +1,4 @@
 
-
 <style>
     .splide__slide img {
 	width : 100%;
@@ -30,5 +29,17 @@
 		</ul>
 	</div>
 </div>
+<script>
+	document.addEventListener( 'DOMContentLoaded', function () {
+		new Splide( '#image-slider',{
+			type    : 'loop',
+			autoplay: true,
+			pauseOnHover : false, // must be false
+		pauseOnFocus : false, // must be false
+		resetProgress: false,
+		arrows: false,
+		} ).mount();
+	} );
+	</script>
 
 
