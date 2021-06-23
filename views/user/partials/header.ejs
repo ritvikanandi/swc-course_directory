@@ -86,11 +86,12 @@
             <li class="mr-3">
               <a class="inline-block text-white font-white no-underline hover:text-underline py-2 "><button
                 id="navAction" onclick="openModal()"
-                class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-full mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-md mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
               >
                 Login
               </button></a>
-            </li><% }else{%>
+            </li>
+            <% }else{%>
               <!-- <li class="mr-3">
                 <a href="/coursedirectory/citation" class="citation inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
@@ -133,14 +134,24 @@
                   Contribute
                 </button></a>
               </li>
-            <li class="mr-3">
-              <a class="inline-block text-white font-white no-underline  hover:text-underline py-2 px-4" href="/coursedirectory/auth/logout"><button
-                id="navAction"
-                class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-md mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
-              >
-                Logout
-              </button></a>
-            </li><% } %>
+              <li class="mr-3">
+                <a class="contribute inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 " href="/coursedirectory/admin"><button
+                  id="navAction"
+                  class="mx-auto xl:mx-0 hover:underline text-gray-800 font-bold  mt-4 xl:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                >
+                  Admin
+                </button></a>
+              </li>
+              <li class="mr-3">
+                <a class="inline-block text-white font-white no-underline  hover:text-underline py-2 px-4" href="/coursedirectory/auth/logout"><button
+                  id="navAction"
+                  class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-md mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                >
+                  Logout
+                </button></a>
+            </li>
+            
+            <% } %>
           </ul>
           
         </div>
