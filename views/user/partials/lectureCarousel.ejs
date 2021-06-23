@@ -23,7 +23,7 @@
 		<ul class="splide__list">
 			<% lectures.forEach((lecture,idx) => { %>
 				<li class="splide__slide">
-					<a href="<%= lecture.filepath %>">
+					<a href="/coursedirectory/course/<%= courses_data[0].course_id %>/lecture/<%= lecture._id %>">
 						<div  class="card rounded-md mx-4" >
 						    <div>
 						      <img style="width: 305px; height: 205px;" src="https://www.iitg.ac.in/pplab/dpatd/img/3.jpg" alt="Course Card">
