@@ -33,7 +33,7 @@ exports.addLectureForm = async (req, res) => {
 exports.postLecture = async (req, res) => {
   try {
     var course_id = req.params.courseid;
-    var { name } = req.body;
+    var { name, number } = req.body;
     name = name.toUpperCase();
     const path = req.file ? req.file.filename : filepath;
     if (!path) {
@@ -44,6 +44,7 @@ exports.postLecture = async (req, res) => {
       course_id,
       name,
       filepath: path,
+      number,
     }).save();
     if (!newLecture) {
       console.log("Lecture Not added");
@@ -77,14 +78,14 @@ exports.postEditForm = async (req, res) => {
   try {
     var course_id = req.params.courseid;
     var lecture_id = req.params.lectureid;
-    var { name } = req.body;
+    var { name, number } = req.body;
     name = name.toUpperCase();
     const path = req.file ? req.file.filename : filepath;
     if (!path) {
       console.log("path not added");
       return res.redirect("/coursedirectory/admin/" + course_id + "/lectures");
     } else {
-      data = { course_id, name, filepath: path };
+      data = { course_id, name, filepath: path, number };
     }
     const updatedLecture = await Lecture.findByIdAndUpdate(lecture_id, data);
     if (!updatedLecture) {

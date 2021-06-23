@@ -34,6 +34,7 @@ exports.postVideo = async (req, res) => {
     var course_id = req.params.courseid;
     var name = req.body.name;
     var video = req.body.video;
+    var number = req.body;
     console.log(name);
     if (!video) {
       console.log("path not added");
@@ -43,6 +44,7 @@ exports.postVideo = async (req, res) => {
       course_id,
       name,
       link: video,
+      number,
     }).save();
     if (!newVideo) {
       console.log("Video Not added");
@@ -76,8 +78,8 @@ exports.postEditForm = async (req, res) => {
   try {
     var course_id = req.params.courseid;
     var name = req.params.videoid;
-    var { video } = req.body;
-    await Video.findOneAndUpdate({ _id: name }, { link: video });
+    var { video, number } = req.body;
+    await Video.findOneAndUpdate({ _id: name }, { link: video }, number);
     console.log("successfully updated");
     const url = "/coursedirectory/admin/" + course_id + "/videos";
     return res.redirect(url);

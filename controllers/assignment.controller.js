@@ -37,7 +37,7 @@ exports.addAssignmentForm = async (req, res) => {
 exports.postAssignment = async (req, res) => {
   try {
     var course_id = req.params.courseid;
-    var { name } = req.body;
+    var { name, number } = req.body;
     name = name.toUpperCase();
     const path = req.file ? req.file.filename : filepath;
     if (!path) {
@@ -48,6 +48,7 @@ exports.postAssignment = async (req, res) => {
       course_id,
       name,
       filepath: path,
+      number,
     }).save();
     if (!newAssignment) {
       console.log("Assignment Not added");
@@ -81,14 +82,14 @@ exports.postEditForm = async (req, res) => {
   try {
     var course_id = req.params.courseid;
     var assignment_id = req.params.assignmentid;
-    var { name } = req.body;
+    var { name, number } = req.body;
     name = name.toUpperCase();
     const path = req.file ? req.file.filename : filepath;
     if (!path) {
       console.log("path not added");
       return res.redirect("/coursedirectory/admin");
     } else {
-      data = { course_id, name, filepath: path };
+      data = { course_id, name, filepath: path, number };
     }
     const updatedAssignment = await Assignment.findByIdAndUpdate(
       assignment_id,
