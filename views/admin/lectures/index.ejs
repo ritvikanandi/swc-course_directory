@@ -27,7 +27,7 @@
                 <%}%>
                 <td class="text-left py-3 px-4"><%= lecture.number %></td>
                 <td class="w-1/3 text-left py-3 px-4"><%= lecture.name %></td>
-                <td class="w-1/3 text-left py-3 px-4"><a href="/coursedirectory/admin/<%= courses_data[0].course_id %>/lectures/pdf/<%=lecture.id %>" target="_blank">View</a></td>
+                <td class="w-1/3 text-left py-3 px-4"><a href="/coursedirectory/admin/<%= courses_data[0].course_id %>/lectures/pdf/<%=lecture._id %>" target="_blank">View</a></td>
                 <td class="w-1/3 text-left py-3 px-4"><a href="/coursedirectory/admin/<%= courses_data[0].course_id %>/lectures/<%=lecture._id %>">Edit</a></td>
                 <td class="w-1/3 text-left py-3 px-4"><form action="/coursedirectory/admin/<%= courses_data[0].course_id %>/lectures/<%=lecture._id %>?_method=DELETE" method="POST"> <button type="submit">DELETE</button> </form></td>
                 </tr>

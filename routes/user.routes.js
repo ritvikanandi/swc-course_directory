@@ -19,6 +19,8 @@ router.get("/contribute", isLoggedIn, usercontroller.getContributePage);
 router.get("/mylearning", isLoggedIn, usercontroller.getMyLearningPage);
 router.get("/course", isLoggedIn, usercontroller.getCoursePage);
 router.get("/course/:courseid", isLoggedIn, usercontroller.getOneCoursePage);
+router.get("/course/:courseid/lecture/:lectureid", isLoggedIn, usercontroller.getOneLecture);
+router.get("/course/:courseid/assignment/:assignmentid", isLoggedIn, usercontroller.getOneAssignment);
 router.get(
   "/course/:courseid/professor",
   isLoggedIn,

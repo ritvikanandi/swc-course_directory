@@ -5,6 +5,7 @@ const Course = require("../models/course");
 const Video = require("../models/video");
 const Lecture = require("../models/lecture");
 const Assignment = require("../models/assignment");
+const fs = require("fs");
 
 exports.getHomePage = async (req, res) => {
   try {
@@ -203,6 +204,34 @@ exports.professorPage = async (req, res) => {
         courses,
       });
     }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.getOneLecture = async (req, res) => {
+  try {
+    const lecture_id = req.params.lectureid;
+    const lecture = await Lecture.findById(lecture_id);
+    const filePath = "uploads/lectures/" + lecture.filepath;
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.getOneAssignment = async (req, res) => {
+  try {
+    const assignment_id = req.params.assignmentid;
+    const assignment = await Assignment.findById(assignment_id);
+    const filePath = "uploads/assignments/" + assignment.filepath;
+    fs.readFile(filePath, (err, data) => {
+      res.contentType("application/pdf");
+      return res.send(data);
+    });
   } catch (error) {
     console.log(error);
   }
