@@ -39,7 +39,7 @@ passport.use(
         const newUser = new User({
           email: waadProfile.preferred_username,
           outlookId: waadProfile.oid,
-          name: waadProfile.name,
+          username: waadProfile.name,
           accessToken: accessToken,
           // isverified: true,
         });

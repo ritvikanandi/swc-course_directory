@@ -17,7 +17,7 @@ exports.postAddCourse = async (req, res) => {
   cou_name = req.body.course_name.toUpperCase();
   credits = req.body.credits;
   cou_des = req.body.course_desc;
-  professor = req.user.username;
+  professor = req.user.email;
   branch = req.user.department;
   level = req.body.level;
   const courses = await Course.find({ course_id: cou_id });
