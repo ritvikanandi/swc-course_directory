@@ -8,7 +8,7 @@ const courseSchema = new Schema({
   description: String,
   level: String,
   branch: String,
-  professor: String,
+  professorEmail: String,
 });
 
 const Course = mongoose.model("Course", courseSchema);

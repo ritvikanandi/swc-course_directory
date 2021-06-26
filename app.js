@@ -42,7 +42,8 @@ mongoose.connect(
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.use("/public", express.static("public"));
+app.use("/coursedirectory", express.static(__dirname + "/public"));
+app.use("/coursedirectory/uploads", express.static(__dirname + "/uploads"));
 
 // set up session cookies
 app.use(
