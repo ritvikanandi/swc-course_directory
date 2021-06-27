@@ -35,7 +35,7 @@ exports.showSearch = async (req, res) => {
 exports.postcitereq = async (req, res) => {
   try {
     const name = req.user.username;
-    const email = req.user.outlookID;
+    const email = req.user.email;
     const { course_name, professor, reason } = req.body;
     const newCitation = await new Citation({
       name,
@@ -59,7 +59,7 @@ exports.postcitereq = async (req, res) => {
 exports.postQuery = async (req, res) => {
   try {
     const name = req.user.username;
-    const email = req.user.outlookID;
+    const email = req.user.email;
     const { topic, askto, query } = req.body;
     const newQuery = await new Query({
       name,
@@ -83,7 +83,7 @@ exports.postQuery = async (req, res) => {
 exports.postContribute = async (req, res) => {
   try {
     const name = req.user.username;
-    const email = req.user.outlookID;
+    const email = req.user.email;
     const { course_name, topic, link, description } = req.body;
     const newContribute = await new Contribute({
       name,
