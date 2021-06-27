@@ -30,6 +30,7 @@
     "multer-gridfs-storage": "^4.2.0",
     "nodemon": "^2.0.6",
     "passport": "^0.4.1",
+    "passport-azure-ad-oauth2": "0.0.4",
     "passport-outlook": "^2.3.0"
   }
 }
