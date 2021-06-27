@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   username: { type: String, required: true },
-  isAdmin: { type: Boolean, default: false },
+  isAdmin: { type: Boolean, default: true },
   accessToken: { type: String, required: true, select: false },
   outlookId: { type: String, required: true },
 });
