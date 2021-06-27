@@ -1,5 +1,5 @@
 const passport = require("passport");
-const WindowsLiveStrategy = require("passport-outlook").Strategy;
+const WindowsLiveStrategy = require("passport-azure-ad-oauth2").Strategy;
 const { OUTLOOK_CLIENT_ID, OUTLOOK_CLIENT_SECRET } = process.env;
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
@@ -33,11 +33,11 @@ passport.use(
       try {
         var waadProfile = jwt.decode(params.id_token);
         const user = await User.findOne({
-          email: waadProfile.preferred_username,
+          email: waadProfile.upn,
         });
         if (user) return done(null, user);
         const newUser = new User({
-          email: waadProfile.preferred_username,
+          email: waadProfile.upn,
           outlookId: waadProfile.oid,
           username: waadProfile.name,
           accessToken: accessToken,

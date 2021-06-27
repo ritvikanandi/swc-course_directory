@@ -1,17 +1,24 @@
-exports.isLoggedIn = function (req, res, next) {
-  if (req.user) {
-    return next();
+const isLoggedIn = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    return res.status(401).json({
+      status: "Not authenticated",
+      msg: "You are not authenticated !",
+    });
   }
-  console.log("You need to login first");
-  return res.redirect("/coursedirectory");
 };
 
-exports.isAdmin = function (req, res, next) {
+const isAdmin = (req, res, next) => {
+  console.log("asd");
   if (req.user.isAdmin) {
-    console.log("You are authorized");
     return next();
+  } else {
+    return res.status(401).json({
+      status: "Not authorized",
+      msg: "You are not authorized !",
+    });
   }
-  console.log("info", "You are unauthorized!");
-  //req.logout();
-  return res.redirect("/coursedirectory");
 };
+
+module.exports = { isLoggedIn, isAdmin };
