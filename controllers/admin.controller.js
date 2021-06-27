@@ -1,7 +1,7 @@
 const Course = require("../models/course");
 
 exports.getCourses = async (req, res) => {
-  const courses = await Course.find({ professor: req.user.username });
+  const courses = await Course.find({ professor: req.user.email });
   return res.render("admin/AllCourse/index", {
     user: req.user,
     courses_data: courses,
