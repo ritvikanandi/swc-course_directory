@@ -10,19 +10,14 @@ router.get("/login", (req, res) => {
 router.get("/logout", (req, res) => {
   req.logout();
   console.log("Successfully logout!");
-  res.redirect("/");
+  res.redirect("/coursedirectory");
 });
 
 // auth with google+
 router.get(
   "/outlook",
   passport.authenticate("windowslive", {
-    scope: [
-      "openid",
-      "profile",
-      "offline_access",
-      "https://outlook.office.com/Mail.Read",
-    ],
+    scope: ["openid", "profile", "offline_access"],
   })
 );
 
@@ -30,10 +25,10 @@ router.get(
 // hand control to passport to use code to grab profile info
 router.get(
   "/outlook/redirect",
-  passport.authenticate("windowslive", { failureRedirect: "/" }),
+  passport.authenticate("windowslive", { failureRedirect: "/coursedirectory" }),
   (req, res) => {
     // res.send(req.user);
-    res.redirect("/");
+    res.redirect("/coursedirectory");
   }
 );
 

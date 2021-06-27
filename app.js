@@ -70,10 +70,6 @@ app.use("/coursedirectory/admin/:courseid/faqs", faqRoutes);
 app.use("/coursedirectory", userRoutes);
 app.use("/coursedirectory/admin/professor", professorRoutes);
 
-app.get("/", (req, res) => {
-  res.redirect("/coursedirectory");
-});
-
 // Server Connection
 let port = process.env.PORT;
 if (port == null || port == "") {
