@@ -49,10 +49,10 @@ exports.postcitereq = async (req, res) => {
     } else {
       console.log("Successfully requested");
     }
-    return res.redirect("/");
+    return res.redirect("/coursedirectory");
   } catch (error) {
     console.log(error);
-    return res.redirect("/");
+    return res.redirect("/coursedirectory");
   }
 };
 
@@ -73,10 +73,10 @@ exports.postQuery = async (req, res) => {
     } else {
       console.log("Query Successfully Submitted");
     }
-    res.redirect("/");
+    res.redirect("/coursedirectory");
   } catch (error) {
     console.log(error);
-    res.redirect("/");
+    res.redirect("/coursedirectory");
   }
 };
 
@@ -98,10 +98,10 @@ exports.postContribute = async (req, res) => {
     } else {
       console.log("Contribution Successfully Submitted");
     }
-    res.redirect("/");
+    res.redirect("/coursedirectory");
   } catch (error) {
     console.log(error);
-    res.redirect("/");
+    res.redirect("/coursedirectory");
   }
 };
 
