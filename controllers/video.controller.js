@@ -6,7 +6,9 @@ const fs = require("fs");
 exports.getVideos = async (req, res) => {
   try {
     const videos = await Video.find({ course_id: req.params.courseid });
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
     res.render("admin/videos/index", {
       user: req.user,
       courses_data: courses_data,
@@ -19,7 +21,9 @@ exports.getVideos = async (req, res) => {
 
 exports.addVideoForm = async (req, res) => {
   try {
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
     return res.render("admin/videos/add", {
       user: req.user,
       courses_data: courses_data,
@@ -34,7 +38,7 @@ exports.postVideo = async (req, res) => {
     var course_id = req.params.courseid;
     var name = req.body.name;
     var video = req.body.video;
-    var number = req.body;
+    var number = req.body.number;
     console.log(name);
     if (!video) {
       console.log("path not added");
@@ -62,7 +66,9 @@ exports.postVideo = async (req, res) => {
 exports.getEditForm = async (req, res) => {
   try {
     const video = await Video.findById(req.params.videoid);
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
     console.log(courses_data);
     return res.render("admin/videos/edit", {
       user: req.user,

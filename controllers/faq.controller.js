@@ -6,7 +6,7 @@ const fs = require("fs");
 exports.getFAQs = async (req, res) => {
   try {
     const faqs = await FAQ.find({ course_id: req.params.courseid });
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({ course_id: req.params.courseid });
     res.render("admin/faqs/index", {
       user: req.user,
       courses_data: courses_data,
@@ -19,7 +19,7 @@ exports.getFAQs = async (req, res) => {
 
 exports.addFAQForm = async (req, res) => {
   try {
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({ course_id: req.params.courseid });
     return res.render("admin/faqs/add", {
       user: req.user,
       courses_data: courses_data,
@@ -56,7 +56,7 @@ exports.postFAQ = async (req, res) => {
 exports.getEditForm = async (req, res) => {
   try {
     const faq = await FAQ.findById(req.params.faqid);
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({ course_id: req.params.courseid });
     console.log(courses_data);
     return res.render("admin/faqs/edit", {
       user: req.user,

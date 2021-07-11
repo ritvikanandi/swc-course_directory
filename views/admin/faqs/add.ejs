@@ -14,7 +14,7 @@
                 <p>You need to add both question and answer</p>
             </div>
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="/coursedirectory/admin/<%= courses_data[0].course_id %>/faqs" method="POST">
+                <form class="p-10 bg-white rounded shadow-xl" action="/coursedirectory/admin/<%= courses_data.course_id %>/faqs" method="POST">
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="question">Question</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="question" type="text"
@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="mt-2">
-                        <a class="hover:text-blue-500" href="/coursedirectory/admin/<%= courses_data[0].course_id %>/faqs">Go Back</a>
+                        <a class="hover:text-blue-500" href="/coursedirectory/admin/<%= courses_data.course_id %>/faqs">Go Back</a>
                     </div>
                 </form>
             </div>

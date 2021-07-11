@@ -8,6 +8,10 @@ const passport = require("passport");
 const methodOverride = require("method-override");
 require("dotenv").config();
 const { MONGO_URL, COOKIE_KEY } = process.env;
+const session = require("express-session");
+const mongoSanitize = require("express-mongo-sanitize");
+const MongoStore = require("connect-mongo")(session);
+const flash = require("connect-flash");
 
 const urlcloud = MONGO_URL;
 const urllocal = "mongodb://localhost:27017/swccoursedirectory";
@@ -44,7 +48,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use("/coursedirectory", express.static(__dirname + "/public"));
 app.use("/coursedirectory/uploads", express.static(__dirname + "/uploads"));
-
+app.use(mongoSanitize());
 // set up session cookies
 app.use(
   cookieSession({
@@ -52,7 +56,23 @@ app.use(
     keys: [COOKIE_KEY],
   })
 );
+app.use(
+  session({
+    secret: "Once again rusty is the cutest dog",
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: { maxAge: 180 * 60 * 1000 },
+  })
+);
 
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  res.locals.info = req.flash("info");
+  next();
+});
 app.use(methodOverride("_method"));
 
 // initialize passport
@@ -62,7 +82,7 @@ app.use(passport.session());
 // set up routes
 app.use("/coursedirectory/auth", authRoutes);
 app.use("/coursedirectory/admin", adminRoutes);
-app.use("/coursedirectory/courses", courseRoutes);
+// app.use("/coursedirectory/courses", courseRoutes);
 app.use("/coursedirectory/admin/:courseid/lectures", lectureRoutes);
 app.use("/coursedirectory/admin/:courseid/assignments", assignmentRoutes);
 app.use("/coursedirectory/admin/:courseid/videos", videoRoutes);

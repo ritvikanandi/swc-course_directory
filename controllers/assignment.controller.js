@@ -8,7 +8,9 @@ exports.getAssignments = async (req, res) => {
     const assignments = await Assignment.find({
       course_id: req.params.courseid,
     });
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
     res.render("admin/assignments/index", {
       user: req.user,
       courses_data: courses_data,
@@ -24,7 +26,9 @@ exports.addAssignmentForm = async (req, res) => {
     const assignments = await Assignment.find({
       course_id: req.params.courseid,
     });
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
     return res.render("admin/assignments/add", {
       user: req.user,
       courses_data: courses_data,
@@ -66,7 +70,9 @@ exports.postAssignment = async (req, res) => {
 exports.getEditForm = async (req, res) => {
   try {
     const assignment = await Assignment.findById(req.params.assignmentid);
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
     console.log(courses_data);
     return res.render("admin/assignments/edit", {
       user: req.user,

@@ -1,3 +1,4 @@
+const Professor = require("../models/professor");
 const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     next();
@@ -10,7 +11,6 @@ const isLoggedIn = (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  console.log("asd");
   if (req.user.isAdmin) {
     return next();
   } else {
@@ -21,4 +21,12 @@ const isAdmin = (req, res, next) => {
   }
 };
 
-module.exports = { isLoggedIn, isAdmin };
+const isProfessor = async (req, res, next) => {
+  const professor = await Professor.findOne({ email: req.user.email });
+  if (professor) {
+    return next();
+  } else {
+    return res.redirect("/coursedirectory/admin/professor/profile");
+  }
+};
+module.exports = { isLoggedIn, isAdmin, isProfessor };

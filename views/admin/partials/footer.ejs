@@ -1,4 +1,5 @@
-        <footer class="w-full bg-white text-right p-4">
+</main>
+       <footer class="w-full bg-white text-right p-4">
           Built by <a target="_blank" href="#" class="underline">Students' Web Committee</a>.
         </footer>
       </div>
@@ -7,6 +8,14 @@
   
       <!-- AlpineJS -->
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
+    <script>
+      var alert_del = document.querySelectorAll(".alert-del");
+      alert_del.forEach((x) =>
+      x.addEventListener("click", function () {
+        x.parentElement.classList.add("hidden");
+      })
+      );
+      </script>
   </body>
   
 </html>

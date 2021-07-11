@@ -6,7 +6,10 @@ const fs = require("fs");
 exports.getLectures = async (req, res) => {
   try {
     const lectures = await Lecture.find({ course_id: req.params.courseid });
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
+    console.log(courses_data);
     res.render("admin/lectures/index", {
       user: req.user,
       courses_data: courses_data,
@@ -20,7 +23,9 @@ exports.getLectures = async (req, res) => {
 exports.addLectureForm = async (req, res) => {
   try {
     const lectures = await Lecture.find({ course_id: req.params.courseid });
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
     return res.render("admin/lectures/add", {
       user: req.user,
       courses_data: courses_data,
@@ -48,10 +53,12 @@ exports.postLecture = async (req, res) => {
     }).save();
     if (!newLecture) {
       console.log("Lecture Not added");
+      req.flash("error", "Lecture not added");
       const url = "/coursedirectory/admin/" + course_id + "/lectures";
       res.redirect(url);
     }
     console.log("Successfully added new lecture");
+    req.flash("success", "Lecture Added Successfully");
     const url = "/coursedirectory/admin/" + course_id + "/lectures";
     return res.redirect(url);
   } catch (error) {
@@ -62,7 +69,9 @@ exports.postLecture = async (req, res) => {
 exports.getEditForm = async (req, res) => {
   try {
     const lecture = await Lecture.findById(req.params.lectureid);
-    const courses_data = await Course.find({ course_id: req.params.courseid });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
     console.log(courses_data);
     return res.render("admin/lectures/edit", {
       user: req.user,
@@ -89,7 +98,9 @@ exports.postEditForm = async (req, res) => {
     }
     const updatedLecture = await Lecture.findByIdAndUpdate(lecture_id, data);
     if (!updatedLecture) {
-      console.log("unable to update Lecture");
+      req.flash("error", "Unable to update lecture");
+    } else {
+      req.flash("success", "Lecture Updated Successfully");
     }
     const url = "/coursedirectory/admin/" + course_id + "/lectures";
     return res.redirect(url);
@@ -106,10 +117,12 @@ exports.deleteLecture = async (req, res) => {
     fs.unlinkSync(`uploads/lectures/${lecture.filepath}`);
     console.log("successfully deleted!");
     await Lecture.findByIdAndRemove(id);
+    req.flash("success", "Lecture Deleted Successfully");
     const url = "/coursedirectory/admin/" + course_id + "/lectures";
     return res.redirect(url);
   } catch (err) {
     console.log(err);
+    req.flash("error", err);
     const url = "/coursedirectory/admin/" + course_id + "/lectures";
     return res.redirect(url);
   }

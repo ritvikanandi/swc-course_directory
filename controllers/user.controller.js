@@ -5,6 +5,7 @@ const Course = require("../models/course");
 const Video = require("../models/video");
 const Lecture = require("../models/lecture");
 const Assignment = require("../models/assignment");
+const Professor = require("../models/professor");
 const fs = require("fs");
 
 exports.getHomePage = async (req, res) => {
@@ -151,7 +152,7 @@ exports.getCoursePage = async (req, res) => {
 
 exports.getOneCoursePage = async (req, res) => {
   try {
-    const course = await Course.find({ course_id: req.params.courseid });
+    const course = await Course.findOne({ course_id: req.params.courseid });
     if (course.length == 0) {
       return res.send("Not any course");
     } else {
@@ -179,16 +180,16 @@ exports.getOneCoursePage = async (req, res) => {
 
 exports.professorPage = async (req, res) => {
   try {
-    const course = await Course.find({ course_id: req.params.courseid });
+    const course = await Course.findOne({ course_id: req.params.courseid });
     console.log(course);
     if (course.length == 0) {
       return res.send(" any course");
     } else {
       const videos = await Video.find({ course_id: req.params.courseid });
       const lectures = await Lecture.find({ course_id: req.params.courseid });
-      const profdata = {
-        name: "Rahul Aggarwal",
-      };
+      const profemail = course.professorEmail;
+      const profdata = await Professor.findOne({ email: profemail });
+      console.log(profdata);
       const assignments = await Assignment.find({
         course_id: req.params.courseid,
       });
