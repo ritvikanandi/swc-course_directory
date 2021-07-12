@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router({ mergeParams: true });
-const { isAdmin, isLoggedIn } = require("../middleware");
+const { isLoggedIn, isAdmin } = require("../middleware/index");
 const multer = require("multer");
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -27,16 +27,33 @@ router.post(
   assignmentController.postAssignment
 );
 
-router.get("/:assignmentid", assignmentController.getEditForm);
+router.get(
+  "/:assignmentid",
+  isLoggedIn,
+  isAdmin,
+  assignmentController.getEditForm
+);
 
 router.put(
   "/:assignmentid",
+  isLoggedIn,
+  isAdmin,
   upload.single("assignment"),
   assignmentController.postEditForm
 );
 
-router.delete("/:assignmentid", assignmentController.deleteAssignment);
+router.delete(
+  "/:assignmentid",
+  isLoggedIn,
+  isAdmin,
+  assignmentController.deleteAssignment
+);
 
-router.get("/pdf/:assignmentid", assignmentController.getOneAssignment);
+router.get(
+  "/pdf/:assignmentid",
+  isLoggedIn,
+  isAdmin,
+  assignmentController.getOneAssignment
+);
 
 module.exports = router;

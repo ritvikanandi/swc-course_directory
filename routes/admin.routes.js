@@ -10,9 +10,6 @@ const storage = multer.diskStorage({
   filename: (req, file, cb) => {
     const fileName1 = req.user.email + ".jpg";
     const fileName = fileName1.replace(/\s/g, "");
-    console.log(fileName);
-    console.log("nkk");
-    console.lo;
     cb(null, fileName);
   },
 });
@@ -21,51 +18,51 @@ router.get(
   "/",
   middleware.isLoggedIn,
   middleware.isAdmin,
-  middleware.isProfessor,
   adminCourseCont.getCourses
 );
+
 router.get(
   "/professor/profile",
   middleware.isLoggedIn,
-  middleware.isAdmin,
-
+  middleware.isProfAdmin,
   adminCourseCont.getProfForm
 );
 router.post(
   "/professor/profile",
   middleware.isLoggedIn,
-  middleware.isAdmin,
+  middleware.isProfAdmin,
   upload.single("image"),
   adminCourseCont.postProfessor
 );
 router.get(
   "/add",
   middleware.isLoggedIn,
-  middleware.isAdmin,
+  middleware.isProfAdmin,
+  middleware.isProfessor,
   adminCourseCont.getAddCourse
 );
 router.post(
   "/add",
   middleware.isLoggedIn,
-  middleware.isAdmin,
+  middleware.isProfAdmin,
   adminCourseCont.postAddCourse
 );
 router.get(
   "/:courseid/edit",
   middleware.isLoggedIn,
-  middleware.isAdmin,
+  middleware.isProfAdmin,
   adminCourseCont.getEditCourse
 );
 router.put(
   "/:courseid/edit",
   middleware.isLoggedIn,
-  middleware.isAdmin,
+  middleware.isProfAdmin,
   adminCourseCont.editCourse
 );
 router.delete(
   "/:courseid/edit",
   middleware.isLoggedIn,
-  middleware.isAdmin,
+  middleware.isProfAdmin,
   adminCourseCont.deleteCourse
 );
 

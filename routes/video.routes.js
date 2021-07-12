@@ -10,12 +10,10 @@ router.get("/add", isLoggedIn, isAdmin, videoController.addVideoForm);
 
 router.post("/", isLoggedIn, isAdmin, videoController.postVideo);
 
-router.get("/:videoid", videoController.getEditForm);
+router.get("/:videoid", isLoggedIn, isAdmin, videoController.getEditForm);
 
-router.put("/:videoid", videoController.postEditForm);
+router.put("/:videoid", isLoggedIn, isAdmin, videoController.postEditForm);
 
-router.delete("/:videoid", videoController.deleteVideo);
-
-
+router.delete("/:videoid", isLoggedIn, isAdmin, videoController.deleteVideo);
 
 module.exports = router;

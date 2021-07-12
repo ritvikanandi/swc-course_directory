@@ -10,10 +10,10 @@ router.get("/add", isLoggedIn, isAdmin, faqController.addFAQForm);
 
 router.post("/", isLoggedIn, isAdmin, faqController.postFAQ);
 
-router.get("/:faqid", faqController.getEditForm);
+router.get("/:faqid", isLoggedIn, isAdmin, faqController.getEditForm);
 
-router.put("/:faqid", faqController.postEditForm);
+router.put("/:faqid", isLoggedIn, isAdmin, faqController.postEditForm);
 
-router.delete("/:faqid", faqController.deleteFAQ);
+router.delete("/:faqid", isLoggedIn, isAdmin, faqController.deleteFAQ);
 
 module.exports = router;

@@ -3,7 +3,11 @@ const Professor = require("../models/professor");
 
 exports.getCourses = async (req, res) => {
   try {
-    const courses = await Course.find({ professorEmail: req.user.email });
+    if (req.user.isProfessor) {
+      const courses = await Course.find({ professorEmail: req.user.email });
+    } else if (req.user.isAdmin) {
+      const courses = await Course.find({ moderatorEmail: req.user.email });
+    }
     console.log(courses);
     return res.render("admin/AllCourse/index", {
       user: req.user,

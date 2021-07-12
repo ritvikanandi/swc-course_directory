@@ -27,16 +27,28 @@ router.post(
   lectureController.postLecture
 );
 
-router.get("/:lectureid", lectureController.getEditForm);
+router.get("/:lectureid", isLoggedIn, isAdmin, lectureController.getEditForm);
 
 router.put(
   "/:lectureid",
+  isLoggedIn,
+  isAdmin,
   upload.single("lecture"),
   lectureController.postEditForm
 );
 
-router.delete("/:lectureid", lectureController.deleteLecture);
+router.delete(
+  "/:lectureid",
+  isLoggedIn,
+  isAdmin,
+  lectureController.deleteLecture
+);
 
-router.get("/pdf/:lectureid", lectureController.getOneLecture);
+router.get(
+  "/pdf/:lectureid",
+  isLoggedIn,
+  isAdmin,
+  lectureController.getOneLecture
+);
 
 module.exports = router;

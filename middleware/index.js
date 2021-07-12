@@ -11,7 +11,18 @@ const isLoggedIn = (req, res, next) => {
 };
 
 const isAdmin = (req, res, next) => {
-  if (req.user.isAdmin) {
+  if (req.user.isAdmin || req.user.isProfessor) {
+    return next();
+  } else {
+    return res.status(401).json({
+      status: "Not authorized",
+      msg: "You are not authorized !",
+    });
+  }
+};
+
+const isProfAdmin = (req, res, next) => {
+  if (req.user.isProfessor) {
     return next();
   } else {
     return res.status(401).json({
@@ -29,4 +40,5 @@ const isProfessor = async (req, res, next) => {
     return res.redirect("/coursedirectory/admin/professor/profile");
   }
 };
-module.exports = { isLoggedIn, isAdmin, isProfessor };
+
+module.exports = { isLoggedIn, isAdmin, isProfessor, isProfAdmin };
