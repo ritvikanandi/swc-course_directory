@@ -68,7 +68,7 @@ exports.postLecture = async (req, res) => {
 
 exports.searchLecture = async (req, res) => {
   try {
-    var val = req.body.lectureSearch;
+    var val = req.body.lectureSearch.toUpperCase();
     if(val == null) {
       return res.redirect("/coursedirectory/admin/" + req.params.courseid + "/lectures");
     }

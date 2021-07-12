@@ -4,29 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>
-      SWC Course Directory
-    </title>
+    <title>SWC Course Directory</title>
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
-    <link rel="icon" href="/coursedirectory/favicon.ico" type="image/icon type">
-    <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
+    <link
+      rel="icon"
+      href="/coursedirectory/favicon.ico"
+      type="image/icon type"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/tailwindcss/dist/tailwind.min.css"
+    />
     <!--Replace with your tailwind.css once created-->
-    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
+      rel="stylesheet"
+    />
 
-<!-- or the reference on CDN -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css">
-<style>
-	.card{
-		background-color: #F8F8FF;
-		height: 376px;
-		width: 305px;
-	}
-	.card:hover{
-		background-color: #dfdfe5;
-	}
-</style>
+    <!-- or the reference on CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@splidejs/splide@latest/dist/css/splide.min.css"
+    />
+    <style>
+      .card {
+        background-color: #f8f8ff;
+        height: 376px;
+        width: 305px;
+      }
+      .card:hover {
+        background-color: #dfdfe5;
+      }
+    </style>
 
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
     <style>
@@ -34,65 +45,225 @@
         background-color: white;
       }
     </style>
-    </head>
+  </head>
 
-  <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'Source Sans Pro', sans-serif;">
+  <body
+    class="leading-normal tracking-normal text-white gradient"
+    style="font-family: 'Source Sans Pro', sans-serif"
+  >
     <!--Nav-->
     <nav id="header" class="fixed w-full z-30 top-0 text-white overflow-hidden">
-      <div class="w-full container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
+      <div
+        class="
+          w-full
+          container
+          mx-auto
+          flex flex-wrap
+          items-center
+          justify-between
+          mt-0
+          py-2
+        "
+      >
         <div class="pl-4 flex items-center">
-          <a class="toggleColour text-blue-600 no-underline hover:no-underline font-bold text-2xl lg:text-4xl" href="/coursedirectory">
-
+          <a
+            class="
+              toggleColour
+              text-blue-600
+              no-underline
+              hover:no-underline
+              font-bold
+              text-2xl
+              lg:text-4xl
+            "
+            href="/coursedirectory"
+          >
             Course Directory
           </a>
-          <div  class=""><a  class="inline-block hidden md:block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button onclick="opencategory()"  id="categoriesbutton"
-            class="mx-auto lg:mx-0 hover:underline bg-blue-600 text-white font-bold rounded-md mt-4 lg:mt-0 py-4 px-4 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+          <div class="hidden">
+            <a
+              class="
+                inline-block
+                hidden
+                md:block
+                text-black
+                font-black
+                no-underline
+                hover:text-gray-800 hover:text-underline
+                py-2
+                px-4
+              "
+              ><button
+                onclick="opencategory()"
+                id="categoriesbutton"
+                class="
+                  mx-auto
+                  lg:mx-0
+                  hover:underline
+                  bg-blue-600
+                  text-white
+                  font-bold
+                  rounded-md
+                  mt-4
+                  lg:mt-0
+                  py-4
+                  px-4
+                  shadow
+                  opacity-75
+                  focus:outline-none focus:shadow-outline
+                  transform
+                  transition
+                  hover:scale-105
+                  duration-300
+                  ease-in-out
+                "
+              >
+                Categories
+              </button></a
+            >
+          </div>
+
+          <div
+            class="
+              pl-2
+              flex
+              items-center
+              hidden
+              md:block
+              border-solid border-2
+              bg-white
+              rounded-md
+              border-black
+              ml-4
+              py-2
+            "
           >
-            Categories
-          </button></a></div>
-          
-          
-          <div class="pl-2 flex items-center hidden md:block border-solid border-2 bg-white rounded-md border-black ml-4 py-2">
             <form action="/coursedirectory" method="POST">
-              <input class=" w-64 text-black  rounded-lg focus:outline-none text-lg"  list="categories"
-              id="category" type="text" name="category" placeholder="Search By Course Code or Name" required >
+              <input
+                class="w-64 text-black rounded-lg focus:outline-none text-lg"
+                list="categories"
+                id="category"
+                type="text"
+                name="category"
+                placeholder="Search By Course Code or Name"
+                required
+              />
               <datalist id="categories">
                 <% courses.forEach((course, i)=>{ %>
-                    <option value="<%=course.course_id%>">
-                      <option value="<%=course.name%>">
-                        <% }) %>
-                        
-            </datalist>
-              <button  class=" text-white font-bold px-2 focus:outline-none" type="submit" name="submit"><svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M16.2403 16.7071L19.7643 20.222M18.9771 9.98856C18.9771 14.9528 14.9528 18.9771 9.98856 18.9771C5.02431 18.9771 1 14.9528 1 9.98856C1 5.02431 5.02431 1 9.98856 1C14.9528 1 18.9771 5.02431 18.9771 9.98856Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <option value="<%=course.course_id%>"></option>
+                <option value="<%=course.name%>"><% }) %></option>
+              </datalist>
+
+              <button
+                class="text-white font-bold px-2 focus:outline-none"
+                type="submit"
+                name="submit"
+              >
+                <svg
+                  width="21"
+                  height="22"
+                  viewBox="0 0 21 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M16.2403 16.7071L19.7643 20.222M18.9771 9.98856C18.9771 14.9528 14.9528 18.9771 9.98856 18.9771C5.02431 18.9771 1 14.9528 1 9.98856C1 5.02431 5.02431 1 9.98856 1C14.9528 1 18.9771 5.02431 18.9771 9.98856Z"
+                    stroke="black"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
                 </svg>
-                </button>
+              </button>
             </form>
           </div>
         </div>
         <div class="block xl:hidden pr-4">
-          <button id="nav-toggle" class="flex items-center p-1 text-black hover:text-gray-900 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            <svg class="fill-current h-6 w-6" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <button
+            id="nav-toggle"
+            class="
+              flex
+              items-center
+              p-1
+              text-black
+              hover:text-gray-900
+              focus:outline-none focus:shadow-outline
+              transform
+              transition
+              hover:scale-105
+              duration-300
+              ease-in-out
+            "
+          >
+            <svg
+              class="fill-current h-6 w-6"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
               <title>Menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
           </button>
         </div>
-        <div class="w-full flex-grow xl:flex xl:items-center xl:w-auto hidden mt-2 xl:mt-0 bg-white xl:bg-transparent text-black p-4 xl:p-0 z-20" id="nav-content">
+        <div
+          class="
+            w-full
+            flex-grow
+            xl:flex xl:items-center xl:w-auto
+            hidden
+            mt-2
+            xl:mt-0
+            bg-white
+            xl:bg-transparent
+            text-black
+            p-4
+            xl:p-0
+            z-20
+          "
+          id="nav-content"
+        >
           <ul class="list-reset xl:flex xl:justify-end flex-1 items-center">
-            
-              
-              <% if(!user){ %>
+            <% if(!user){ %>
             <li class="mr-3">
-              <a class="inline-block text-white font-white no-underline hover:text-underline py-2 "><button
-                id="navAction" onclick="openModal()"
-                class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-md mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+              <a
+                class="
+                  inline-block
+                  text-white
+                  font-white
+                  no-underline
+                  hover:text-underline
+                  py-2
+                "
+                ><button
+                  id="navAction"
+                  onclick="openModal()"
+                  class="
+                    bg-blue-600
+                    mx-auto
+                    xl:mx-0
+                    hover:underline
+                    font-bold
+                    rounded-md
+                    mt-4
+                    xl:mt-0
+                    py-4
+                    px-8
+                    shadow
+                    opacity-75
+                    focus:outline-none focus:shadow-outline
+                    transform
+                    transition
+                    hover:scale-105
+                    duration-300
+                    ease-in-out
+                  "
+                >
+                  Login
+                </button></a
               >
-                Login
-              </button></a>
             </li>
             <% }else{%>
-              <!-- <li class="mr-3">
+            <!-- <li class="mr-3">
                 <a href="/coursedirectory/citation" class="citation inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
                    
                   id="citation" class="mx-auto xl:mx-0 hover:underline text-gray-800 font-bold  mt-4 xl:mt-0  focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
@@ -100,107 +271,315 @@
                   Course Citation
                 </button></a>
               </li> -->
-              <li class=" md:hidden">
-                <div class="pl-2  items-center border-solid border-2 bg-white rounded-md border-black ml-4 py-2">
+            <li class="md:hidden">
+              <div
+                class="
+                  pl-2
+                  items-center
+                  border-solid border-2
+                  bg-white
+                  rounded-md
+                  border-black
+                  ml-4
+                  py-2
+                "
+              >
                 <form action="/coursedirectory" method="POST">
-                  <input class=" w-5/6 text-black  rounded-lg focus:outline-none text-lg "  list="categories"
-                  id="category" type="text" name="category" placeholder="Search By Course Code or Name" required >
+                  <input
+                    class="
+                      w-5/6
+                      text-black
+                      rounded-lg
+                      focus:outline-none
+                      text-lg
+                    "
+                    list="categories"
+                    id="category"
+                    type="text"
+                    name="category"
+                    placeholder="Search By Course Code or Name"
+                    required
+                  />
                   <datalist id="categories">
                     <% courses.forEach((course, i)=>{ %>
-                        <option value="<%=course.course_id%>">
-                          <option value="<%=course.course_name %>">
-                            <% }) %>
-                            
-                </datalist>
-                  <button  class=" text-white font-bold px-2 focus:outline-none" type="submit" name="submit"><svg width="21" height="22" viewBox="0 0 21 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M16.2403 16.7071L19.7643 20.222M18.9771 9.98856C18.9771 14.9528 14.9528 18.9771 9.98856 18.9771C5.02431 18.9771 1 14.9528 1 9.98856C1 5.02431 5.02431 1 9.98856 1C14.9528 1 18.9771 5.02431 18.9771 9.98856Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <option value="<%=course.course_id%>"></option>
+                    <option value="<%=course.course_name %>"><% }) %></option>
+                  </datalist>
+
+                  <button
+                    class="text-white font-bold px-2 focus:outline-none"
+                    type="submit"
+                    name="submit"
+                  >
+                    <svg
+                      width="21"
+                      height="22"
+                      viewBox="0 0 21 22"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M16.2403 16.7071L19.7643 20.222M18.9771 9.98856C18.9771 14.9528 14.9528 18.9771 9.98856 18.9771C5.02431 18.9771 1 14.9528 1 9.98856C1 5.02431 5.02431 1 9.98856 1C14.9528 1 18.9771 5.02431 18.9771 9.98856Z"
+                        stroke="black"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
                     </svg>
-                    </button>
-                </form></div>
-              </li>
-              <li class="mr-3">
-                <a href="/coursedirectory/ask" class=" ask inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
-                   
-                  id="ask" class="mx-auto xl:mx-0 hover:underline text-gray-800 font-bold  mt-4 xl:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                  </button>
+                </form>
+              </div>
+            </li>
+            <li class="mr-3">
+              <a
+                href="/coursedirectory/ask"
+                class="
+                  ask
+                  inline-block
+                  text-black
+                  font-black
+                  no-underline
+                  hover:text-gray-800 hover:text-underline
+                  py-2
+                  px-4
+                "
+                ><button
+                  id="ask"
+                  class="
+                    mx-auto
+                    xl:mx-0
+                    hover:underline
+                    text-gray-800
+                    font-bold
+                    mt-4
+                    xl:mt-0
+                    focus:outline-none focus:shadow-outline
+                    transform
+                    transition
+                    hover:scale-105
+                    duration-300
+                    ease-in-out
+                  "
                 >
                   Ask a query
-                </button></a>
-              </li>
-              <li class="mr-3">
-                <a href="/coursedirectory/contribute" class="contribute inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4"><button
-                   
-                  id="contribute" class="mx-auto xl:mx-0 hover:underline text-gray-800 font-bold  mt-4 xl:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                </button></a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                href="/coursedirectory/contribute"
+                class="
+                  contribute
+                  inline-block
+                  text-black
+                  font-black
+                  no-underline
+                  hover:text-gray-800 hover:text-underline
+                  py-2
+                  px-4
+                "
+                ><button
+                  id="contribute"
+                  class="
+                    mx-auto
+                    xl:mx-0
+                    hover:underline
+                    text-gray-800
+                    font-bold
+                    mt-4
+                    xl:mt-0
+                    focus:outline-none focus:shadow-outline
+                    transform
+                    transition
+                    hover:scale-105
+                    duration-300
+                    ease-in-out
+                  "
                 >
                   Contribute
-                </button></a>
-              </li>
-              <li class="mr-3">
-                <a class="contribute inline-block text-black font-black no-underline hover:text-gray-800 hover:text-underline py-2 px-4 " href="/coursedirectory/admin"><button
+                </button></a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="
+                  contribute
+                  inline-block
+                  text-black
+                  font-black
+                  no-underline
+                  hover:text-gray-800 hover:text-underline
+                  py-2
+                  px-4
+                "
+                href="/coursedirectory/admin"
+                ><button
                   id="navAction"
-                  class="mx-auto xl:mx-0 hover:underline text-gray-800 font-bold  mt-4 xl:mt-0   focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                  class="
+                    mx-auto
+                    xl:mx-0
+                    hover:underline
+                    text-gray-800
+                    font-bold
+                    mt-4
+                    xl:mt-0
+                    focus:outline-none focus:shadow-outline
+                    transform
+                    transition
+                    hover:scale-105
+                    duration-300
+                    ease-in-out
+                  "
                 >
                   Admin
-                </button></a>
-              </li>
-              <li class="mr-3">
-                <a class="inline-block text-white font-white no-underline  hover:text-underline py-2 px-4" href="/coursedirectory/auth/logout"><button
+                </button></a
+              >
+            </li>
+            <li class="mr-3">
+              <a
+                class="
+                  inline-block
+                  text-white
+                  font-white
+                  no-underline
+                  hover:text-underline
+                  py-2
+                  px-4
+                "
+                href="/coursedirectory/auth/logout"
+                ><button
                   id="navAction"
-                  class="bg-blue-600 mx-auto xl:mx-0 hover:underline font-bold rounded-md mt-4 xl:mt-0 py-4 px-8 shadow opacity-75 focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                  class="
+                    bg-blue-600
+                    mx-auto
+                    xl:mx-0
+                    hover:underline
+                    font-bold
+                    rounded-md
+                    mt-4
+                    xl:mt-0
+                    py-4
+                    px-8
+                    shadow
+                    opacity-75
+                    focus:outline-none focus:shadow-outline
+                    transform
+                    transition
+                    hover:scale-105
+                    duration-300
+                    ease-in-out
+                  "
                 >
                   Logout
-                </button></a>
+                </button></a
+              >
             </li>
-            
+
             <% } %>
           </ul>
-          
         </div>
       </div>
       <hr class="border-b border-gray-100 opacity-25 my-0 py-0" />
     </nav>
-    <div id="categories" class="flex fixed z-30 left-80 top-20 bg-white text-black border-black border-solid border-2 hidden">
+    <div
+      id="categories"
+      class="
+        flex
+        fixed
+        z-30
+        left-80
+        top-20
+        bg-white
+        text-black
+        border-black border-solid border-2
+        hidden
+      "
+    >
       <div class="bg-gray-100 w-52">
-        <button class="mt-8 font-sans font-bold text-xl text-blue-600 px-10">Degree</button><br />
-        <button class="mt-3.5 px-10" onclick="openBranch()">B.Tech</button><br />
+        <button class="mt-8 font-sans font-bold text-xl text-blue-600 px-10">
+          Degree</button
+        ><br />
+        <button class="mt-3.5 px-10" onclick="openBranch()">B.Tech</button
+        ><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">B.Des</button><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">HSS</button><br />
-        <button class="mt-3.5 px-10" onclick="openBranch()">M.Tech</button><br />
-        <button class="mt-3.5 px-10" onclick="openBranch()">M.Tech</button><br />
+        <button class="mt-3.5 px-10" onclick="openBranch()">M.Tech</button
+        ><br />
+        <button class="mt-3.5 px-10" onclick="openBranch()">M.Tech</button
+        ><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">M.SC</button><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">M.A.</button><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">MSR</button><br />
         <button class="mt-3.5 px-10" onclick="openBranch()">PHD</button><br />
       </div>
       <div id="branches" class="ml-5 mr-4 w-52 hidden">
-        <button class="mt-8 font-sans font-bold text-lg text-blue-600 px-4">Department</button><br />
+        <button class="mt-8 font-sans font-bold text-lg text-blue-600 px-4">
+          Department</button
+        ><br />
         <button class="mt-3.5 px-4" onclick="openSemester()">CSE</button><br />
-        <button class="mt-3.5 px-4" onclick="openSemester()">Mathematics</button><br />
-        <button class="mt-3.5 px-4" onclick="openSemester()">BioTechnology</button><br />
-        <button class="mt-3.5 px-4" onclick="openSemester()">Civil</button><br />
-        <button class="mt-3.5 px-4" onclick="openSemester()">Mechanical</button><br />
-        <button class="mt-3.5 px-4" onclick="openSemester()">Electrical</button><br />
-        <button class="mt-3.5 px-4" onclick="openSemester()">Physics</button><br />
-        <button class="mt-3.5 px-4" onclick="openSemester()">Chemical</button><br />
+        <button class="mt-3.5 px-4" onclick="openSemester()">Mathematics</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openSemester()">
+          BioTechnology</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openSemester()">Civil</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openSemester()">Mechanical</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openSemester()">Electrical</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openSemester()">Physics</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openSemester()">Chemical</button
+        ><br />
       </div>
-      <svg class="mt-8 mb-8" width="2" height="400" viewBox="0 0 2 465" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        class="mt-8 mb-8"
+        width="2"
+        height="400"
+        viewBox="0 0 2 465"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path d="M1 0L0.999972 465" stroke="#B7DAFF" />
       </svg>
       <div id="semesters" class="ml-5 mr-4 w-36 hidden">
-        <button class="mt-8 font-sans font-bold text-lg text-blue-600 px-4">Semester</button><br />
-        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 1</button><br />
-        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 2</button><br />
-        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 3</button><br />
-        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 4</button><br />
-        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 5</button><br />
-        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 6</button><br />
-        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 7</button><br />
-        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 8</button><br />
+        <button class="mt-8 font-sans font-bold text-lg text-blue-600 px-4">
+          Semester</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 1</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 2</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 3</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 4</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 5</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 6</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 7</button
+        ><br />
+        <button class="mt-3.5 px-4" onclick="openCourse()">Semester 8</button
+        ><br />
       </div>
-      <svg class="mt-8 mb-8" width="2" height="400" viewBox="0 0 2 465" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg
+        class="mt-8 mb-8"
+        width="2"
+        height="400"
+        viewBox="0 0 2 465"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path d="M1 0L0.999972 465" stroke="#B7DAFF" />
       </svg>
       <div id="courses" class="ml-5 mr-4 w-72 hidden">
-        <button class="mt-8 font-sans font-bold text-lg text-blue-600 px-4 w-min">Courses</button><br />
+        <button
+          class="mt-8 font-sans font-bold text-lg text-blue-600 px-4 w-min"
+        >
+          Courses</button
+        ><br />
         <button class="mt-3.5 px-4">ME201 Loreum Ipsum Dolor</button><br />
         <button class="mt-3.5 px-4">ME201 Loreum Ipsum Dolor</button><br />
         <button class="mt-3.5 px-4">ME201 Loreum Ipsum Dolor</button><br />
@@ -211,25 +590,99 @@
         <button class="mt-3.5 px-4">ME201 Loreum Ipsum Dolor</button><br />
       </div>
     </div>
-    <div id="modal" class="fixed z-10 inset-0 overflow-y-auto" style="display: none;" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-        <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+    <div
+      id="modal"
+      class="fixed z-10 inset-0 overflow-y-auto"
+      style="display: none"
+      aria-labelledby="modal-title"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div
+        class="
+          flex
+          items-end
+          justify-center
+          min-h-screen
+          pt-4
+          px-4
+          pb-20
+          text-center
+          sm:block sm:p-0
+        "
+      >
+        <div
+          class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          aria-hidden="true"
+        ></div>
+        <span
+          class="hidden sm:inline-block sm:align-middle sm:h-screen"
+          aria-hidden="true"
+          >&#8203;</span
+        >
+        <div
+          class="
+            inline-block
+            align-bottom
+            bg-white
+            rounded-lg
+            text-left
+            overflow-hidden
+            shadow-xl
+            transform
+            transition-all
+            sm:my-8 sm:align-middle sm:max-w-lg sm:w-full
+          "
+        >
           <div class="flex justify-end mt-2 mr-2">
-          <button onclick="closeModal()" type="button" class=""><svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M19.3665 17.6581L27.0032 25.2948L25.3062 26.9919L17.6694 19.3551L10.0327 26.9919L8.33562 25.2948L15.9724 17.6581L8.33562 10.0213L10.0327 8.32425L17.6694 15.961L25.3062 8.32425L27.0032 10.0213L19.3665 17.6581Z" fill="#142661"/>
-            </svg>
-            </button></div>
+            <button onclick="closeModal()" type="button" class="">
+              <svg
+                width="35"
+                height="35"
+                viewBox="0 0 35 35"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M19.3665 17.6581L27.0032 25.2948L25.3062 26.9919L17.6694 19.3551L10.0327 26.9919L8.33562 25.2948L15.9724 17.6581L8.33562 10.0213L10.0327 8.32425L17.6694 15.961L25.3062 8.32425L27.0032 10.0213L19.3665 17.6581Z"
+                  fill="#142661"
+                />
+              </svg>
+            </button>
+          </div>
           <div class="flex justify-center mb-2 mt-8">
-            <div class="text-4xl font-bold"  style="color: #142661;">Welcome!</div>
+            <div class="text-4xl font-bold" style="color: #142661">
+              Welcome!
+            </div>
           </div>
           <div class="flex justify-center mb-8">
-            <div class="text-lg text-center"  style="color: #142661;">If you are an IIT Guwahati student, log in using your Outlook ID.</div>
+            <div class="text-lg text-center" style="color: #142661">
+              If you are an IIT Guwahati student, log in using your Outlook ID.
+            </div>
           </div>
-          <div class="flex justify-center mb-16" ><a href="/coursedirectory/auth/outlook">
-            <button style="width: 236px; height: 60px;" type="button" class=" w-full  rounded-md border border-transparent shadow-sm bg-blue-400 text-lg font-bold text-white hover:bg-blue-600 focus:outline-none">Sign In</button></a>
-            
+          <div class="flex justify-center mb-16">
+            <a href="/coursedirectory/auth/outlook">
+              <button
+                style="width: 236px; height: 60px"
+                type="button"
+                class="
+                  w-full
+                  rounded-md
+                  border border-transparent
+                  shadow-sm
+                  bg-blue-400
+                  text-lg
+                  font-bold
+                  text-white
+                  hover:bg-blue-600
+                  focus:outline-none
+                "
+              >
+                Sign In
+              </button></a
+            >
           </div>
         </div>
       </div>
@@ -246,3 +699,5 @@
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
             </form>
           </div> -->
+  </body>
+</html>

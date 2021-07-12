@@ -21,9 +21,11 @@ exports.getVideos = async (req, res) => {
 
 exports.searchVideo = async (req, res) => {
   try {
-    var val = req.body.videoSearch;
-    if(val == null) {
-      return res.redirect("/coursedirectory/admin/" + req.params.courseid + "/videos");
+    var val = req.body.videoSearch.toUpperCase();
+    if (val == null) {
+      return res.redirect(
+        "/coursedirectory/admin/" + req.params.courseid + "/videos"
+      );
     }
     const videos = await Video.find({
       $and: [
@@ -42,7 +44,7 @@ exports.searchVideo = async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 exports.addVideoForm = async (req, res) => {
   try {
@@ -61,7 +63,7 @@ exports.addVideoForm = async (req, res) => {
 exports.postVideo = async (req, res) => {
   try {
     var course_id = req.params.courseid;
-    var name = req.body.name;
+    var name = req.body.name.toUpperCase();
     var video = req.body.video;
     var number = req.body.number;
     console.log(name);
@@ -108,7 +110,7 @@ exports.getEditForm = async (req, res) => {
 exports.postEditForm = async (req, res) => {
   try {
     var course_id = req.params.courseid;
-    var name = req.params.videoid;
+    var name = req.params.videoid.toUpperCase();
     var { video, number } = req.body;
     await Video.findOneAndUpdate({ _id: name }, { link: video }, number);
     console.log("successfully updated");

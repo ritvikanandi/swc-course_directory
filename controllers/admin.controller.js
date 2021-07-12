@@ -24,14 +24,15 @@ exports.getCourses = async (req, res) => {
 
 exports.searchCourse = async (req, res) => {
   try {
-    var val = req.body.courseSearch;
-    if(val == null) {
+    var val = req.body.courseSearch.toUpperCase();
+    if (val == null) {
       return res.redirect("/coursedirectory/admin/" + req.params.courseid);
     }
     const courses = await Course.find({
       $or: [
+        { course_id: { $regex: val, $options: "i" } },
         { course_name: { $regex: val, $options: "i" } },
-        { description: { $regex: val, $options: "i" } }
+        { description: { $regex: val, $options: "i" } },
       ],
     });
     return res.render("admin/AllCourse/index", {
@@ -41,7 +42,7 @@ exports.searchCourse = async (req, res) => {
   } catch (error) {
     console.log(error.message);
   }
-}
+};
 
 exports.getAddCourse = async (req, res) => {
   try {

@@ -194,6 +194,7 @@ exports.professorPage = async (req, res) => {
         course_id: req.params.courseid,
       });
       courses = await Course.find();
+      othercourses = await Course.find({ professorEmail: profemail });
       return res.render("user/coursepage", {
         user: req.user,
         courses_data: course,
@@ -203,6 +204,7 @@ exports.professorPage = async (req, res) => {
         courseid: req.params.courseid,
         professor: profdata,
         courses,
+        othercourses,
       });
     }
   } catch (error) {

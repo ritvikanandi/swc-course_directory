@@ -23,7 +23,7 @@ exports.getAssignments = async (req, res) => {
 
 exports.searchAssignment = async (req, res) => {
   try {
-    var val = req.body.assignmentSearch;
+    var val = req.body.assignmentSearch.toUpperCase();
     if(val == null) {
       return res.redirect("/coursedirectory/admin/" + req.params.courseid + "/assignments");
     }
