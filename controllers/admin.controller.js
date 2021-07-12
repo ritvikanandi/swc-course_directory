@@ -5,14 +5,18 @@ exports.getCourses = async (req, res) => {
   try {
     if (req.user.isProfessor) {
       const courses = await Course.find({ professorEmail: req.user.email });
+      console.log(courses);
+      return res.render("admin/AllCourse/index", {
+        user: req.user,
+        courses_data: courses,
+      });
     } else if (req.user.isAdmin) {
       const courses = await Course.find({ moderatorEmail: req.user.email });
+      return res.render("admin/AllCourse/index", {
+        user: req.user,
+        courses_data: courses,
+      });
     }
-    console.log(courses);
-    return res.render("admin/AllCourse/index", {
-      user: req.user,
-      courses_data: courses,
-    });
   } catch (error) {
     console.log(error);
   }
@@ -159,10 +163,56 @@ exports.postProfessor = async (req, res) => {
   }
 };
 
+exports.getProfInfo = async (req, res) => {
+  try {
+    const professor = await Professor.findOne({ email: req.user.email });
+    console.log(professor);
+    return res.render("admin/Professor/index", { professor, user: req.user });
+  } catch (error) {
+    console.log(error);
+  }
+};
 exports.getProfForm = async (req, res) => {
   try {
     console.log("new");
     return res.render("admin/Professor/add", { user: req.user });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.getProfEdit = async (req, res) => {
+  try {
+    const professor = await Professor.findOne({ email: req.user.email });
+    return res.render("admin/Professor/edit", { user: req.user, professor });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+exports.editProfessor = async (req, res) => {
+  try {
+    const name = req.user.username;
+    const department = req.body.department;
+    const post = req.body.post;
+    const contact = req.body.contact;
+    const area = req.body.area;
+    const email = req.user.email;
+    const imagepath = req.file ? req.file.filename : filepath;
+    console.log(name, department, post, contact, email, imagepath, area);
+    const professor = {
+      name,
+      department,
+      post,
+      contact,
+      email,
+      imagepath,
+      area,
+    };
+    await Professor.findOneAndUpdate({ email: req.user.email }, professor, {
+      new: true,
+    });
+    res.redirect("/coursedirectory/admin/professor/profile");
   } catch (error) {
     console.log(error);
   }

@@ -14,7 +14,7 @@
                 <p>You need to add form pdf or link</p>
             </div> -->
             <div class="leading-loose">
-                <form class="p-10 bg-white rounded shadow-xl" action="/coursedirectory/admin/professor/profile/add" method="POST" enctype="multipart/form-data">
+                <form class="p-10 bg-white rounded shadow-xl" action="/coursedirectory/admin/professor/profile/edit?_method=PUT" method="POST" enctype="multipart/form-data">
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="course_id">Name</label>
                         <div class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded"><%= user.username %></div>
@@ -26,20 +26,20 @@
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="credits">Post</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="post" type="text"
-                            name="post" placeholder="POST">
+                            name="post" value="<%=professor.post %>">
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="course_desc">Department</label>
                         <input class="w-full px-5  py-4 text-gray-700 bg-gray-200 rounded" id="department" type="text"
-                            name="department" placeholder="Department">
+                            name="department" value="<%=professor.department %>">
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="branch">Contact No.</label>
-                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contact" type="number" name="contact" placeholder="Contact No."></input>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="contact" type="number" name="contact" value="<%=professor.contact %>"></input>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="branch">Research Area</label>
-                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="area" type="text" name="area" placeholder="Research Area"></input>
+                        <input class="w-full px-5 py-4 text-gray-700 bg-gray-200 rounded" id="area" type="text" name="area" value="<%=professor.area %>"></input>
                     </div>
                     <div class="mt-2">
                         <label class="block text-sm text-gray-600" for="branch">Image</label>

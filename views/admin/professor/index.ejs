@@ -1,0 +1,25 @@
+<%- include("./partials/header.ejs") %>
+
+<% if(professor){ %>
+    <div class="mt-6">
+        <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/coursedirectory/admin/professor/profile/edit">Edit Profile</a>
+    </div>
+    <div class="md:flex pt-6 space-x-8">
+   <div class=""><img style="width: 325px;height: 325px;" src="/coursedirectory/uploads/professorImages/<%= professor.imagepath %>" alt="PROFILE PIC"></div>
+    <div class="flex-col">
+        <div class="text-2xl">NAME: <%= professor.name %></div>
+        <div class="text-2xl">DEPARTMENT : <%= professor.department %></div>
+        <div class="text-2xl">POST : <%= professor.post %></div>
+        <div class="text-2xl">CONTACT NO. : <%= professor.contact %></div>
+        <div class="text-2xl">EMAIL : <%= professor.email %></div>
+        <div class="text-2xl">Research Area :</div>
+        <div class="text-2xl"><%= professor.area %></div>
+
+    </div>
+</div>
+    <% }else{ %>
+        <div class="mt-6">
+            <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/coursedirectory/admin/professor/profile/add">Add Profile</a>
+        </div>
+        <% } %>
+<%- include("./partials/footer.ejs") %>

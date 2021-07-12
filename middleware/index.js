@@ -37,6 +37,10 @@ const isProfessor = async (req, res, next) => {
   if (professor) {
     return next();
   } else {
+    req.flash(
+      "info",
+      "You need to complete your profile before adding any course."
+    );
     return res.redirect("/coursedirectory/admin/professor/profile");
   }
 };

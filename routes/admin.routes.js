@@ -20,19 +20,37 @@ router.get(
   middleware.isAdmin,
   adminCourseCont.getCourses
 );
-
 router.get(
   "/professor/profile",
+  middleware.isLoggedIn,
+  middleware.isProfAdmin,
+  adminCourseCont.getProfInfo
+);
+router.get(
+  "/professor/profile/add",
   middleware.isLoggedIn,
   middleware.isProfAdmin,
   adminCourseCont.getProfForm
 );
 router.post(
-  "/professor/profile",
+  "/professor/profile/add",
   middleware.isLoggedIn,
   middleware.isProfAdmin,
   upload.single("image"),
   adminCourseCont.postProfessor
+);
+router.get(
+  "/professor/profile/edit",
+  middleware.isLoggedIn,
+  middleware.isProfAdmin,
+  adminCourseCont.getProfEdit
+);
+router.put(
+  "/professor/profile/edit",
+  middleware.isLoggedIn,
+  middleware.isProfAdmin,
+  upload.single("image"),
+  adminCourseCont.editProfessor
 );
 router.get(
   "/add",
