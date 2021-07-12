@@ -17,6 +17,36 @@ exports.getFAQs = async (req, res) => {
   }
 };
 
+exports.searchFAQ = async (req, res) => {
+  try {
+    var val = req.body.faqSearch;
+    if(val == null) {
+      return res.redirect("/coursedirectory/admin/" + req.params.courseid + "/faqs");
+    }
+    const faqs = await FAQ.find({
+      $and: [
+        {
+          $or: [
+            { question: { $regex: val, $options: "i" } },
+            { answer: { $regex: val, $options: "i" } }
+          ],
+        },
+        { course_id: { $regex: req.params.courseid, $options: "i" } },
+      ],
+    });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
+    return res.render("admin/faqs/index", {
+      user: req.user,
+      courses_data: courses_data,
+      faqs: faqs,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 exports.addFAQForm = async (req, res) => {
   try {
     const courses_data = await Course.findOne({ course_id: req.params.courseid });

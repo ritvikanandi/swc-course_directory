@@ -66,6 +66,36 @@ exports.postLecture = async (req, res) => {
   }
 };
 
+exports.searchLecture = async (req, res) => {
+  try {
+    var val = req.body.lectureSearch;
+    if(val == null) {
+      return res.redirect("/coursedirectory/admin/" + req.params.courseid + "/lectures");
+    }
+    const lectures = await Lecture.find({
+      $and: [
+        {
+          $or: [
+            { name: { $regex: val, $options: "i" } },
+            { filepath: { $regex: val, $options: "i" } }
+          ],
+        },
+        { course_id: { $regex: req.params.courseid, $options: "i" } },
+      ],
+    });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
+    return res.render("admin/lectures/index", {
+      user: req.user,
+      courses_data: courses_data,
+      lectures: lectures,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 exports.getEditForm = async (req, res) => {
   try {
     const lecture = await Lecture.findById(req.params.lectureid);

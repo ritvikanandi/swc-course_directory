@@ -19,6 +19,31 @@ exports.getVideos = async (req, res) => {
   }
 };
 
+exports.searchVideo = async (req, res) => {
+  try {
+    var val = req.body.videoSearch;
+    if(val == null) {
+      return res.redirect("/coursedirectory/admin/" + req.params.courseid + "/videos");
+    }
+    const videos = await Video.find({
+      $and: [
+        { name: { $regex: val, $options: "i" } },
+        { course_id: { $regex: req.params.courseid, $options: "i" } },
+      ],
+    });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
+    return res.render("admin/videos/index", {
+      user: req.user,
+      courses_data: courses_data,
+      videos: videos,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 exports.addVideoForm = async (req, res) => {
   try {
     const courses_data = await Course.findOne({

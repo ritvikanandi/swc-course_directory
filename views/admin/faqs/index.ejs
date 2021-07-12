@@ -6,6 +6,13 @@
 <h1 class="text-3xl text-black pb-6"><%= courses_data.course_id %> - <%= courses_data.course_name %></h1>
 <div class="mt-6">
     <a class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" href="/coursedirectory/admin/<%= courses_data.course_id %>/faqs/add">Add FAQs</a>
+
+    <form style="float: right;" action="/coursedirectory/admin/<%= courses_data.course_id %>/faqs" method="POST">
+        <input type="text" name="faqSearch" placeholder="Search ... ">
+        <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 rounded" type="submit"> Submit
+        </button>
+    </form>
+
 </div>
 <div class="w-auto mt-6 overflow-auto">
     <div class="bg-white">

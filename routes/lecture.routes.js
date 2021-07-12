@@ -17,10 +17,17 @@ const upload = multer({ storage: storage });
 
 router.get("/", isLoggedIn, isAdmin, lectureController.getLectures);
 
+router.post(
+  "/",
+  isLoggedIn,
+  isAdmin,
+  lectureController.searchLecture
+);
+
 router.get("/add", isLoggedIn, isAdmin, lectureController.addLectureForm);
 
 router.post(
-  "/",
+  "/add",
   isLoggedIn,
   isAdmin,
   upload.single("lecture"),

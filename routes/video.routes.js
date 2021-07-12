@@ -6,9 +6,11 @@ const videoController = require("../controllers/video.controller");
 
 router.get("/", isLoggedIn, isAdmin, videoController.getVideos);
 
+router.post("/", isLoggedIn, isAdmin, videoController.searchVideo);
+
 router.get("/add", isLoggedIn, isAdmin, videoController.addVideoForm);
 
-router.post("/", isLoggedIn, isAdmin, videoController.postVideo);
+router.post("/add", isLoggedIn, isAdmin, videoController.postVideo);
 
 router.get("/:videoid", isLoggedIn, isAdmin, videoController.getEditForm);
 

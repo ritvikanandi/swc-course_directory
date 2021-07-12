@@ -11,7 +11,7 @@ exports.getAssignments = async (req, res) => {
     const courses_data = await Course.findOne({
       course_id: req.params.courseid,
     });
-    res.render("admin/assignments/index", {
+    return res.render("admin/assignments/index", {
       user: req.user,
       courses_data: courses_data,
       assignments: assignments,
@@ -20,6 +20,36 @@ exports.getAssignments = async (req, res) => {
     console.log(error.message);
   }
 };
+
+exports.searchAssignment = async (req, res) => {
+  try {
+    var val = req.body.assignmentSearch;
+    if(val == null) {
+      return res.redirect("/coursedirectory/admin/" + req.params.courseid + "/assignments");
+    }
+    const assignments = await Assignment.find({
+      $and: [
+        {
+          $or: [
+            { name: { $regex: val, $options: "i" } },
+            { filepath: { $regex: val, $options: "i" } }
+          ],
+        },
+        { course_id: { $regex: req.params.courseid, $options: "i" } },
+      ],
+    });
+    const courses_data = await Course.findOne({
+      course_id: req.params.courseid,
+    });
+    return res.render("admin/assignments/index", {
+      user: req.user,
+      courses_data: courses_data,
+      assignments: assignments,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 exports.addAssignmentForm = async (req, res) => {
   try {

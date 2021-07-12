@@ -6,9 +6,11 @@ const faqController = require("../controllers/faq.controller");
 
 router.get("/", isLoggedIn, isAdmin, faqController.getFAQs);
 
+router.post("/", isLoggedIn, isAdmin, faqController.searchFAQ);
+
 router.get("/add", isLoggedIn, isAdmin, faqController.addFAQForm);
 
-router.post("/", isLoggedIn, isAdmin, faqController.postFAQ);
+router.post("/add", isLoggedIn, isAdmin, faqController.postFAQ);
 
 router.get("/:faqid", isLoggedIn, isAdmin, faqController.getEditForm);
 

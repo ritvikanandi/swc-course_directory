@@ -22,6 +22,27 @@ exports.getCourses = async (req, res) => {
   }
 };
 
+exports.searchCourse = async (req, res) => {
+  try {
+    var val = req.body.courseSearch;
+    if(val == null) {
+      return res.redirect("/coursedirectory/admin/" + req.params.courseid);
+    }
+    const courses = await Course.find({
+      $or: [
+        { course_name: { $regex: val, $options: "i" } },
+        { description: { $regex: val, $options: "i" } }
+      ],
+    });
+    return res.render("admin/AllCourse/index", {
+      user: req.user,
+      courses_data: courses,
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 exports.getAddCourse = async (req, res) => {
   try {
     return res.render("admin/AllCourse/add", { user: req.user });

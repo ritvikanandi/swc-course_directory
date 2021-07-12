@@ -20,6 +20,12 @@ router.get(
   middleware.isAdmin,
   adminCourseCont.getCourses
 );
+router.post(
+  "/",
+  middleware.isLoggedIn,
+  middleware.isAdmin,
+  adminCourseCont.searchCourse
+);
 router.get(
   "/professor/profile",
   middleware.isLoggedIn,
