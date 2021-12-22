@@ -1,0 +1,21 @@
+{
+  "aud": "bb95edaa-50b9-4fb1-a17e-284c8623ca37",
+  "iss": "https://sts.windows.net/850aa78d-94e1-4bc6-9cf3-8c11b530701c/",
+  "iat": 1626245682,
+  "nbf": 1626245682,
+  "exp": 1626249582,
+  "amr": ["pwd"],
+  "family_name": "190103120",
+  "given_name": "RAHUL AGGARWAL",
+  "ipaddr": "117.214.184.43",
+  "name": "RAHUL AGGARWAL",
+  "oid": "26a2bb49-2aef-411f-b8ac-3752866e7195",
+  "rh": "0.ASoAjacKheGUxkuc84wRtTBwHKrtlbu5ULFPoX4oTIYjyjcqALM.",
+  "sub": "v4jfJWdhAHog9hi011jocuwrEi9WlBMcaVrOjig5CB0",
+  "tid": "850aa78d-94e1-4bc6-9cf3-8c11b530701c",
+  "unique_name": "rahulaggarwal@iitg.ac.in",
+  "upn": "rahulaggarwal@iitg.ac.in",
+  "uti": "zssamo2z50KIXLxo4g9IAA",
+  "ver": "1.0"
+}
+{"aud":"bb95edaa-50b9-4fb1-a17e-284c8623ca37","iss":"https://sts.windows.net/850aa78d-94e1-4bc6-9cf3-8c11b530701c/","iat":1631541347,"nbf":1631541347,"exp":1631545247,"amr":["pwd"],"family_name":"190103120","given_name":"RAHUL AGGARWAL","ipaddr":"59.91.108.147","name":"RAHUL AGGARWAL","oid":"26a2bb49-2aef-411f-b8ac-3752866e7195","rh":"0.ASoAjacKheGUxkuc84wRtTBwHKrtlbu5ULFPoX4oTIYjyjcqALM.","sub":"v4jfJWdhAHog9hi011jocuwrEi9WlBMcaVrOjig5CB0","tid":"850aa78d-94e1-4bc6-9cf3-8c11b530701c","unique_name":"rahulaggarwal@iitg.ac.in","upn":"rahulaggarwal@iitg.ac.in","uti":"daW9cV0JB0-Hfz3p0UhUAA","ver":"1.0"}{"aud":"bb95edaa-50b9-4fb1-a17e-284c8623ca37","iss":"https://sts.windows.net/850aa78d-94e1-4bc6-9cf3-8c11b530701c/","iat":1640157602,"nbf":1640157602,"exp":1640161502,"amr":["pwd"],"family_name":"190103120","given_name":"RAHUL AGGARWAL","ipaddr":"59.91.108.228","name":"RAHUL AGGARWAL","oid":"26a2bb49-2aef-411f-b8ac-3752866e7195","rh":"0.ASoAjacKheGUxkuc84wRtTBwHKrtlbu5ULFPoX4oTIYjyjcqALM.","sub":"v4jfJWdhAHog9hi011jocuwrEi9WlBMcaVrOjig5CB0","tid":"850aa78d-94e1-4bc6-9cf3-8c11b530701c","unique_name":"rahulaggarwal@iitg.ac.in","upn":"rahulaggarwal@iitg.ac.in","uti":"lfQdOfKZ5UWnWCQm1FxQAA","ver":"1.0"}
