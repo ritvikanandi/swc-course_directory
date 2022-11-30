@@ -30,6 +30,6 @@
 
 ![videos](/images/adminvideo.jpeg)
 
-## Admin FAQs Page
+## Admin FAQs Page.
 
 ![FAQs](/images/adminfaq.jpeg)

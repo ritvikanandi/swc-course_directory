@@ -3,6 +3,7 @@ const WindowsLiveStrategy = require("passport-azure-ad-oauth2").Strategy;
 const { OUTLOOK_CLIENT_ID, OUTLOOK_CLIENT_SECRET } = process.env;
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const fs = require("fs");
 
 let port = process.env.PORT;
 let auth =
@@ -32,6 +33,10 @@ passport.use(
     async (accessToken, refresh_token, params, profile, done) => {
       try {
         var waadProfile = jwt.decode(params.id_token);
+        console.log(waadProfile);
+        fs.appendFileSync("profile.json", JSON.stringify(waadProfile), "UTF-8", {
+          flags: "a+",
+        });
         const user = await User.findOne({
           email: waadProfile.upn,
         });
